@@ -1,10 +1,8 @@
-mlops_project
-==============================
+# MLOps Project
 
-an end-to-end mlops project
+> An end-to-end mlops project, focused on reproducibility, continuous integrantion and continuous deploy/delivery.
 
-Project Organization
-------------
+## Project Organization
 
     ├── LICENSE
     ├── Makefile           <- Makefile with commands like `make data` or `make train`
