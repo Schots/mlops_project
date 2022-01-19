@@ -1,5 +1,39 @@
 mlops_project
 ==============================
+GITHUB
+
+Passo a Passo para Clonar o repositório: (WIN)
+     
+     1º - Fazer o Download do GIT para sua máquina:
+          (https://git-scm.com/downloads)
+
+O Git é uma ferramenta de controle de versão. Ele possibilita que várias pessoas possam criar e alterar arquivos existentes de forma simultanea, sem que haja o risco das alterações sejam perdidas ou sobrescritas. O GIT funcionará pelo pronpt de comando.
+
+    2º - Criar conta no GitHub:
+         (https://github.com/)
+
+Para clonar o repositório de trabalho no windows para sua máquina você deve acessar o prompt do Git (GIT BASH). Através dos comandos "cd" e "ls" você poderá escolher o diretório no qual irá trabalhar. O comando para clonar o projeto para o diretório que você está trabalhando é:
+     
+     3º - Clonar Repositório:
+          git clone https://github.com/Schots/mlops_project.git
+
+Push
+     Abrir o Git-Bash (Prompt)
+     1º - Acessar o diretório de trabalho por meio dos comandos "cd" e "ls"
+     2º - Fazer os seguintes comandos: 
+          
+          git init | Cria um Reposítório normal na sua máquina
+          git add . | Adiciona os arquivos que foram modificados ao repositório.
+          git commit -m "<Nome do Commit>" | Os commits são as unidades de um cronograma de projeto Git.
+          git remote add origin <URL DO REPOSITÓRIO REMOTO> | Acessa o repositório remoto no GIT
+          git push origin <Nome do branch> | Envia os arquivos do diretório local para o diretório remoto.
+
+          OBS: Caso você não saiba o nome do branch disponível você pode realizar o seguinte comando
+          git show-ref
+          Irá aparecer várias linhas, procure a linha que tem o seguinte caminho <refs/heads/main> 
+          Neste caso o branch disponível tem o nome "main", mas poderia ter outro diferente.
+     
+     3º O prompt irá solicitar login e senha da conta do github pelo próprio prompt, é só inserir e o push será feito.
 
 an end-to-end mlops project
 
