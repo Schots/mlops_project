@@ -1,0 +1,8 @@
+-c requirements.txt
+pre-commit
+pre-commit-hooks
+isort
+pylint
+black
+docformatter
+pip-tools
