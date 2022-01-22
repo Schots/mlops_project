@@ -24,6 +24,21 @@ To automatically install the requirements under requirements.txt
     make requirements
     ```
 
+Download data
+------------
+
+To download the dataset, use the script 'download_dataset.py'
+
+    ```sh
+    python3 download_dataset.py
+    ```
+and type the dataset name on the terminal E.g 'titanic' or pass the dataset name as a parameter
+
+    ```sh
+    python3 download_dataset.py --dataset=titanic
+    ```
+
+the zipfile with data will be downloaded and unzipped under 'data/raw'
 
 Project Organization
 ------------

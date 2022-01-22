@@ -6,3 +6,4 @@ pylint
 black
 docformatter
 pip-tools
+kaggle
