@@ -1,4 +1,5 @@
-.PHONY: clean data lint requirements sync_data_to_s3 sync_data_from_s3
+.PHONY: clean data lint requirements sync_data_to_s3 sync_data_from_s3 pip-compile \
+install-precommit sync-env
 
 #################################################################################
 # GLOBALS                                                                       #
@@ -20,23 +21,40 @@ endif
 # COMMANDS                                                                      #
 #################################################################################
 
+
+## Quality Assurance Commands
+
+pip-compile:
+	pip-compile --no-emit-index-url requirements.in
+	pip-compile --no-emit-index-url requirements-dev.in
+
+install-precommit: pip-compile
+	python3 -m pip install --upgrade pip &&\
+	python3 -m pip install -r requirements-dev.txt --use-deprecated=legacy-resolver &&\
+	pre-commit install
+
+sync-env: pip-compile
+	pip-sync requirements.txt requirements-dev.txt
+
+#################################################################################
+
 ## Install Python Dependencies
 requirements: test_environment
 	$(PYTHON_INTERPRETER) -m pip install -U pip setuptools wheel
 	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt
 
+## Download Dataset
+get_data: requirements
+	$(PYTHON_INTERPRETER) download_dataset.py
+
 ## Make Dataset
-data: requirements
+data: get_data
 	$(PYTHON_INTERPRETER) src/data/make_dataset.py data/raw data/processed
 
 ## Delete all compiled Python files
 clean:
 	find . -type f -name "*.py[co]" -delete
 	find . -type d -name "__pycache__" -delete
-
-## Lint using flake8
-lint:
-	flake8 src
 
 ## Upload Data to S3
 sync_data_to_s3:
