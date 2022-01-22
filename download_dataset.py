@@ -31,9 +31,9 @@ def download(dataset):
 
     # Load the raw data destination folder from the dataset config file
     config = configparser.ConfigParser()
-    config.read("datasets.ini")
+    config.read("configs.ini")
 
-    raw_data_folder = config["raw"]["folder"]
+    raw_data_folder = config["datasets"]["raw_folder"]
 
     """Function to download a kaggle competition dataset.
 
