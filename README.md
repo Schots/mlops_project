@@ -3,6 +3,35 @@ mlops_project
 
 an end-to-end mlops project
 
+First Steps
+------------
+
+The Makefile defines a set of functions needed to automate repetitive processes in this project. Type "make" in the terminal and see the available functions.
+
+To start your contributions, you need to set up your environment and install the project dependencies. Follow the steps below!
+
+1. Create a virtual environment
+This step will create a python virtual environment for the MLOps project on your local machine
+
+    ```sh
+    make create_environment
+    ```
+
+2. Install requirements
+To automatically install the requirements under requirements.txt
+
+    ```sh
+    make requirements
+    ```
+
+Download data
+------------
+
+    ```sh
+    make get_data
+    ```
+type the dataset name when prompted. The zip file with data will be downloaded and unzipped under the _data/raw_ folder
+
 Project Organization
 ------------
 

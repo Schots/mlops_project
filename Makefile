@@ -43,8 +43,12 @@ requirements: test_environment
 	$(PYTHON_INTERPRETER) -m pip install -U pip setuptools wheel
 	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt
 
+## Download Dataset
+get_data: requirements
+	$(PYTHON_INTERPRETER) download_dataset.py
+
 ## Make Dataset
-data: requirements
+data: get_data
 	$(PYTHON_INTERPRETER) src/data/make_dataset.py data/raw data/processed
 
 ## Delete all compiled Python files
