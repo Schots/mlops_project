@@ -27,6 +27,8 @@ PUSH
           
           git add . | O comando git add adiciona todas as alterações no diretório ativo à área de staging. Ele diz ao Git que você quer incluir atualizações a um arquivo específico no próximo commit. No entanto, git add não tem efeito real e significativo no repositório — as alterações não são gravadas mesmo até você executar git commit .
 
+          git status | Este comando irá listar todos os arquivos que foram modificados em seu computador e que foram adicionados. Só para título de informação.
+
           git commit -m "<Nome do Commit>" | Podem ser considerados instantâneos ou marcos ao longo do cronograma de um projeto Git. São criados com o comando git commit para capturar o estado de um projeto naquele momento.
           
           git push origin <Nome da branch> | Envia os arquivos do diretório local para o diretório remoto.
