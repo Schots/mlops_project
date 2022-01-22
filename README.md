@@ -17,7 +17,6 @@ Para clonar o repositório remoto de trabalho no Windows para sua máquina você
      3º - Clonar Repositório:
           git clone https://github.com/Schots/mlops_project.git
 
-
 PUSH 
      1º - Abra o Git-Bash (Prompt - Windows) em seu computador;
      1º - Acesse o diretório de trabalho do seu computador onde estão os arquivos do projeto por meio dos comandos "cd" e "ls";
