@@ -3,6 +3,7 @@ import tempfile
 import zipfile
 import logging
 import click
+import configparser
 
 logging.basicConfig(level=logging.WARN)
 logger = logging.getLogger(__name__)
@@ -20,12 +21,20 @@ api.authenticate()
 
 @click.command()
 @click.option(
+    "-d",
     "--dataset",
-    prompt="Prompt the dataset name",
+    prompt="+----------------------------+\n|   Enter the dataset name   |\n+----------------------------+\n",
     help='Go to the Kaggle competition and copy the dataset name at the end of \
         command "kaggle competitions download"',
 )
 def download(dataset):
+
+    # Load the raw data destination folder from the dataset config file
+    config = configparser.ConfigParser()
+    config.read("datasets.ini")
+
+    raw_data_folder = config["raw"]["folder"]
+
     """Function to download a kaggle competition dataset.
 
     Args:
@@ -40,7 +49,7 @@ def download(dataset):
             api.competition_download_files(dataset, path=temp_dir)
             # Unzip the file download and transfer content to data/raw
             with zipfile.ZipFile(f"{temp_dir}/{dataset}.zip", "r") as zip_ref:
-                zip_ref.extractall("data/raw")
+                zip_ref.extractall(raw_data_folder)
 
     except ApiException as e:
         click.echo(e.reason)
