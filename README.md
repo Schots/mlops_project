@@ -1,77 +1,148 @@
-mlops_project
-==============================
-GITHUB
+<div style="background-color:white;">
+<h1 align="center"> <img width=300px src=img/logo.png> </h1>
+</div>
 
-Passo a passo para clonar o repositório no GITHUB: (WINDOWS E LINUX)
-     
-     1º - Fazer o Download do GIT para sua máquina:
-          (https://git-scm.com/downloads)
+## MLOps Project 
+---
+A project to learn how to build, deliver and maintain a Machine Learning service using MLOps paradigm.
 
-O Git é uma ferramenta de controle de versão. Ele possibilita que várias pessoas possam criar e alterar arquivos existentes de forma simultanea sem que haja o risco das alterações sejam perdidas ou sobrescritas. 
+This study case aims to be testable and reproducible within the CI/CD methodology, using the best programming practices.
 
-    2º - Criar conta no GitHub:
-         (https://github.com/)
+<br>
 
-Para clonar o repositório remoto de trabalho no Windows para sua máquina você deve acessar o prompt do GIT em seu computador (barra de procura >> GIT BASH), caso você esteja utilizando LINUX os comandos serão feitos via SHELL. Através dos comandos "cd" e "ls" você poderá escolher o diretório do seu computador onde estão os arquivos do projeto nos quais você irá trabalhar. O comando para clonar o projeto para o diretório em que você está trabalhando é:
-     
-     3º - Clonar Repositório:
-          git clone https://github.com/Schots/mlops_project.git
+## How to contribute?
+---
+Following the steps below you will be able to contribute to this project by creating scripts, packages, doing changes, and more.
 
-PUSH 
-     1º - Abra o Git-Bash (Prompt - Windows) em seu computador;
-     1º - Acesse o diretório de trabalho do seu computador onde estão os arquivos do projeto por meio dos comandos "cd" e "ls";
-     2º - Realizar os seguintes comandos: 
-          
-          git init | O comando git init cria um novo repositório do Git. Ele pode ser usado para converter um projeto existente e não versionado em um repositório do Git ou inicializar um novo repositório vazio. 
-          
-          git add . | O comando git add adiciona todas as alterações no diretório ativo à área de staging. Ele diz ao Git que você quer incluir atualizações a um arquivo específico no próximo commit. No entanto, git add não tem efeito real e significativo no repositório — as alterações não são gravadas mesmo até você executar git commit .
+1. Download git
 
-          git status | Este comando irá listar todos os arquivos que foram modificados em seu computador e que foram adicionados. Só para título de informação.
+    Git is a version control tool, allowing many people can change files simultaneously, without the risk of lost changes or overwrite it.
 
-          git commit -m "<Nome do Commit>" | Podem ser considerados instantâneos ou marcos ao longo do cronograma de um projeto Git. São criados com o comando git commit para capturar o estado de um projeto naquele momento.
-          
-          git push origin <Nome da branch> | Envia os arquivos do diretório local para o diretório remoto.
+    https://git-scm.com/downloads
 
-          OBS: Caso você não saiba o nome do branch disponível você pode realizar o seguinte comando
-          
-          git show-ref | Irá aparecer várias linhas, procure a linha que tem o seguinte caminho <refs/heads/main> 
-          Neste caso o branch disponível tem o nome "main", mas poderia ter outro diferente.
-     
-     3º O prompt irá solicitar login e senha da conta do github pelo próprio prompt, é só inserir e o push será feito.
+2. Login or Create your github.com account
 
-an end-to-end mlops project
+    https://github.com/
 
-First Steps
-------------
+3. Create your personal access token
 
-The Makefile defines a set of functions needed to automate repetitive processes in this project. Type "make" in the terminal and see the available functions.
+    The support for password authentication was removed, you need to use a personal access token to manage your repositories via terminal.
 
-To start your contributions, you need to set up your environment and install the project dependencies. Follow the steps below!
+    [creating-a-personal-access-token-tutorial](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
 
-1. Create a virtual environment
-This step will create a python virtual environment for the MLOps project on your local machine
+4. Fork the repository
+    
+    Go to the project repository.
+
+    https://github.com/Schots/mlops_project 
+    
+    and fork by clicking on the upper-left button.
+    
+    <img width=400px src=img/fork_button.png>
+
+    this will make a [independent](https://docs.github.com/en/get-started/quickstart/fork-a-repo) copy of this repository in your GitHub, allowing you to make changes without affecting this repo, except via _**Pull Requests**_.
+
+5. Clone the forked repository
+
+    After forking, your copy will be listed on your repositories list.
+
+    <img width=800px src=img/repositories.png >
+
+    open the repository
+
+    <img width=800px src=img/clone.png>
+    
+    copy the link provided by clicking on the button _Code_
+    
+    Open a bash terminal (if you are using Windows, make sure of using the git bash), navigate to the desired folder, and clone the forked repository to your machine.
+
+    ```sh
+    git clone https://github.com/<username>/mlops_project.git
+    ```
+
+6. Create your branch
+
+    Create your own branch open a terminal inside the repository forked and type.
+    
+    ```sh
+    git checkout -b my_branch
+    ```
+
+    then push your branch to your forked repository
+
+    ```sh
+    git push --set-upstream origin my_branch
+    ```
+
+7. Creating a Pull Request
+    
+    Make your contributions on your local repository then push, after this you will be able to create a Pull Request.
+
+    Example: 
+    
+    making a push from the "mmmmmm" branch
+
+    ```sh
+    git checkout mmmmmm              # swith to the mmmmm branch
+    touch myfile.txt                 # create a file
+    git add myfile.txt               # add file to git
+    git commit -m "First commit"     # commit the changes
+    git push                         # push to the forked repository
+
+    ```
+    after this few steps, the following message will be displayed on your repository.
+
+    <img src=img/pushed.png>
+
+    now you can create your own [Pull Request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork)
+
+<br>
+
+## How to use?
+---
+
+If you are interested just in using this package, follow the steps below.
+
+1. Clone the repository
+    
+    Open a terminal (if you are using Windows, make sure of using the git bash) navigate to the desired destination folder and clone the repository,
+    
+    ```sh
+    git clone https://github.com/Schots/mlops_project.git
+    ```
+
+    The [Makefile](Makefile) on the root folder defines a set of functions needed to automate repetitive processes in this project. Type "make" in the terminal and see the available functions.
+
+
+2. Create a virtual environment
+
+    This step will create a python virtual environment for the MLOps project on your local machine
 
     ```sh
     make create_environment
     ```
 
-2. Install requirements
-To automatically install the requirements under requirements.txt
+3. Install requirements
+
+    To automatically install the requirements under requirements.txt
 
     ```sh
     make requirements
     ```
 
-Download data
-------------
+4. Download data
+
+    To download the raw dataset, use the get_data
 
     ```sh
     make get_data
     ```
-type the dataset name when prompted. The zip file with data will be downloaded and unzipped under the _data/raw_ folder
+    type the dataset name when prompted. The zip file with data will be downloaded and unzipped under the _data/raw_ folder
 
-Project Organization
-------------
+<br>
+
+## Project Organization
+----
 
     ├── LICENSE
     ├── Makefile           <- Makefile with commands like `make data` or `make train`
