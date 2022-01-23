@@ -8,7 +8,7 @@
 
 ## MLOps Project 
 ---
-A project to learn how to build, deliver and maintain a Machine Learning service using MLOps paradigm.
+A project to learn how to build, deliver and maintain a Machine Learning service using the MLOps paradigm.
 
 This study case aims to be testable and reproducible within the CI/CD methodology, using the best programming practices.
 
