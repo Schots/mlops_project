@@ -2,8 +2,8 @@ import sys
 import tempfile
 import zipfile
 import logging
-import click
 import configparser
+import click
 
 logging.basicConfig(level=logging.WARN)
 logger = logging.getLogger(__name__)
@@ -23,11 +23,22 @@ api.authenticate()
 @click.option(
     "-d",
     "--dataset",
-    prompt="+----------------------------+\n|   Enter the dataset name   |\n+----------------------------+\n",
-    help='Go to the Kaggle competition and copy the dataset name at the end of \
-        command "kaggle competitions download"',
+    "dataset",
+    prompt=(
+        "+----------------------------+\n|   Enter the dataset name  "
+        " |\n+----------------------------+\n"
+    ),
+    help=(
+        "Go to the Kaggle competition and copy the dataset name at the end of "
+        '        command "kaggle competitions download"'
+    ),
 )
-def download(dataset):
+def download(dataset=None):
+    """Function to download a kaggle competition dataset.
+
+    Args:
+        dataset (str): the dataset name.
+    """
 
     # Load the raw data destination folder from the dataset config file
     config = configparser.ConfigParser()
@@ -35,11 +46,6 @@ def download(dataset):
 
     raw_data_folder = config["datasets"]["raw_folder"]
 
-    """Function to download a kaggle competition dataset.
-
-    Args:
-        dataset (str): the dataset name.
-    """
     # Test the system type (Windows, Linux)
     # save in the temporary system folder
     try:
