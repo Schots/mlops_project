@@ -28,7 +28,7 @@ pip-compile:
 	pip-compile --no-emit-index-url requirements.in
 	pip-compile --no-emit-index-url requirements-dev.in
 
-## Install Python Dependencies & Install pre-commit hooks 
+## Install Python Dependencies & Install pre-commit hooks
 
 requirements: pip-compile
 	$(PYTHON_INTERPRETER) -m pip install --upgrade pip &&\
