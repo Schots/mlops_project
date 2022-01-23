@@ -122,15 +122,27 @@ If you are interested just in using this package, follow the steps below.
     make create_environment
     ```
 
-3. Install requirements
+3. Install pip-tools
 
-    To automatically install the requirements under requirements.txt
+   You must install pip-tools in your machine in order to comply with the project code standards.
+  
+   To do so, please type in your terminal. 
+
+      ```sh
+    python3 -m pip install pip-tools
+    ```    
+
+4. Install requirements
+
+    The project dependencies should be put into requirements.in and requirements-dev.in files.
+
+    The requirements.txt and requirements-dev-in.txt will be generated, please don´t edit them. 
 
     ```sh
     make requirements
     ```
 
-4. Download data
+5. Download data
 
     To download the raw dataset, use the get_data
 
