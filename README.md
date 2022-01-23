@@ -78,22 +78,67 @@ Following the steps below you will be able to contribute to this project by crea
     git push --set-upstream origin my_branch
     ```
 
-7. Creating a Pull Request
-    
-    Make your contributions on your local repository then push, after this you will be able to create a Pull Request.
+7. Set up the environment
 
-    Example: 
-    
-    making a push from the "mmmmmm" branch
+    Configure your local machine to work in this project. First create a virtual environment Python virtual environment for the MLOps project on your local machine.
 
     ```sh
-    git checkout mmmmmm              # swith to the mmmmm branch
-    touch myfile.txt                 # create a file
-    git add myfile.txt               # add file to git
-    git commit -m "First commit"     # commit the changes
-    git push                         # push to the forked repository
+    make create_environment
+    ```
+    Then install the dependencies
+
+    ```sh
+    make requirements
+    ```
+
+8. Creating a Pull Request
+    
+    Make your contributions!
+
+    Don't forget of adding the new dependencies
+
+    ***The project dependencies should be put into requirements.in and requirements-dev.in files. The requirements.txt and requirements-dev-in.txt will be generated, please don´t edit them.***
+    
+    After this commit and push your changes to sync your local repository with your own remote repository. Now, you'll be able to create a Pull Request.
+
+    **Example:**
+    
+    Create a branch called new_branch
+
+    ```sh
+    git checkout mmmmm              # swith to the new_branch
+    ```
+
+    Create a Python script.py
+
+    ```sh
+    sudo nano script.py
+    ```
+
+    _script.py_
 
     ```
+
+    from passlib.context import CryptContext
+
+    pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
+    hashed_password = pwd_context.hash("my_password")
+
+    print(hashed_password)
+
+    ```
+
+    As you can see, this script depends on "passlib". Add this dependency to requirements-dev.in. Then commit and push your changes.
+
+    ```sh
+    git add script.txt                            # add the file created
+    git add requirements-dev.in                   # add the requirements changes
+    git commit -m "First commit"                  # commit the changes
+    git push                                      # push to the forked repository
+
+    ```
+
     after this few steps, the following message will be displayed on your repository.
 
     <img src=img/pushed.png>
@@ -124,23 +169,11 @@ If you are interested just in using this package, follow the steps below.
 
     ```sh
     make create_environment
-    ```
-
-3. Install pip-tools
-
-   You must install pip-tools in your machine in order to comply with the project code standards.
-  
-   To do so, please type in your terminal. 
-
-      ```sh
-    python3 -m pip install pip-tools
-    ```    
+    ```  
 
 4. Install requirements
 
-    The project dependencies should be put into requirements.in and requirements-dev.in files.
-
-    The requirements.txt and requirements-dev-in.txt will be generated, please don´t edit them. 
+    This step will install all requirements in your environment.
 
     ```sh
     make requirements
