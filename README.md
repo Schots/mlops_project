@@ -1,4 +1,6 @@
-![](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)
+![](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white) 
+
+![GitHub Contributors Image](https://contrib.rocks/image?repo=schots/mlops_project)
 
 <div style="background-color:white;">
 <h1 align="center"> <img width=300px src=img/logo.png> </h1>
