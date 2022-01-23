@@ -85,9 +85,11 @@ Following the steps below you will be able to contribute to this project by crea
     ```sh
     make create_environment
     ```
-    Then install the dependencies
+
+    Activate the environment and install dependencies
 
     ```sh
+    workon mlops_project
     make requirements
     ```
 
@@ -98,6 +100,8 @@ Following the steps below you will be able to contribute to this project by crea
     Don't forget of adding the new dependencies
 
     ***The project dependencies should be put into requirements.in and requirements-dev.in files. The requirements.txt and requirements-dev-in.txt will be generated, please don´t edit them.***
+
+    ***Put the scripts and modules dependencies in the requirements.in and the development dependencies (black, pylint, pytest) on the requirements-dev.in***
     
     After this commit and push your changes to sync your local repository with your own remote repository. Now, you'll be able to create a Pull Request.
 
@@ -106,7 +110,7 @@ Following the steps below you will be able to contribute to this project by crea
     Create a branch called new_branch
 
     ```sh
-    git checkout mmmmm              # swith to the new_branch
+    git checkout new_branch              # swith to the new_branch
     ```
 
     Create a Python script.py
@@ -129,11 +133,37 @@ Following the steps below you will be able to contribute to this project by crea
 
     ```
 
-    As you can see, this script depends on "passlib". Add this dependency to requirements-dev.in. Then commit and push your changes.
+    As you can see, this script depends on "passlib". Add this dependency to requirements.in.
+
+    _requirements.in_
+    ```
+    ...
+    passlib
+    ```
+    
+    Reinstall all dependencies of the project
 
     ```sh
-    git add script.txt                            # add the file created
-    git add requirements-dev.in                   # add the requirements changes
+    make requirements
+    ```
+
+    Then test your script
+
+    ```sh
+    python3 script.py
+    ```
+
+    If everything works fine you will see something like this output
+
+    ```sh
+    $2b$12$B.Xs4nChoe87oXAFM.QHNe7UkSWBWHh0ZuShzs/weKzKPoMKB.cbi
+    ```
+
+    Now commit and push your changes.
+
+    ```sh
+    git add script.py                             # add the file created
+    git add requirements.in                       # add the requirements changes
     git commit -m "First commit"                  # commit the changes
     git push                                      # push to the forked repository
 

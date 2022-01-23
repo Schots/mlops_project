@@ -38,6 +38,8 @@ requirements: pip-compile
 	$(PYTHON_INTERPRETER) -m pip install --upgrade pip &&\
 	$(PYTHON_INTERPRETER) -m pip install -r requirements-dev.txt --use-deprecated=legacy-resolver &&\
 	pre-commit install
+	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt --use-deprecated=legacy-resolver &&\
+	pre-commit install
 
 ## Synchronize the Python Dependencies & Virtual Env
 
