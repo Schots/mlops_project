@@ -1,13 +1,6 @@
-<div class=logo>
+<div style="background-color:white;">
 <h1 align="center"> <img width=300px src=img/logo.png> </h1>
 </div>
-
-<style>
-.logo {
-    background-color: #FFFF;
-    width: 100%;
-}
-</style>
 
 ## MLOps Project 
 ---
