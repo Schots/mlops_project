@@ -22,26 +22,25 @@ endif
 #################################################################################
 
 
-## Quality Assurance Commands
+## Compile Python Dependencies files
 
 pip-compile:
 	pip-compile --no-emit-index-url requirements.in
 	pip-compile --no-emit-index-url requirements-dev.in
 
-install-precommit: pip-compile
-	python3 -m pip install --upgrade pip &&\
-	python3 -m pip install -r requirements-dev.txt --use-deprecated=legacy-resolver &&\
+## Install Python Dependencies & Install pre-commit hooks 
+
+requirements: pip-compile
+	$(PYTHON_INTERPRETER) -m pip install --upgrade pip &&\
+	$(PYTHON_INTERPRETER) -m pip install -r requirements-dev.txt --use-deprecated=legacy-resolver &&\
 	pre-commit install
+
+## Synchronize the Python Dependencies & Virtual Env
 
 sync-env: pip-compile
 	pip-sync requirements.txt requirements-dev.txt
 
 #################################################################################
-
-## Install Python Dependencies
-requirements: test_environment
-	$(PYTHON_INTERPRETER) -m pip install -U pip setuptools wheel
-	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt
 
 ## Download Dataset
 get_data: requirements
