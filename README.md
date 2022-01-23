@@ -1,3 +1,5 @@
+![](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)
+
 <div style="background-color:white;">
 <h1 align="center"> <img width=300px src=img/logo.png> </h1>
 </div>
