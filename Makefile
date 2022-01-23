@@ -21,10 +21,14 @@ endif
 # COMMANDS                                                                      #
 #################################################################################
 
+## Install pip-compile
+
+install-pip-tools:
+	$(PYTHON_INTERPRETER) -m pip install pip-tools
 
 ## Compile Python Dependencies files
 
-pip-compile:
+pip-compile: install-pip-tools
 	pip-compile --no-emit-index-url requirements.in
 	pip-compile --no-emit-index-url requirements-dev.in
 
