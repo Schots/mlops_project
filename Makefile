@@ -30,7 +30,7 @@ pip-compile:
 
 ## Install Python Dependencies & Install pre-commit hooks 
 
-requirements:
+requirements: pip-compile
 	$(PYTHON_INTERPRETER) -m pip install --upgrade pip &&\
 	$(PYTHON_INTERPRETER) -m pip install -r requirements-dev.txt --use-deprecated=legacy-resolver &&\
 	pre-commit install
