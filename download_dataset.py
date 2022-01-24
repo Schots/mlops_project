@@ -15,8 +15,10 @@ except OSError as error:
     logger.error(error)
     sys.exit()
 
-api = KaggleApi()
-api.authenticate()
+PROMPT_STRING = (
+    "+----------------------------+\n|   Enter the dataset name  "
+    " |\n+----------------------------+\n"
+)
 
 
 @click.command()
@@ -24,10 +26,7 @@ api.authenticate()
     "-d",
     "--dataset",
     "dataset",
-    prompt=(
-        "+----------------------------+\n|   Enter the dataset name  "
-        " |\n+----------------------------+\n"
-    ),
+    prompt=(PROMPT_STRING),
     help=(
         "Go to the Kaggle competition and copy the dataset name at the end of "
         '        command "kaggle competitions download"'
@@ -46,8 +45,9 @@ def download(dataset=None):
 
     raw_data_folder = config["datasets"]["raw_folder"]
 
-    # Test the system type (Windows, Linux)
-    # save in the temporary system folder
+    api = KaggleApi()
+    api.authenticate()
+
     try:
         # Create a temporary folder to download dataset files in
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -56,6 +56,8 @@ def download(dataset=None):
             # Unzip the file download and transfer content to data/raw
             with zipfile.ZipFile(f"{temp_dir}/{dataset}.zip", "r") as zip_ref:
                 zip_ref.extractall(raw_data_folder)
+
+            click.echo("Data downloaded!")
 
     except ApiException as e:
         click.echo(e.reason)

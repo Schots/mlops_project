@@ -3,6 +3,8 @@ import sys
 
 REQUIRED_PYTHON = "python3"
 
+system_major = sys.version_info.major
+
 
 def main():
     """This function will test if the Python version installed matches the
@@ -12,7 +14,6 @@ def main():
         ValueError: When neither Python2 nor Python3 was settled as required
         TypeError: When the required and the installed Python interpreter aren't the same.
     """
-    system_major = sys.version_info.major
     if REQUIRED_PYTHON == "python":
         required_major = 2
     elif REQUIRED_PYTHON == "python3":
