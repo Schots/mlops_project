@@ -97,9 +97,9 @@ Following the steps below you will be able to contribute to this project by crea
     
     a) Make your contributions! 
     
-    Before commit and push, **don't forget** of adding the new **dependencies** to the right files. 
+    :warning: Before commit and push, **don't forget** of adding the new **dependencies** to the right files. 
 
-    <span style="color:red">**In this project the requirements.txt and requirements-dev-in.txt will be generated, please don´t edit them.**</span>
+    :no_entry_sign: <span style="color:red">**In this project the requirements.txt and requirements-dev-in.txt will be generated, please don´t edit them.**</span>
 
     The project dependencies should be put into <span style="color:yellow">requirements.in</span> and <span style="color:yellow">requirements-dev.in</span> files (not the same dependency in both).
     
