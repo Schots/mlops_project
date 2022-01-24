@@ -95,35 +95,40 @@ Following the steps below you will be able to contribute to this project by crea
 
 8. Creating a Pull Request
     
-    Make your contributions!
-
-    Don't forget of adding the new dependencies
-
-    ***The project dependencies should be put into requirements.in or requirements-dev.in files. The requirements.txt and requirements-dev-in.txt will be generated, please don´t edit them.***
-
-    ***Put the scripts and modules dependencies in the requirements.in or the development dependencies (black, pylint, pytest) on the requirements-dev.in***
+    a) Make your contributions! 
     
-    After this commit and push your changes to sync your local repository with your own remote repository. Now, you'll be able to create a Pull Request.
+    Before commit and push, **don't forget** of adding the new **dependencies** to the right files. 
 
-    **Example:**
+    <span style="color:red">**In this project the requirements.txt and requirements-dev-in.txt will be generated, please don´t edit them.**</span>
+
+    The project dependencies should be put into <span style="color:yellow">requirements.in</span> and <span style="color:yellow">requirements-dev.in</span> files (not the same dependency in both).
+    
+    - <span style="color:yellow">requirements.in</span> - you should put **scripts** and **modules** dependencies here.
+    - <span style="color:yellow">requirements-dev.in</span> - you should put **development dependencies** like black, pylint and pytest here.
+
+    <br>
+
+    b) Commit and push your changes to sync your local repository with your own remote repository. Now, you'll be able to create a [Pull Request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request).
+
+9. Example
     
     Create a branch called new_branch
 
     ```sh
-    git checkout new_branch             # swith to the new_branch
+    git checkout -b new_branch          # swith to the new_branch
     ```
 
     Create a Python script.py
 
     ```sh
     sudo nano script.py                 # to save type 'CRTL+X -> Yes or y -> Enter'
-    sudo chmod +777 script.py           # add permission to the file
     ```
 
-    _script.py_
+    Write the following program.
 
-    ```
+    _script.py_ :
 
+    ```Python
     from passlib.context import CryptContext
 
     pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
@@ -133,28 +138,34 @@ Following the steps below you will be able to contribute to this project by crea
     print(hashed_password)
 
     ```
+    
+    Make the script readable, writable and executable by giving permissions.
 
-    As you can see, this script depends on "passlib". Add this dependency to requirements.in.
+    ```sh
+    sudo chmod +777 script.py           # add permission to the file
+    ```
 
-    _requirements.in_
+    As the script needs on ***passlib*** library, edit the <span style="color:yellow">requirements.in</span> file and include this dependency.
+
+    _requirements.in_ :
 
     ```
     passlib
     ```
     
-    Reinstall all dependencies of the project
+    Reinstall all dependencies of the project, which will also install the new dependencies that you have included requirements files.
 
     ```sh
     make requirements
     ```
 
-    Then test your script
+    Test your script.
 
     ```sh
     python3 script.py
     ```
 
-    If everything works fine you will see something like this output
+    If everything works fine you will see something like this output, a hashed password
 
     ```sh
     $2b$12$B.Xs4nChoe87oXAFM.QHNe7UkSWBWHh0ZuShzs/weKzKPoMKB.cbi
@@ -163,10 +174,10 @@ Following the steps below you will be able to contribute to this project by crea
     Now commit and push your changes.
 
     ```sh
-    git add script.py                             # add the file created
-    git add requirements.in                       # add the requirements changes
-    git commit -m "First commit"                  # commit the changes
-    git push                                      # push to the forked repository
+    git add script.py                   # add the file created
+    git add requirements.in             # add the requirements changes
+    git commit -m "First commit"        # commit the changes
+    git push                            # push to the forked repository
 
     ```
 
@@ -193,6 +204,7 @@ If you are interested just in using this package, follow the steps below.
 
     The [Makefile](Makefile) on the root folder defines a set of functions needed to automate repetitive processes in this project. Type "make" in the terminal and see the available functions.
 
+<br>
 
 2. Create a virtual environment
 
