@@ -153,7 +153,7 @@ Following the steps below you will be able to contribute to this project by crea
     passlib
     ```
     
-    Reinstall all dependencies of the project, which will also install the new dependencies that you have included requirements files.
+    Reinstall all dependencies of the project, which will also install the new dependencies that you have included in the requirements files.
 
     ```sh
     make requirements
