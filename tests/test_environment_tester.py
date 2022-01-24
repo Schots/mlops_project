@@ -6,15 +6,11 @@ from test_environment import main
 
 
 def test_main_python_version():
-    """Test the script by mocking global variable REQUIRED_PYTHON.
-
-    Args:
-        mocker (unknow): allows to replace parts of code or system for testing purposes
-    """
+    """Test the script by mocking the global variable REQUIRED_PYTHON."""
 
     # test for invalid REQUIRED_PYTHON
     mocker.patch.object(test_environment, "REQUIRED_PYTHON", "python2")
-    with pytest.raises(ValueError) as error:
+    with pytest.raises(ValueError):
         main()
 
     # test for invalid REQUIRED_PYTHON
@@ -45,11 +41,8 @@ def test_main_python_version():
 
 def test_main():
     """Test the script by mocking global variables REQUIRED_PYTHON and
-    system_major.
+    system_major."""
 
-    Args:
-        mocker (unknow): allows to replace parts of code or system for testing purposes
-    """
     # Assert that if installed python and REQUIRED PYTHON are the same
     # a TypeError doesn't will be raised
     try:
