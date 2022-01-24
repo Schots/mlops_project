@@ -89,7 +89,7 @@ Following the steps below you will be able to contribute to this project by crea
     Activate the environment and install dependencies
 
     ```sh
-    workon mlops_project
+    workon mlops_project                # or 'conda activate mlops_project'
     make requirements
     ```
 
@@ -99,9 +99,9 @@ Following the steps below you will be able to contribute to this project by crea
 
     Don't forget of adding the new dependencies
 
-    ***The project dependencies should be put into requirements.in and requirements-dev.in files. The requirements.txt and requirements-dev-in.txt will be generated, please don´t edit them.***
+    ***The project dependencies should be put into requirements.in or requirements-dev.in files. The requirements.txt and requirements-dev-in.txt will be generated, please don´t edit them.***
 
-    ***Put the scripts and modules dependencies in the requirements.in and the development dependencies (black, pylint, pytest) on the requirements-dev.in***
+    ***Put the scripts and modules dependencies in the requirements.in or the development dependencies (black, pylint, pytest) on the requirements-dev.in***
     
     After this commit and push your changes to sync your local repository with your own remote repository. Now, you'll be able to create a Pull Request.
 
@@ -110,13 +110,14 @@ Following the steps below you will be able to contribute to this project by crea
     Create a branch called new_branch
 
     ```sh
-    git checkout new_branch              # swith to the new_branch
+    git checkout new_branch             # swith to the new_branch
     ```
 
     Create a Python script.py
 
     ```sh
-    sudo nano script.py
+    sudo nano script.py                 # to save type 'CRTL+X -> Yes or y -> Enter'
+    sudo chmod +777 script.py           # add permission to the file
     ```
 
     _script.py_
@@ -136,8 +137,8 @@ Following the steps below you will be able to contribute to this project by crea
     As you can see, this script depends on "passlib". Add this dependency to requirements.in.
 
     _requirements.in_
+
     ```
-    ...
     passlib
     ```
     
