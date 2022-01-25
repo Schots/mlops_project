@@ -1,5 +1,5 @@
 .PHONY: clean data lint requirements sync_data_to_s3 sync_data_from_s3 pip-compile \
-install-precommit sync-env
+install-precommit sync-env check_installed_python
 
 #################################################################################
 # GLOBALS                                                                       #
@@ -9,7 +9,6 @@ PROJECT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 BUCKET = [OPTIONAL] your-bucket-for-syncing-data (do not include 's3://')
 PROFILE = default
 PROJECT_NAME = mlops_project
-PYTHON_INTERPRETER = python3
 
 ifeq (,$(shell which conda))
 HAS_CONDA=False
@@ -17,31 +16,77 @@ else
 HAS_CONDA=True
 endif
 
+ifeq (,$(shell python3 --version))
+$(error "Python is not installed!")
+else
+INSTALLED_MAJOR=$(shell python3 --version | tr -cd '[[:digit:][:punct:]]' | cut -f1 -d.)
+INSTALLED_MINOR=$(shell python3 --version | tr -cd '[[:digit:][:punct:]]' | cut -f2 -d.)
+endif
+
+PYTHON_INTERPRETER = python3
+
+REQUIRED_MAJOR=$(shell [ -f configs.ini ] && cat configs.ini | grep required_python | cut -f2 -d "=" | cut -f1 -d.)
+REQUIRED_MINOR=$(shell [ -f configs.ini ] && cat configs.ini | grep required_python | cut -f2 -d "=" | cut -f2 -d.)
+
+ifeq (, $(REQUIRED_MAJOR))
+$(error ">>> File config.ini missing, wrong key value for [required_python], or key missing!")
+endif
+
+
 #################################################################################
 # COMMANDS                                                                      #
 #################################################################################
 
-# Install pip-compile
+# Verify Python Version
+check_installed_python:
 
-install-pip-tools:
+# test if (installed major >= required major)
+
+ifeq ($(shell test $(INSTALLED_MAJOR) -ge $(REQUIRED_MAJOR) && echo True || echo False), True)
+	@:
+# test if (installed major == required major)
+
+ifeq ($(shell test $(INSTALLED_MAJOR) -eq $(REQUIRED_MAJOR) && echo True || echo False), True)
+	@:
+# when (installed major == required major) test if (installed minor >= required minor)
+
+ifeq ($(shell test $(INSTALLED_MINOR) -ge $(REQUIRED_MINOR) && echo True || echo False), True)
+	$(info ">>> Python interpreter is up to date: required Python $(REQUIRED_MAJOR).$(REQUIRED_MINOR) found Python $(INSTALLED_MAJOR).$(INSTALLED_MINOR)")
+# when (installed major == required major) but (installed minor < required minor)
+
+else
+	$(error "Older Python interpreter: required Python $(REQUIRED_MAJOR).$(REQUIRED_MINOR) found Python $(INSTALLED_MAJOR).$(INSTALLED_MINOR)")
+endif
+# when (installed major > required major)
+
+else
+	$(info ">>> Python interpreter newer: required Python $(REQUIRED_MAJOR).$(REQUIRED_MINOR) found Python $(INSTALLED_MAJOR).$(INSTALLED_MINOR)")
+endif
+# when (installed major < required major)
+
+else
+	$(error "Older Python interpreter: required Python $(REQUIRED_MAJOR).$(REQUIRED_MINOR) found Python $(INSTALLED_MAJOR).$(INSTALLED_MINOR)")
+endif
+
+
+## Install pip-compile
+install-pip-tools: check_installed_python
 	$(PYTHON_INTERPRETER) -m pip install pip-tools
 
-# Compile Python Dependencies files
-
+## Compile Python Dependencies files
 pip-compile: install-pip-tools
 	pip-compile --no-emit-index-url requirements.in
 	pip-compile --no-emit-index-url requirements-dev.in
 
 ## Install Python Dependencies & Install pre-commit hooks
-requirements: pip-compile
+requirements: pip-compile check_installed_python
 	$(PYTHON_INTERPRETER) -m pip install --upgrade pip &&\
 	$(PYTHON_INTERPRETER) -m pip install -r requirements-dev.txt --use-deprecated=legacy-resolver &&\
 	pre-commit install
 	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt --use-deprecated=legacy-resolver &&\
 	pre-commit install
 
-# Synchronize the Python Dependencies & Virtual Env
-
+## Synchronize the Python Dependencies & Virtual Env
 sync-env: pip-compile
 	pip-sync requirements.txt requirements-dev.txt
 
@@ -77,7 +122,7 @@ else
 endif
 
 ## Set up python interpreter environment
-create_environment:
+create_environment: verify_python_version
 ifeq (True,$(HAS_CONDA))
 		@echo ">>> Detected conda, creating conda environment."
 ifeq (3,$(findstring 3,$(PYTHON_INTERPRETER)))
