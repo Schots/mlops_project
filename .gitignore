@@ -87,5 +87,3 @@ target/
 
 # Mypy cache
 .mypy_cache/
-requirements.txt
-requirements-dev.txt

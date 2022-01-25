@@ -1,9 +1,6 @@
 """Module to test environment."""
 import sys
-
-REQUIRED_PYTHON = "python3"
-
-system_major = sys.version_info.major
+import configparser
 
 
 def main():
@@ -14,12 +11,20 @@ def main():
         ValueError: When neither Python2 nor Python3 was settled as required
         TypeError: When the required and the installed Python interpreter aren't the same.
     """
-    if REQUIRED_PYTHON == "python":
+
+    config = configparser.ConfigParser()
+    config.read("configs.ini")
+
+    required_python = config["python_version"]["required_python"]
+
+    if required_python == "python":
         required_major = 2
-    elif REQUIRED_PYTHON == "python3":
+    elif required_python == "python3":
         required_major = 3
     else:
-        raise ValueError(f"Unrecognized python interpreter: {REQUIRED_PYTHON}")
+        raise ValueError(f"Unrecognized python interpreter: {required_python}")
+
+    system_major = sys.version_info.major
 
     if system_major != required_major:
         raise TypeError(
