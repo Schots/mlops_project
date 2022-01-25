@@ -21,19 +21,18 @@ endif
 # COMMANDS                                                                      #
 #################################################################################
 
-## Install pip-compile
+# Install pip-compile
 
 install-pip-tools:
 	$(PYTHON_INTERPRETER) -m pip install pip-tools
 
-## Compile Python Dependencies files
+# Compile Python Dependencies files
 
 pip-compile: install-pip-tools
 	pip-compile --no-emit-index-url requirements.in
 	pip-compile --no-emit-index-url requirements-dev.in
 
 ## Install Python Dependencies & Install pre-commit hooks
-
 requirements: pip-compile
 	$(PYTHON_INTERPRETER) -m pip install --upgrade pip &&\
 	$(PYTHON_INTERPRETER) -m pip install -r requirements-dev.txt --use-deprecated=legacy-resolver &&\
@@ -41,7 +40,7 @@ requirements: pip-compile
 	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt --use-deprecated=legacy-resolver &&\
 	pre-commit install
 
-## Synchronize the Python Dependencies & Virtual Env
+# Synchronize the Python Dependencies & Virtual Env
 
 sync-env: pip-compile
 	pip-sync requirements.txt requirements-dev.txt
