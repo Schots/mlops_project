@@ -58,7 +58,7 @@ Following the steps below you will be able to contribute to this project by crea
     
     copy the link provided by clicking on the button _Code_
     
-    Open a bash terminal (if you are using Windows, make sure of using the git bash), navigate to the desired folder, and clone the forked repository to your machine.
+    Open a bash terminal (if you are using Windows, make sure of using the git bash), navigate to the desired folder, and clone the forked repository to your machine:
 
     ```sh
     git clone https://github.com/<username>/mlops_project.git
@@ -66,13 +66,13 @@ Following the steps below you will be able to contribute to this project by crea
 
 6. Create your branch
 
-    Create your own branch open a terminal inside the repository forked and type.
+    Create your own branch open a terminal inside the repository forked and type:
     
     ```sh
     git checkout -b my_branch
     ```
 
-    then push your branch to your forked repository
+    then push your branch to your forked repository:
 
     ```sh
     git push --set-upstream origin my_branch
@@ -80,16 +80,9 @@ Following the steps below you will be able to contribute to this project by crea
 
 7. Set up the environment
 
-    Configure your local machine to work in this project. First create a virtual environment Python virtual environment for the MLOps project on your local machine.
+    Create a python environment, using venv or any tool you desire. ***With the environment activated***, install the dependecies running:
 
     ```sh
-    make create_environment
-    ```
-
-    Activate the environment and install dependencies
-
-    ```sh
-    workon mlops_project                # or 'conda activate mlops_project'
     make requirements
     ```
 
@@ -206,23 +199,15 @@ If you are interested just in using this package, follow the steps below.
 
 <br>
 
-2. Create a virtual environment
+2. Create an environment  & Install requirements
 
-    This step will create a python virtual environment for the MLOps project on your local machine
-
-    ```sh
-    make create_environment
-    ```  
-
-4. Install requirements
-
-    This step will install all requirements in your environment.
+    Create a Python virtual environment for the MLOps project on your local machine. Use any tool you desire. Activate the environment and install the requirements using `make`:
 
     ```sh
     make requirements
     ```
 
-5. Download data
+3. Download data
 
     To download the raw dataset, use the get_data
 
