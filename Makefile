@@ -16,18 +16,32 @@ else
 HAS_CONDA=True
 endif
 
+PYTHON_INTERPRETER = python3
+
+
+#################################################################################
+# BLOCK TO TEST PYTHON INSTALLATION                                             #
+#################################################################################
+
+# Test if python is installed
+# This &(shell ) command should return null if Python is missing
+
 ifeq (,$(shell python3 --version))
 $(error "Python is not installed!")
 else
+# Read Major and Minor Python version from system
 INSTALLED_MAJOR=$(shell python3 --version | tr -cd '[[:digit:][:punct:]]' | cut -f1 -d.)
 INSTALLED_MINOR=$(shell python3 --version | tr -cd '[[:digit:][:punct:]]' | cut -f2 -d.)
 endif
 
-PYTHON_INTERPRETER = python3
+#################################################################################
+# BLOCK TO READ PYTHON REQUIRED VERSION FROM CONFIGS.INI                        #
+#################################################################################
 
+# Read Major and Minor required Python version from configs.ini
 REQUIRED_MAJOR=$(shell [ -f configs.ini ] && cat configs.ini | grep required_python | cut -f2 -d "=" | cut -f1 -d.)
 REQUIRED_MINOR=$(shell [ -f configs.ini ] && cat configs.ini | grep required_python | cut -f2 -d "=" | cut -f2 -d.)
-
+# Test if the REQUIRED_MAJOR isn't null ( in case the configs.ini file is missing or somewhat)
 ifeq (, $(REQUIRED_MAJOR))
 $(error ">>> File config.ini missing, wrong key value for [required_python], or key missing!")
 endif
@@ -122,7 +136,7 @@ else
 endif
 
 ## Set up python interpreter environment
-create_environment: verify_python_version
+create_environment: check_installed_python
 ifeq (True,$(HAS_CONDA))
 		@echo ">>> Detected conda, creating conda environment."
 ifeq (3,$(findstring 3,$(PYTHON_INTERPRETER)))
@@ -139,9 +153,6 @@ else
 	@echo ">>> New virtualenv created. Activate with:\nworkon $(PROJECT_NAME)"
 endif
 
-## Test python environment is setup correctly
-test_environment:
-	$(PYTHON_INTERPRETER) test_environment.py
 
 #################################################################################
 # PROJECT RULES                                                                 #
