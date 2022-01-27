@@ -1,16 +1,13 @@
-.PHONY: clean data requirements sync_data_to_s3 sync_data_from_s3 pip-compile \
-install-precommit sync-env check_installed_python
+.PHONY: clean data
 
 #################################################################################
 # GLOBALS                                                                       #
 #################################################################################
 
 PROJECT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
-BUCKET = [OPTIONAL] your-bucket-for-syncing-data (do not include 's3://')
-PROFILE = default
-PROJECT_NAME = mlops_project
-PYTHON_INTERPRETER = python3
-
+PYTHON_INTERPRETER = python
+CONFIG_FILE=configs.ini
+CONFIG_KEY_NAME=required_python
 
 #################################################################################
 # BLOCK TO TEST PYTHON INSTALLATION                                             #
@@ -23,17 +20,22 @@ $(error "Python is not installed!")
 endif
 
 
-
 #################################################################################
 # COMMANDS                                                                      #
 #################################################################################
 
+all:
+	@$(PYTHON_INTERPRETER) -V
 
 # Verify Python Version
 check_installed_python:
+	$(eval INSTALLED := $(shell $(PYTHON_INTERPRETER) --version | tr -cd '[[:digit:][:punct:]]'))
+	$(eval REQUIRED := $(shell [ -f $(CONFIG_FILE) ] && cat $(CONFIG_FILE) | grep -w $(CONFIG_KEY_NAME) | cut -f2 -d "="))
 
-	$(eval INSTALLED := $(shell python3 --version | tr -cd '[[:digit:][:punct:]]'))
-	$(eval REQUIRED := $(shell [ -f configs.ini ] && cat configs.ini | grep required_python | cut -f2 -d "="))
+	@if [ -z "$(REQUIRED)" ] | [ $(shell echo -n "$(REQUIRED)" | wc -c ) -lt 3 ]; then \
+		echo "Missing configurarion file or key"; \
+		return 1; \
+	fi
 
 	@if { echo "$(REQUIRED)" ; echo "$(INSTALLED)"; } | sort --version-sort --check=quiet; then \
 		echo "Python interpreter is up to date: required Python '$(REQUIRED)' found Python '$(INSTALLED)'"; \
