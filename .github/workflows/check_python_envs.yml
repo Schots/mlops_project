@@ -2,7 +2,7 @@ name: Test python versions
 on:
   push:
     branches:
-      - master
+      - main
       - "*" # matches every branch that doesn't contain a '/'
 
 jobs:
@@ -31,3 +31,6 @@ jobs:
 
       - name: Perfom tests with Tox
         run: tox
+        with:
+          username: ${{ secrets.KAGGLE_USERAME }}
+          password: ${{ secrets.KAGGLE_KEY }}
