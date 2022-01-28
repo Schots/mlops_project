@@ -7,4 +7,5 @@ setup(
     description="an end-to-end mlops project",
     author="MLOps.br",
     license="MIT",
+    entry_points={"console_scripts": ["reger = reger.__main__:main"]},
 )
