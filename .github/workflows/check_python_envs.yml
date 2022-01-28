@@ -5,6 +5,10 @@ on:
       - main
       - "*" # matches every branch that doesn't contain a '/'
 
+env:
+  KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+  KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -30,7 +34,4 @@ jobs:
           make requirements
 
       - name: Perfom tests with Tox
-        env:
-          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
-          KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
         run: tox
