@@ -2,7 +2,7 @@ name: Test python versions
 on:
   push:
     branches:
-      - main
+      - master
       - "*" # matches every branch that doesn't contain a '/'
 
 jobs:
