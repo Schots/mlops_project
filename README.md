@@ -2,188 +2,57 @@
 
 ![GitHub Contributors Image](https://contrib.rocks/image?repo=schots/mlops_project)
 
-<div style="background-color:white;">
+<div style="background-color:white; height: 100%">
 <h1 align="center"> <img width=300px src=img/logo.png> </h1>
 </div>
 
-## MLOps Project 
----
-A project to learn how to build, deliver and maintain a Machine Learning service using the MLOps paradigm.
+## MLOps
 
-This study case aims to be testable and reproducible within the CI/CD methodology, using the best programming practices.
 
-<br>
+The MLOps is the process of continuous integration and continuous delivery of Machine Learning artifacts, as a software product, keeping it inside a loop of **Design**, **Model Development**, and **Operations**.
 
-## How to contribute?
----
-Following the steps below you will be able to contribute to this project by creating scripts, packages, doing changes, and more.
 
-1. Download git
+<div align="center"><img width=400px src=img/mlopscicle.png></div>
 
-    Git is a version control tool, allowing many people can change files simultaneously, without the risk of lost changes or overwrite it.
 
-    https://git-scm.com/downloads
+In this paradigm, teams can easily collaborate in models, with clear tracking of the data throughout the process of cleaning, processing, and feature creation. By automating every repetitive process avoiding human error, reducing the delivery time, and keeping the focus on the **Bussiness Problem.** 
 
-2. Login or Create your github.com account
+Some benefits:
 
-    https://github.com/
+* Versioning data and code-making models to be auditable and reproducible.
 
-3. Create your personal access token
+* Automated tests and build ensuring quality functioning of artifacts, and availability for the delivery pipelines.
 
-    The support for password authentication was removed, you need to use a personal access token to manage your repositories via terminal.
+* Makes it easier and faster the deployment of new model everything is inside an automated cycle.
 
-    [creating-a-personal-access-token-tutorial](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+## The MLOps Project
 
-4. Fork the repository
-    
-    Go to the project repository.
 
-    https://github.com/Schots/mlops_project 
-    
-    and fork by clicking on the upper-left button.
-    
-    <img width=400px src=img/fork_button.png>
+The **MLOps project** is a path to learning how to implement a study case aiming to be testable and reproducible within the CI/CD methodology, using the best programming practices. 
 
-    this will make a [independent](https://docs.github.com/en/get-started/quickstart/fork-a-repo) copy of this repository in your GitHub, allowing you to make changes without affecting this repo, except via _**Pull Requests**_.
+The scope of this project is delimited as you can see in the image below.
 
-5. Clone the forked repository
+We will select the best tool to implement every step, integrate them, and build a Machine Learning Orchestrator.  That said, in the end, new ML experiments will be easily made, and delivered as simples as typing a terminal command or clicking on a button!
 
-    After forking, your copy will be listed on your repositories list.
-
-    <img width=800px src=img/repositories.png >
-
-    open the repository
-
-    <img width=800px src=img/clone.png>
-    
-    copy the link provided by clicking on the button _Code_
-    
-    Open a bash terminal (if you are using Windows, make sure of using the git bash), navigate to the desired folder, and clone the forked repository to your machine:
-
-    ```sh
-    git clone https://github.com/<username>/mlops_project.git
-    ```
-
-6. Create your branch
-
-    Create your own branch open a terminal inside the repository forked and type:
-    
-    ```sh
-    git checkout -b my_branch
-    ```
-
-    then push your branch to your forked repository:
-
-    ```sh
-    git push --set-upstream origin my_branch
-    ```
-
-7. Set up the environment
-
-    Create a python environment, using venv or any tool you desire. ***With the environment activated***, install the dependecies running:
-
-    ```sh
-    make requirements
-    ```
-
-8. Creating a Pull Request
-    
-    a) Make your contributions! 
-    
-    :warning: Before commit and push, **don't forget** of adding the new **dependencies** to the right files. 
-
-    :no_entry_sign: <span style="color:red">**In this project the requirements.txt and requirements-dev-in.txt will be generated, please don´t edit them.**</span>
-
-    The project dependencies should be put into <span style="color:yellow">requirements.in</span> and <span style="color:yellow">requirements-dev.in</span> files (not the same dependency in both).
-    
-    - <span style="color:yellow">requirements.in</span> - you should put **scripts** and **modules** dependencies here.
-    - <span style="color:yellow">requirements-dev.in</span> - you should put **development dependencies** like black, pylint and pytest here.
-
-    <br>
-
-    b) Commit and push your changes to sync your local repository with your own remote repository. Now, you'll be able to create a [Pull Request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request).
-
-9. Example
-    
-    Create a branch called new_branch
-
-    ```sh
-    git checkout -b new_branch          # swith to the new_branch
-    ```
-
-    Create a Python script.py
-
-    ```sh
-    sudo nano script.py                 # to save type 'CRTL+X -> Yes or y -> Enter'
-    ```
-
-    Write the following program.
-
-    _script.py_ :
-
-    ```Python
-    from passlib.context import CryptContext
-
-    pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-
-    hashed_password = pwd_context.hash("my_password")
-
-    print(hashed_password)
-
-    ```
-    
-    Make the script readable, writable and executable by giving permissions.
-
-    ```sh
-    sudo chmod +777 script.py           # add permission to the file
-    ```
-
-    As the script needs on ***passlib*** library, edit the <span style="color:yellow">requirements.in</span> file and include this dependency.
-
-    _requirements.in_ :
-
-    ```
-    passlib
-    ```
-    
-    Reinstall all dependencies of the project, which will also install the new dependencies that you have included in the requirements files.
-
-    ```sh
-    make requirements
-    ```
-
-    Test your script.
-
-    ```sh
-    python3 script.py
-    ```
-
-    If everything works fine you will see something like this output, a hashed password
-
-    ```sh
-    $2b$12$B.Xs4nChoe87oXAFM.QHNe7UkSWBWHh0ZuShzs/weKzKPoMKB.cbi
-    ```
-
-    Now commit and push your changes.
-
-    ```sh
-    git add script.py                   # add the file created
-    git add requirements.in             # add the requirements changes
-    git commit -m "First commit"        # commit the changes
-    git push                            # push to the forked repository
-
-    ```
-
-    after this few steps, the following message will be displayed on your repository.
-
-    <img src=img/pushed.png>
-
-    now you can create your own [Pull Request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork)
+<div align="center"><img width=500px src=img/mlopsscope.png></div>
 
 <br>
+
+## Prerequisites
+
+
+For `mlops_project` to work correctly, first, you should install the [prerequisites](https://github.com/Schots/mlops_project/wiki#prerequisites) 
+
+## Contributing
+
+
+Have an idea of how to improve this project but don't know how to start, try to [contribute](https://github.com/Schots/mlops_project/wiki#how-to-contribute)
+
+You can understand the project organization [here](https://github.com/Schots/mlops_project/wiki/The-Project-Template)
+
 
 ## How to use?
----
+
 
 If you are interested just in using this package, follow the steps below.
 
@@ -199,7 +68,7 @@ If you are interested just in using this package, follow the steps below.
 
 <br>
 
-2. Create an environment  & Install requirements
+2. Create an environment & Install requirements
 
     Create a Python virtual environment for the MLOps project on your local machine. Use any tool you desire. Activate the environment and install the requirements using `make`:
 
@@ -218,55 +87,5 @@ If you are interested just in using this package, follow the steps below.
 
 <br>
 
-## Project Organization
-----
-
-    ├── LICENSE
-    ├── Makefile           <- Makefile with commands like `make data` or `make train`
-    ├── README.md          <- The top-level README for developers using this project.
-    ├── data
-    │   ├── external       <- Data from third party sources.
-    │   ├── interim        <- Intermediate data that has been transformed.
-    │   ├── processed      <- The final, canonical data sets for modeling.
-    │   └── raw            <- The original, immutable data dump.
-    │
-    ├── docs               <- A default Sphinx project; see sphinx-doc.org for details
-    │
-    ├── models             <- Trained and serialized models, model predictions, or model summaries
-    │
-    ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-    │                         the creator's initials, and a short `-` delimited description, e.g.
-    │                         `1.0-jqp-initial-data-exploration`.
-    │
-    ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
-    │
-    ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-    │   └── figures        <- Generated graphics and figures to be used in reporting
-    │
-    ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-    │                         generated with `pip freeze > requirements.txt`
-    │
-    ├── setup.py           <- makes project pip installable (pip install -e .) so src can be imported
-    ├── src                <- Source code for use in this project.
-    │   ├── __init__.py    <- Makes src a Python module
-    │   │
-    │   ├── data           <- Scripts to download or generate data
-    │   │   └── make_dataset.py
-    │   │
-    │   ├── features       <- Scripts to turn raw data into features for modeling
-    │   │   └── build_features.py
-    │   │
-    │   ├── models         <- Scripts to train models and then use trained models to make
-    │   │   │                 predictions
-    │   │   ├── predict_model.py
-    │   │   └── train_model.py
-    │   │
-    │   └── visualization  <- Scripts to create exploratory and results oriented visualizations
-    │       └── visualize.py
-    │
-    └── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
-
-
---------
 
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
