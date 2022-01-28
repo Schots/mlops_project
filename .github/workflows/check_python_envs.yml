@@ -31,6 +31,6 @@ jobs:
 
       - name: Perfom tests with Tox
         run: tox
-        with:
-          username: ${{ secrets.KAGGLE_USERAME }}
-          password: ${{ secrets.KAGGLE_KEY }}
+        env:
+          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERSAME }}
+          KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
