@@ -30,7 +30,7 @@ jobs:
           make requirements
 
       - name: Perfom tests with Tox
-        run: tox
         env:
           KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
           KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+        run: tox
