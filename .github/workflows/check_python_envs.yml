@@ -31,5 +31,3 @@ jobs:
 
       - name: Perfom tests with Tox
         run: tox
-
-        continue-on-error: true
