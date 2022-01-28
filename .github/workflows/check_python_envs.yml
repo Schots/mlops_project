@@ -33,5 +33,4 @@ jobs:
         env:
           KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
           KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
-        run: |
-          printenv | grep KAGGLE_USERNAME
+        run: tox
