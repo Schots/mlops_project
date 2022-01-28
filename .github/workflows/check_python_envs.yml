@@ -35,3 +35,6 @@ jobs:
 
       - name: Perfom tests with Tox
         run: tox
+
+      - name: Nothing
+        run: echo "Hello actions!"
