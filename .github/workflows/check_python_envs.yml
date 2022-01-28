@@ -2,7 +2,7 @@ name: Test python versions
 on:
   push:
     branches:
-      - master
+      - main
       - "*" # matches every branch that doesn't contain a '/'
 
 jobs:
@@ -33,4 +33,5 @@ jobs:
         env:
           KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
           KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
-        run: tox
+        run: |
+          printenv | grep KAGGLE_USERNAME
