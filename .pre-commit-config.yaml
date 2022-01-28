@@ -74,3 +74,8 @@ repos:
         name: pip-sync-env
         entry: bash -c 'make sync-env'
         language: system
+      - id: tox
+        name: test-envs
+        entry: tox
+        language: python
+        stages: [commit]

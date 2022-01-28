@@ -15,11 +15,11 @@ The MLOps is the process of continuous integration and continuous delivery of Ma
 <div align="center"><img width=400px src=img/mlopscicle.png></div>
 
 
-In this paradigm, teams can easily collaborate in models, with clear tracking of the data throughout the process of cleaning, processing, and feature creation. By automating every repetitive process avoiding human error, reducing the delivery time, and keeping the focus on the **Bussiness Problem.** 
+In this paradigm, teams can easily collaborate in models, with clear tracking of the data throughout the process of cleaning, processing, and feature creation. Automating every repetitive process avoids human error and reduces the delivery time, ensuring the team keeps focusing on the **Business Problem**.
 
 Some benefits:
 
-* Versioning data and code-making models to be auditable and reproducible.
+* Versioning data and code, making models to be auditable and reproducible.
 
 * Automated tests and build ensuring quality functioning of artifacts, and availability for the delivery pipelines.
 
