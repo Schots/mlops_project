@@ -1,6 +1,6 @@
 import sys
 
-import reger.versioning.dvc_handler as dvc
+import conduct.versioning.dvc_handler as dvc
 
 
 def main():
