@@ -26,8 +26,15 @@ jobs:
       - name: Check directory
         uses: actions/checkout@v2
 
+      - name: Install dependencies
+        run: |
+          make requirements
+
       - name: Setup Kaggle
         run: pip install kaggle
 
       - name: Run Kaggle command
         run: kaggle competitions list
+
+      - name: Perfom tests with Tox
+        run: tox
