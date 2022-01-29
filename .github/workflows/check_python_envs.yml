@@ -5,10 +5,6 @@ on:
       - main
       - "*" # matches every branch that doesn't contain a '/'
 
-env:
-  KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
-  KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -30,13 +26,9 @@ jobs:
         run: |
           make requirements
 
-      - name: Run Kaggle command
-        run: kaggle competitions list
-
-      - name: Pytest
-        run: |
-          pytest
-
       - name: Tox
         run: |
           tox
+        env:
+          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+          KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
