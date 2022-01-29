@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: False
       matrix:
-        python-version: ["3.6", "3.7", "3.8", "3.9"]
+        python-version: ["3.8", "3.9"]
 
     steps:
       - name: Set up Python ${{ matrix.python-version }}
@@ -26,15 +26,8 @@ jobs:
       - name: Check directory
         uses: actions/checkout@v2
 
-      - name: Display Python version
-        run: python -c "import sys; print(sys.version)"
+      - name: Setup Kaggle
+        run: pip install kaggle
 
-      - name: Install dependencies
-        run: |
-          make requirements
-
-      - name: Perfom tests with Tox
-        run: tox
-
-      - name: Nothing
-        run: echo "Hello actions!"
+      - name: Run Kaggle command
+        run: kaggle competitions list
