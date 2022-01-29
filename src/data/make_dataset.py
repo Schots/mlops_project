@@ -1,42 +1,103 @@
-# -*- coding: utf-8 -*-
-import os
+"""Get data from kaggle."""
+import argparse
 import logging
+import subprocess
+import os
 from pathlib import Path
-import configparser
-import click
-from dotenv import find_dotenv, load_dotenv
-
-ROOT_DIR = os.path.abspath(os.curdir)
-print(ROOT_DIR)
-
-config = configparser.ConfigParser()
-config.read("configs.ini")
-
-raw_data_folder = config["datasets"]["raw_folder"]
-processed_data_folder = config["datasets"]["processed_folder"]
+from kaggle.api import KaggleApi
 
 
-@click.command()
-@click.argument("input_filepath", type=click.Path(exists=True))
-@click.argument("output_filepath", type=click.Path())
-def main(
-    input_filepath=raw_data_folder, output_filepath=processed_data_folder
+logging.basicConfig(level=logging.INFO, format="%(asctime)-15s %(message)s")
+logger = logging.getLogger()
+
+
+def download_data(
+    competition,
+    train_data,
+    test_data,
+    output_dir,
+    credentials=".kaggle/kaggle.json",
 ):
-    """Runs data processing scripts to turn raw data from (../raw) into cleaned
-    data ready to be analyzed (saved in ../processed)."""
-    logger = logging.getLogger(__name__)
-    logger.info("making final data set from raw data")
+
+    """Downloading train and test data from Kaggle Titanic competition.
+
+    Args:
+        competition (str): name of competiton
+        train_data (str): name of train dataset
+        test_data (str): name of test dataset
+    """
+    credentials = Path.home().joinpath(credentials)
+
+    api = KaggleApi()
+    api.authenticate()
+
+    logger.info("Downloading train data")
+    subprocess.run(
+        [
+            "kaggle",
+            "competitions",
+            "download",
+            competition,
+            "-f",
+            train_data,
+            "--path",
+            output_dir,
+        ],
+        check=True,
+    )
+
+    logger.info("Downloading test data")
+    subprocess.run(
+        [
+            "kaggle",
+            "competitions",
+            "download",
+            competition,
+            "-f",
+            test_data,
+            "--path",
+            output_dir,
+        ],
+        check=True,
+    )
 
 
 if __name__ == "__main__":
-    log_fmt = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-    logging.basicConfig(level=logging.INFO, format=log_fmt)
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "-c",
+        "--competition",
+        dest="competition",
+        required=True,
+        help="Kaggle competition to download",
+    )
+    parser.add_argument(
+        "-tr",
+        "--train_data",
+        dest="train_data",
+        required=True,
+        help="Train csv file",
+    )
+    parser.add_argument(
+        "-te",
+        "--test_data",
+        dest="test_data",
+        required=True,
+        help="Test csv file",
+    )
+    parser.add_argument(
+        "-o",
+        "--out-dir",
+        dest="output_dir",
+        default=os.path.dirname(Path(__file__).resolve()),
+        required=False,
+        help="output directory",
+    )
+    args = parser.parse_args()
 
-    # not used in this stub but often useful for finding various files
-    project_dir = Path(__file__).resolve().parents[2]
-
-    # find .env automagically by walking up directories until it's found, then
-    # load up the .env entries as environment variables
-    load_dotenv(find_dotenv())
-
-    main()
+    download_data(
+        args.competition,
+        args.train_data,
+        args.test_data,
+        output_dir=args.output_dir,
+    )

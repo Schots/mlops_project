@@ -213,14 +213,48 @@ If you are interested just in using this package, follow the steps below.
     ```sh
     make create_environment
     ```  
+4. Generate kaggle api connection token
 
-4. Install requirements
+    Follow the steps to download a new authentication token onto your machine to complete the authentication:
+
+    Make a directory named “.kaggle”.
+
+    ```sh
+    mkdir ~/.kaggle
+    ```
+
+    Click on your profile picture and click on Account from the drop-down menu. Scroll down to the API section and click on the ‘Create New API Token’ button to download a fresh token as a JSON file having a username and API key.
+
+    Allocate the required permission for this file.
+    
+    ```sh
+    chmod 600 ~/.kaggle/kaggle.json
+    ```
+    Add kaggle in requirements.in file.
+
+5. Install requirements
 
     This step will install all requirements in your environment.
 
     ```sh
     make requirements
     ```
+4. Generate kaggle api connection token
+
+    Follow the steps to download a new authentication token onto your machine to complete the authentication:
+
+    Make a directory named “.kaggle”.
+
+    ```sh
+    mkdir ~/.kaggle
+    ```
+
+    Click on your profile picture and click on Account from the drop-down menu. Scroll down to the API section and click on the ‘Create New API Token’ button to download a fresh token as a JSON file having a username and API key.
+
+    Allocate the required permission for this file.
+    
+    ```sh
+    chmod 600 ~/.kaggle/kaggle.json
 
 5. Download data
 
