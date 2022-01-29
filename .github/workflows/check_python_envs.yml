@@ -30,11 +30,13 @@ jobs:
         run: |
           make requirements
 
-      - name: Setup Kaggle
-        run: pip install kaggle
-
       - name: Run Kaggle command
         run: kaggle competitions list
 
-      - name: Perfom tests with Tox
-        run: tox
+      - name: Pytest
+        run: |
+          pytest
+
+      - name: Tox
+        run: |
+          tox
