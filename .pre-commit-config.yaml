@@ -4,6 +4,12 @@ exclude: ".md$"
 repos:
   - repo: local
     hooks:
+      - id: check-merge-conflict
+        name: check for merge conflicts
+        description: checks for files that contain merge conflict strings.
+        entry: check-merge-conflict
+        language: python
+        types: [text]
       - id: trailing-whitespace
         name: trim trailing whitespace
         description: trims trailing whitespace.

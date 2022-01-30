@@ -49,7 +49,9 @@ docutils==0.15.2
     #   awscli
     #   sphinx
 filelock==3.4.2
-    # via virtualenv
+    # via
+    #   tox
+    #   virtualenv
 flake8==4.0.1
     # via -r requirements-dev.in
 identify==2.4.5
@@ -90,6 +92,7 @@ packaging==21.3
     # via
     #   pytest
     #   sphinx
+    #   tox
 pathspec==0.9.0
     # via black
 pep517==0.12.0
@@ -102,13 +105,17 @@ platformdirs==2.4.1
     #   pylint
     #   virtualenv
 pluggy==1.0.0
-    # via pytest
+    # via
+    #   pytest
+    #   tox
 pre-commit==2.17.0
     # via -r requirements-dev.in
 pre-commit-hooks==4.1.0
     # via -r requirements-dev.in
 py==1.11.0
-    # via pytest
+    # via
+    #   pytest
+    #   tox
 pyasn1==0.4.8
     # via rsa
 pycodestyle==2.8.0
@@ -162,6 +169,7 @@ six==1.16.0
     #   -c requirements.txt
     #   kaggle
     #   python-dateutil
+    #   tox
     #   virtualenv
 snowballstemmer==2.2.0
     # via sphinx
@@ -189,10 +197,13 @@ toml==0.10.2
     #   pre-commit-hooks
     #   pylint
     #   pytest
+    #   tox
 tomli==1.2.3
     # via
     #   black
     #   pep517
+tox==3.24.5
+    # via -r requirements-dev.in
 tqdm==4.62.3
     # via
     #   -c requirements.txt
@@ -208,7 +219,9 @@ urllib3==1.26.8
     #   kaggle
     #   requests
 virtualenv==20.13.0
-    # via pre-commit
+    # via
+    #   pre-commit
+    #   tox
 wheel==0.37.1
     # via pip-tools
 wrapt==1.13.3

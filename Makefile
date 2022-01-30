@@ -1,49 +1,22 @@
-.PHONY: clean data lint requirements sync_data_to_s3 sync_data_from_s3 pip-compile \
-install-precommit sync-env check_installed_python
+.PHONY: clean data
 
 #################################################################################
 # GLOBALS                                                                       #
 #################################################################################
 
 PROJECT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
-BUCKET = [OPTIONAL] your-bucket-for-syncing-data (do not include 's3://')
-PROFILE = default
-PROJECT_NAME = mlops_project
-
-ifeq (,$(shell which conda))
-HAS_CONDA=False
-else
-HAS_CONDA=True
-endif
-
-PYTHON_INTERPRETER = python3
-
+PYTHON_INTERPRETER = python
+CONFIG_FILE=configs.ini
+CONFIG_KEY_NAME=required_python
 
 #################################################################################
 # BLOCK TO TEST PYTHON INSTALLATION                                             #
 #################################################################################
 
 # Test if python is installed
-# This &(shell ) command should return null if Python is missing
 
 ifeq (,$(shell python3 --version))
 $(error "Python is not installed!")
-else
-# Read Major and Minor Python version from system
-INSTALLED_MAJOR=$(shell python3 --version | tr -cd '[[:digit:][:punct:]]' | cut -f1 -d.)
-INSTALLED_MINOR=$(shell python3 --version | tr -cd '[[:digit:][:punct:]]' | cut -f2 -d.)
-endif
-
-#################################################################################
-# BLOCK TO READ PYTHON REQUIRED VERSION FROM CONFIGS.INI                        #
-#################################################################################
-
-# Read Major and Minor required Python version from configs.ini
-REQUIRED_MAJOR=$(shell [ -f configs.ini ] && cat configs.ini | grep required_python | cut -f2 -d "=" | cut -f1 -d.)
-REQUIRED_MINOR=$(shell [ -f configs.ini ] && cat configs.ini | grep required_python | cut -f2 -d "=" | cut -f2 -d.)
-# Test if the REQUIRED_MAJOR isn't null ( in case the configs.ini file is missing or somewhat)
-ifeq (, $(REQUIRED_MAJOR))
-$(error ">>> File config.ini missing, wrong key value for [required_python], or key missing!")
 endif
 
 
@@ -51,43 +24,33 @@ endif
 # COMMANDS                                                                      #
 #################################################################################
 
+install:
+	$(PYTHON_INTERPRETER) -m pip install -e .
+
 # Verify Python Version
 check_installed_python:
+	$(eval INSTALLED := $(shell $(PYTHON_INTERPRETER) --version | tr -cd '[[:digit:][:punct:]]'))
+	$(eval REQUIRED := $(shell [ -f $(CONFIG_FILE) ] && cat $(CONFIG_FILE) | grep -w $(CONFIG_KEY_NAME) | cut -f2 -d "="))
 
-# test if (installed major >= required major)
+	@if [ -z "$(REQUIRED)" ] | [ $(shell echo -n "$(REQUIRED)" | wc -c ) -lt 3 ]; then \
+		echo "Missing configurarion file or key"; \
+		return 1; \
+	fi
 
-ifeq ($(shell test $(INSTALLED_MAJOR) -ge $(REQUIRED_MAJOR) && echo True || echo False), True)
-	@:
-# test if (installed major == required major)
+	@if { echo "$(REQUIRED)" ; echo "$(INSTALLED)"; } | sort --version-sort --check=quiet; then \
+		echo "Python interpreter is up to date: required Python '$(REQUIRED)' found Python '$(INSTALLED)'"; \
+	else \
+		echo "Python version error: required Python '$(REQUIRED)' found Python '$(INSTALLED)'" ; \
+		exit 1; \
+	fi
 
-ifeq ($(shell test $(INSTALLED_MAJOR) -eq $(REQUIRED_MAJOR) && echo True || echo False), True)
-	@:
-# when (installed major == required major) test if (installed minor >= required minor)
+# Install pip-compile
 
-ifeq ($(shell test $(INSTALLED_MINOR) -ge $(REQUIRED_MINOR) && echo True || echo False), True)
-	$(info ">>> Python interpreter is up to date: required Python $(REQUIRED_MAJOR).$(REQUIRED_MINOR) found Python $(INSTALLED_MAJOR).$(INSTALLED_MINOR)")
-# when (installed major == required major) but (installed minor < required minor)
-
-else
-	$(error "Older Python interpreter: required Python $(REQUIRED_MAJOR).$(REQUIRED_MINOR) found Python $(INSTALLED_MAJOR).$(INSTALLED_MINOR)")
-endif
-# when (installed major > required major)
-
-else
-	$(info ">>> Python interpreter newer: required Python $(REQUIRED_MAJOR).$(REQUIRED_MINOR) found Python $(INSTALLED_MAJOR).$(INSTALLED_MINOR)")
-endif
-# when (installed major < required major)
-
-else
-	$(error "Older Python interpreter: required Python $(REQUIRED_MAJOR).$(REQUIRED_MINOR) found Python $(INSTALLED_MAJOR).$(INSTALLED_MINOR)")
-endif
-
-
-## Install pip-compile
 install-pip-tools: check_installed_python
 	$(PYTHON_INTERPRETER) -m pip install pip-tools
 
-## Compile Python Dependencies files
+# Compile Python Dependencies files
+
 pip-compile: install-pip-tools
 	pip-compile --no-emit-index-url requirements.in
 	pip-compile --no-emit-index-url requirements-dev.in
@@ -97,8 +60,7 @@ requirements: pip-compile check_installed_python
 	$(PYTHON_INTERPRETER) -m pip install --upgrade pip &&\
 	$(PYTHON_INTERPRETER) -m pip install -r requirements-dev.txt --use-deprecated=legacy-resolver &&\
 	pre-commit install
-	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt --use-deprecated=legacy-resolver &&\
-	pre-commit install
+	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt --use-deprecated=legacy-resolver
 
 ## Synchronize the Python Dependencies & Virtual Env
 sync-env: pip-compile
@@ -114,45 +76,14 @@ get_data: requirements
 data: get_data
 	$(PYTHON_INTERPRETER) src/data/make_dataset.py data/raw data/processed
 
+#################################################################################
+
 ## Delete all compiled Python files
 clean:
-	find . -type f -name "*.py[co]" -delete
-	find . -type d -name "__pycache__" -delete
-
-## Upload Data to S3
-sync_data_to_s3:
-ifeq (default,$(PROFILE))
-	aws s3 sync data/ s3://$(BUCKET)/data/
-else
-	aws s3 sync data/ s3://$(BUCKET)/data/ --profile $(PROFILE)
-endif
-
-## Download Data from S3
-sync_data_from_s3:
-ifeq (default,$(PROFILE))
-	aws s3 sync s3://$(BUCKET)/data/ data/
-else
-	aws s3 sync s3://$(BUCKET)/data/ data/ --profile $(PROFILE)
-endif
-
-## Set up python interpreter environment
-create_environment: check_installed_python
-ifeq (True,$(HAS_CONDA))
-		@echo ">>> Detected conda, creating conda environment."
-ifeq (3,$(findstring 3,$(PYTHON_INTERPRETER)))
-	conda create --name $(PROJECT_NAME) python=3
-else
-	conda create --name $(PROJECT_NAME) python=2.7
-endif
-		@echo ">>> New conda env created. Activate with:\nsource activate $(PROJECT_NAME)"
-else
-	$(PYTHON_INTERPRETER) -m pip install -q virtualenv virtualenvwrapper
-	@echo ">>> Installing virtualenvwrapper if not already installed.\nMake sure the following lines are in shell startup file\n\
-	export WORKON_HOME=$$HOME/.virtualenvs\nexport PROJECT_HOME=$$HOME/Devel\nsource /usr/local/bin/virtualenvwrapper.sh\n"
-	@bash -c "source `which virtualenvwrapper.sh`;mkvirtualenv $(PROJECT_NAME) --python=$(PYTHON_INTERPRETER)"
-	@echo ">>> New virtualenv created. Activate with:\nworkon $(PROJECT_NAME)"
-endif
-
+	@find . -type f -name "*.py[co]" -delete
+	@find . -type d -name "__pycache__" -delete
+	@find . -type d -name ".tox" -exec rm -rf "{}" \;
+	@find . -type d -name ".pytest_cache" -exec rm -rf "{}" \;
 
 #################################################################################
 # PROJECT RULES                                                                 #
