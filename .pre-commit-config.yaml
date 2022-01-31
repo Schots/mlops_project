@@ -4,6 +4,13 @@ exclude: ".md$"
 repos:
   - repo: local
     hooks:
+      - id: conventional-commits-mlops
+        name: Conventional Commits for MlOps
+        entry: ./hooks/conventional_commits_for_mlops.py
+        language: script
+        description: Checks if commit message follows the commit guidelines for MlOps
+        stages: [commit-msg]
+        always_run: true
       - id: check-merge-conflict
         name: check for merge conflicts
         description: checks for files that contain merge conflict strings.
