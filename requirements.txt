@@ -4,3 +4,5 @@
 #
 #    pip-compile --no-emit-index-url requirements.in
 #
+passlib==1.7.4
+    # via -r requirements.in
