@@ -57,7 +57,7 @@ pip-compile: install-pip-tools
 
 ## Install Python Dependencies & Install pre-commit hooks
 requirements: pip-compile check_installed_python
-	$(PYTHON_INTERPRETER) -m pip install --upgrade pip &&\
+	$(PYTHON_INTERPRETER) -m pip install --upgrade pip==21.3.1 &&\
 	$(PYTHON_INTERPRETER) -m pip install -r requirements-dev.txt --use-deprecated=legacy-resolver &&\
 	pre-commit install
 	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt --use-deprecated=legacy-resolver
