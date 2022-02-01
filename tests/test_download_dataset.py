@@ -28,5 +28,11 @@ def test_nothing():
 
 def test_nothing2():
     """This is just a sample of test."""
-    var2 = 2
+    var2 = 1
     assert var2 == 1
+
+
+def test_nothing3():
+    """This is just a sample of test."""
+    var3 = 1
+    assert var3 == 1
