@@ -34,4 +34,4 @@ jobs:
 
       - name: Tox
         run: |
-          tox -- -v -k "not ENV"
+          tox
