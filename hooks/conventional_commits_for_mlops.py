@@ -21,8 +21,7 @@ SPECIAL_PREFIXES = ["Merge", "Bump", "Rebase", "Release"]
 
 
 def check_special_prefixes(msg):
-    """If a message starts with one of the special prefixes, it will be
-    ignored.
+    """A msg starts with one of the special prefixes, it will be ignored.
 
     Parameters
     ----------
@@ -41,7 +40,16 @@ def check_special_prefixes(msg):
 
 
 def check_msg_size(msg):
-    """Check if the commit message is too long."""
+    """Check if the commit message is too long.
+
+    Parameters
+    ----------
+    msg : str
+
+    Returns
+    -------
+    bool
+    """
     if len(msg) > 72:
         print(
             "ERROR: Commit message is too long. It should be 72 characters or"
@@ -53,14 +61,19 @@ def check_msg_size(msg):
 
 def check_msg_prefix(msg):
     """Check if the header of the commit message starts with one of the
-    semantic prefixes. That is, the commit message should be of the form
+    semantic prefixes.
+
+    That is, the commit message should be of the form
     '<prefix>(optional): <message>'
 
     Parameters
     ----------
-    header_msg : str
+    msg : str
         The commit message header.
 
+    Returns
+    -------
+    bool
     """
     if all(
         [
@@ -81,15 +94,13 @@ def check_header_is_meaningful(msg):
 
     Parameters
     ----------
-    header : str
+    msg : str
         The commit message header.
 
     Returns
     -------
-    prefix : str
-        The prefix of the commit message header.
-    message : str
-        The message of the commit message header.
+    bool
+        True if the commit message header is meaningful.
     """
     if len(msg.split(":")) < 2:
         print(
