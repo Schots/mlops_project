@@ -4,7 +4,17 @@ from conventional_commits_for_mlops import (
     check_msg_size,
     check_msg_prefix,
     check_header_is_meaningful,
+    SPECIAL_PREFIXES,
+    check_special_prefixes,
 )
+
+
+def test_special_prefixes():
+    """If the commit message starts with one of the special prefixes, it will
+    be ignored."""
+
+    assert all([check_special_prefixes(prefix) for prefix in SPECIAL_PREFIXES])
+    assert not check_special_prefixes("merge")
 
 
 def test_msg_size():
