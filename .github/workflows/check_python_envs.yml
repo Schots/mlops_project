@@ -30,7 +30,4 @@ jobs:
 
       - name: Tox
         run: |
-          tox
-        env:
-          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
-          KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+          tox -- -v -k "not ENV"
