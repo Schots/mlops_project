@@ -1,15 +1,14 @@
-name: Test python versions on PR
+name: Testing in different Python versions with Tox during PR.
 on:
-  pull_request_target:
+  pull_request:
     branches:
       - main
-    types: [labeled]
+    types: [opened, synchronize, reopened]
 
 jobs:
   build:
     name: Build & Test
     runs-on: ubuntu-latest
-    if: contains(github.event.pull_request.labels.*.name, 'safe to test')
     strategy:
       fail-fast: False
       matrix:
@@ -30,7 +29,4 @@ jobs:
 
       - name: Tox
         run: |
-          tox
-        env:
-          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
-          KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+          tox -- -v -k "not ENV"
