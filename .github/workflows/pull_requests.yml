@@ -3,12 +3,13 @@ on:
   pull_request:
     branches:
       - main
-    types: [opened, synchronize, reopened]
+    types: [labeled]
 
 jobs:
   build:
     name: Build & Test
     runs-on: ubuntu-latest
+    if: contains(github.event.pull_request.labels.*.name, 'safe to test')
     strategy:
       fail-fast: False
       matrix:
