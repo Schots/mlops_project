@@ -1,6 +1,6 @@
-name: Test python versions on PR
+name: Testing in different Python versions with Tox during PR.
 on:
-  pull_request_target:
+  pull_request:
     branches:
       - main
     types: [labeled]
@@ -30,7 +30,4 @@ jobs:
 
       - name: Tox
         run: |
-          tox
-        env:
-          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
-          KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+          tox -- -v -k "not ENV"

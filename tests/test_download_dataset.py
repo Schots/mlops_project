@@ -22,4 +22,11 @@ def download_func_ENV(dataset):
 
 def test_nothing():
     """This is just a sample of test."""
-    assert 1 == 1
+    var = 1
+    assert var == 1
+
+
+def test_nothing2():
+    """This is just a sample of test."""
+    var2 = 1
+    assert var2 == 1
