@@ -10,12 +10,6 @@ logging.basicConfig(level=logging.WARN)
 logger = logging.getLogger(__name__)
 
 
-try:
-    from kaggle.api.kaggle_api_extended import KaggleApi, ApiException
-except OSError as error:
-    logger.error(error)
-    sys.exit()
-
 PROMPT_STRING = (
     "+----------------------------+\n|   Enter the dataset name  "
     " |\n+----------------------------+\n"
@@ -47,6 +41,13 @@ def download(dataset=None):
     raw_data_folder = config["datasets"]["raw_folder"]
     raw_data_folder = Path(raw_data_folder).resolve()
 
+    # try to import the kaggle api
+    try:
+        from kaggle.api import KaggleApi
+    except OSError as error:
+        logger.error(error)
+        sys.exit()
+
     api = KaggleApi()
     api.authenticate()
 
@@ -65,7 +66,7 @@ def download(dataset=None):
 
             click.echo("Data downloaded!")
 
-    except ApiException as e:
+    except Exception as e:
         click.echo(e.reason)
 
 
