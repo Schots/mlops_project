@@ -55,9 +55,11 @@ pip-compile: install-pip-tools
 	pip-compile --no-emit-index-url requirements.in
 	pip-compile --no-emit-index-url requirements-dev.in
 
+pip-downgrade:
+	$(PYTHON_INTERPRETER) -m pip install pip==21.3.1
+
 ## Install Python Dependencies & Install pre-commit hooks
-requirements: pip-compile check_installed_python
-	$(PYTHON_INTERPRETER) -m pip install --upgrade pip==21.3.1 &&\
+requirements: pip-downgrade pip-compile check_installed_python
 	$(PYTHON_INTERPRETER) -m pip install -r requirements-dev.txt --use-deprecated=legacy-resolver &&\
 	pre-commit install
 	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt --use-deprecated=legacy-resolver
