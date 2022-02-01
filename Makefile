@@ -15,7 +15,7 @@ CONFIG_KEY_NAME=required_python
 
 # Test if python is installed
 
-ifeq (,$(shell python3 --version))
+ifeq (,$(shell $(PYTHON_INTERPRETER) --version))
 $(error "Python is not installed!")
 endif
 
