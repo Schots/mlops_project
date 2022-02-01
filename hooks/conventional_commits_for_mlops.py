@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+"""Conventional commit for Machine Learning Ops."""
 
 import sys
 import re
@@ -15,6 +16,28 @@ SEMANTIC_PREFIXES = [
     "test",
     "perf",
 ]
+
+SPECIAL_PREFIXES = ["Merge", "Bump", "Rebase", "Release"]
+
+
+def check_special_prefixes(msg):
+    """If a message starts with one of the special prefixes, it will be
+    ignored.
+
+    Parameters
+    ----------
+    msg : str
+        The commit message.
+
+    Returns
+    -------
+    bool
+        True if the message starts with a special prefix.
+    """
+    if any([msg.startswith(prefix) for prefix in SPECIAL_PREFIXES]):
+        print("INFO: Commit message starts with a special prefix.")
+        return True
+    return False
 
 
 def check_msg_size(msg):
@@ -95,6 +118,8 @@ if __name__ == "__main__":
 
     header = msg_lines[0]
 
+    if check_special_prefixes(header):
+        sys.exit(0)
     if not check_msg_size(header):
         sys.exit(1)
     if not check_msg_prefix(header):
