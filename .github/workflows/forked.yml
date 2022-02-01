@@ -1,8 +1,8 @@
-name: Test python versions
+name: Testing in different Python versions with Tox.
 on:
   push:
     branches:
-      - main 
+      - "*"
 
 jobs:
   build:
