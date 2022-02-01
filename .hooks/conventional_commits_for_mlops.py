@@ -85,6 +85,12 @@ def check_msg_prefix(msg):
             "ERROR: Commit message does not start with a semantic prefix.",
             file=sys.stderr,
         )
+        print("Choose one of this prefixes:")
+        print(
+            ",".join(
+                [f"\x1b[42m{prefix}\x1b[0m" for prefix in SEMANTIC_PREFIXES]
+            )
+        )
         return False
     return True
 
