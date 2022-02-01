@@ -6,7 +6,7 @@ repos:
     hooks:
       - id: conventional-commits-mlops
         name: Conventional Commits for MlOps
-        entry: ./hooks/conventional_commits_for_mlops.py
+        entry: ./.hooks/conventional_commits_for_mlops.py
         language: script
         description: Checks if commit message follows the commit guidelines for MlOps
         stages: [commit-msg]

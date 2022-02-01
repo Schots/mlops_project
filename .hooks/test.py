@@ -1,6 +1,6 @@
 """Tests for Conventional commit for Machine Learning Ops."""
 
-from hooks.conventional_commits_for_mlops import (
+from conventional_commits_for_mlops import (
     check_msg_size,
     check_msg_prefix,
     check_header_is_meaningful,
