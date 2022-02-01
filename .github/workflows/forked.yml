@@ -1,15 +1,8 @@
-name: Test python versions
+name: Testing in different Python versions with Tox.
 on:
   push:
     branches:
       - "*"
-  pull_request_target:
-    branches:
-      - main
-    types:
-      - opened
-      - synchronize
-      - reopened
 
 jobs:
   build:
@@ -35,3 +28,6 @@ jobs:
       - name: Tox
         run: |
           tox
+        env:
+          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+          KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
