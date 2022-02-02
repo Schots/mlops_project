@@ -18,6 +18,7 @@ optional body
 optional footer(s)
 ```
 
+
 For example
 
 ```
@@ -43,7 +44,9 @@ You can use any of the following prefixes
 But don't be afraid of using the "wrong" prefix, it's ok to choose what you believe is more suitable 
 for your case. 
 
-If you want to become a more advanced user you can take some time to study here[2] about scope. Scope is a way to be more specifc about what you are doing. Let's take a look at the following example
+### 1-a) How can I give context to my commits? Scope.
+
+If you want to become a more advanced user you can use scope. The scope is a way to be more specific about what you are doing. Let's take a look at the following example
 
 ```
 fix(model): remove the dependency on the sklearn library
@@ -52,7 +55,12 @@ Sklearn is not compatible with this model. Thus, we need to remove the dependenc
 
 ```
 
-or the `!` mark 
+### 1-b) How to draw attention to a specific commit?
+
+Suppose you sent a pull-request containing several commits. How to communicate to reviewers that some commits should be carefully reviewed? That they need to read the entire message? One way to do this is to use the exclamation mark `!`.
+
+Let's see  an example
+
 ```
 fix!: remove pip 22.0.2 dependency
 
@@ -63,23 +71,24 @@ be merged and released
 Related to: https://github.com/jazzband/pip-tools/issues/1558
 
 ```
-The exclamation mark `!` means that this commit is really important and the people reviewing or working on the project should read the ​ commit carefully.
 
-Let's take a look in another example
+Let's take a look at another example
 
 ```
 feat(model)!: implement a new model more efficiently
 
 
 BREAKING CHANGE: This model can result in a **critical** performance loss
-if the dataset is not well-represented.
+if the dataset is not well-represented. 
 
 ```
-### 1-a) Table of prefix and the corresponding description 
 
-Here we are going to show you two tables of prefixes and the corresponding descriptions. In future, as we learn more about MlOps,we will keep adding more prefixes that we think are suitable for MlOps. 
+### 1-c) Resume: Table of prefixes and the corresponding descriptions 
 
-This is the first table which is common to all Software Development Teams [2, 3]
+Here we are going to show you two tables of prefixes and the corresponding descriptions. In the future, as we learn more about MlOps, we will keep adding more prefixes that we think are suitable for MlOps. 
+
+
+This is the first table that is common to all Software Development Teams [2, 3]
 | Prefix     | Title                    | Description                                                  |
 | ---------- | ------------------------ | ------------------------------------------------------------ |
 | `feat`     | Features                 | A new feature                                                |
@@ -104,7 +113,7 @@ incorporated in the previous table to improve the quality of code evolution in M
 | `model`     | ML Model | Changes and/or create a ML model |
 
 
-### 1. b) References
+# References
 
 [1]“Conventional Commits.” https://www.conventionalcommits.org/en/v1.0.0/ (accessed Jan. 31, 2022).
 
