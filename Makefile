@@ -84,8 +84,8 @@ data: get_data
 clean:
 	@find . -type f -name "*.py[co]" -delete
 	@find . -type d -name "__pycache__" -delete
-	@find . -type d -name ".tox" -exec rm -rf "{}" \;
-	@find . -type d -name ".pytest_cache" -exec rm -rf "{}" \;
+	@find . -type d -name ".tox" -exec rm -r "{}" +
+	@find . -type d -name ".pytest_cache" -exec rm -r "{}" +
 
 #################################################################################
 # PROJECT RULES                                                                 #
