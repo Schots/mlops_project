@@ -1,4 +1,4 @@
-[![](https://github.com/Schots/mlops_project/actions/workflows/check_python_envs.yml/badge.svg)](https://github.com/Schots/mlops_project/actions/workflows/check_python_envs.yml)
+[![](https://github.com/Schots/mlops_project/actions/workflows/pull_requests.yml/badge.svg)](https://github.com/Schots/mlops_project/actions/workflows/pull_requests.yml)
 ![](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)
 ![Dependabot](https://img.shields.io/badge/dependabot-025E8C?style=for-the-badge&logo=dependabot&logoColor=white)
 
