@@ -63,6 +63,7 @@ requirements: pip-downgrade pip-compile check_installed_python
 	$(PYTHON_INTERPRETER) -m pip install -r requirements-dev.txt --use-deprecated=legacy-resolver &&\
 	pre-commit install
 	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt --use-deprecated=legacy-resolver
+	pre-commit install --hook-type commit-msg
 
 ## Synchronize the Python Dependencies & Virtual Env
 sync-env: pip-compile
