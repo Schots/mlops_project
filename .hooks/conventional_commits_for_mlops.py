@@ -8,13 +8,15 @@ SEMANTIC_PREFIXES = [
     "feat",
     "fix",
     "ci",
-    "revert",
     "model",
+    "build",
     "docs",
     "style",
     "refactor",
     "test",
     "perf",
+    "chore",
+    "revert",
 ]
 
 SPECIAL_PREFIXES = ["Merge", "Bump", "Rebase", "Release"]
