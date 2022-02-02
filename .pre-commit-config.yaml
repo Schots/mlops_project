@@ -4,7 +4,7 @@ exclude: ".md$"
 repos:
   - repo: local
     hooks:
-      - id: conventional-commits-mlops
+      - id: ccmlops
         name: Conventional Commits for MlOps
         entry: ./.hooks/conventional_commits_for_mlops.py
         language: script
