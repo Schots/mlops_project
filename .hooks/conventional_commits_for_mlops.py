@@ -117,7 +117,7 @@ def check_header_is_meaningful(msg):
         return False
 
     prefix, info = msg.split(": ", 1)
-    if len(info.split()) < 3:
+    if len(info.split()) < 2:
         print("ERROR: Commit message is too short.", file=sys.stderr)
         return False
     print(prefix, info)
