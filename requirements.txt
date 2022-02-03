@@ -4,24 +4,52 @@
 #
 #    pip-compile --no-emit-index-url requirements.in
 #
+cycler==0.11.0
+    # via matplotlib
+fonttools==4.29.1
+    # via matplotlib
 joblib==1.1.0
     # via scikit-learn
+kiwisolver==1.3.2
+    # via matplotlib
+matplotlib==3.5.1
+    # via
+    #   -r requirements.in
+    #   seaborn
 numpy==1.22.1
     # via
     #   -r requirements.in
+    #   matplotlib
     #   pandas
     #   scikit-learn
     #   scipy
+    #   seaborn
+packaging==21.3
+    # via matplotlib
 pandas==1.4.0
-    # via -r requirements.in
+    # via
+    #   -r requirements.in
+    #   seaborn
+pillow==9.0.1
+    # via matplotlib
+pyparsing==3.0.7
+    # via
+    #   matplotlib
+    #   packaging
 python-dateutil==2.8.2
-    # via pandas
+    # via
+    #   matplotlib
+    #   pandas
 pytz==2021.3
     # via pandas
 scikit-learn==1.0.2
     # via sklearn
 scipy==1.7.3
-    # via scikit-learn
+    # via
+    #   scikit-learn
+    #   seaborn
+seaborn==0.11.2
+    # via -r requirements.in
 six==1.16.0
     # via python-dateutil
 sklearn==0.0
