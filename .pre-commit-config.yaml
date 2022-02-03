@@ -87,14 +87,6 @@ repos:
         name: pip-sync-env
         entry: bash -c 'make sync-env'
         language: system
-      - id: nbqa-black
-        name: black for Jupyter Notebooks (format code)
-        description: "Format Jupyter notebooks cells with Black"
-        entry: nbqa black
-        language: python
-        args: ["--line-length=79", "--experimental-string-processing"]
-        types: ['jupyter']
-        require_serial: true
       - id: nbqa-check-ast
         name: check if Jupyter Notebook AST is valid (check for syntax errors)
         description: Checks if the cells in a Jupyter Notebook has valid python code.
@@ -102,11 +94,3 @@ repos:
         args: ['pre_commit_hooks.check_ast']
         language: python
         types: ['jupyter']
-      - id: nbqa-pylint
-        name: pylint for Jupyter Notebooks
-        description: Checks the code for potential problems with Pylint.
-        entry: nbqa pylint
-        language: python
-        types: ['jupyter']
-        verbose: True
-        require_serial: true
