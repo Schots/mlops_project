@@ -97,5 +97,25 @@ If you are just interested in using this package, follow the steps below:
 
 <br>
 
+## Contributors
+
+This project is the result of the collaboration of many people. 
+Feel free to contact us on LinkedIn
+
+<img src="https://contrib.rocks/image?repo=Schots/Data-Pills" width="50"> [Maykon Schots](https://www.linkedin.com/in/maykon-schots/)
+
+<img src="https://contrib.rocks/image?repo=maikereis/introduction_to_statistics" width="50"> [Maike Reis](https://www.linkedin.com/in/maikereis/)
+
+<img src="https://contrib.rocks/image?repo=stdogpkg/cukuramoto" width="50"> [Bruno Messias](https://www.linkedin.com/in/bruno-messias-510553193/)
+
+<img src="https://contrib.rocks/image?repo=ElisaRMA/Coursera-Data-Science-Specialization" width="50"> [Elisa Ribeiro](https://www.linkedin.com/in/elisarma/)
+
+
+<img src="https://contrib.rocks/image?repo=bobcastaldeli/Resume" width="50"> [Roberto Castaldelli](https://github.com/bobcastaldeli)
+
+*Jaime Cirilo
+
+<img src="https://contrib.rocks/image?repo=gusbruschi13/gusbruschi13" width="50"> [Gustavo Bruschi](https://www.linkedin.com/in/gustavo-bruschi/)
+
 
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
