@@ -87,3 +87,17 @@ repos:
         name: pip-sync-env
         entry: bash -c 'make sync-env'
         language: system
+      - id: nbqa-check-ast
+        name: check if Jupyter Notebook AST is valid (check for syntax errors)
+        description: Checks if the cells in a Jupyter Notebook has valid python code.
+        entry: nbqa
+        args: ['pre_commit_hooks.check_ast']
+        language: python
+        types: ['jupyter']
+      - id: nbmake
+        name: pytest --nbmake
+        description: runs nbmake to check if the Jupyter Notebook is valid.
+        entry: pytest
+        args: ['--nbmake']
+        language: system
+        types: ['jupyter']

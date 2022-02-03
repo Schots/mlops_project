@@ -4,3 +4,27 @@
 #
 #    pip-compile --no-emit-index-url requirements.in
 #
+joblib==1.1.0
+    # via scikit-learn
+numpy==1.22.1
+    # via
+    #   -r requirements.in
+    #   pandas
+    #   scikit-learn
+    #   scipy
+pandas==1.4.0
+    # via -r requirements.in
+python-dateutil==2.8.2
+    # via pandas
+pytz==2021.3
+    # via pandas
+scikit-learn==1.0.2
+    # via sklearn
+scipy==1.7.3
+    # via scikit-learn
+six==1.16.0
+    # via python-dateutil
+sklearn==0.0
+    # via -r requirements.in
+threadpoolctl==3.1.0
+    # via scikit-learn
