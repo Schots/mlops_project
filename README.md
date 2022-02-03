@@ -34,7 +34,12 @@ The **MLOps project** is a path to learning how to implement a study case aiming
 
 The scope of this project is delimited as you can see in the image below.
 
-We will select the best tool to implement every step, integrate them, and build a Machine Learning Orchestrator.  That said, in the end, new ML experiments will be easily made, and delivered as simples as typing a terminal command or clicking on a button!
+We will select the best tool to implement every step, integrate them, and build a Machine Learning Orchestrator.  That said, in the end, new ML experiments will be easily made, and delivered as simple as typing a terminal command or clicking on a button!
+
+This project is structure following the [cookiecutter template](https://drivendata.github.io/cookiecutter-data-science/") and uses tools such as pre-commit to make it easier for other people to contribute.
+
+You can understand the project organization [here](https://github.com/Schots/mlops_project/wiki/The-Project-Template). 
+
 
 <div align="center"><img width=500px src=img/mlopsscope.png></div>
 
@@ -42,21 +47,21 @@ We will select the best tool to implement every step, integrate them, and build 
 
 ## Prerequisites
 
-
-For `mlops_project` to work correctly, first, you should install the [prerequisites](https://github.com/Schots/mlops_project/wiki#prerequisites) 
+For `mlops_project` to work correctly, first, you should install the [prerequisites](https://github.com/Schots/mlops_project/wiki#1-prerequisites) 
 
 ## Contributing
 
+If you are interested in contributing to this project but you are a begginer on Github or never contributed to a project before, consider following [this tutorial](https://github.com/Schots/mlops_project/wiki/1.-Getting-started)
 
-Have an idea of how to improve this project but don't know how to start, try to [contribute](https://github.com/Schots/mlops_project/wiki#how-to-contribute)
-
-You can understand the project organization [here](https://github.com/Schots/mlops_project/wiki/The-Project-Template)
+If you are familiar with open source projects and have an idea of how to improve this project follow the links below
+-[How to commit and contribute to the MLOps Project]
+-[Contribution Example](https://github.com/Schots/mlops_project/wiki/3.
+-[How to write good commit messages](https://github.com/Schots/mlops_project/wiki/4.-Writing-Meaningful-Commit-Messages)
 
 
 ## How to use?
 
-
-If you are interested just in using this package, follow the steps below.
+If you are just interested in using this package, follow the steps below:
 
 1. Clone the repository
     
