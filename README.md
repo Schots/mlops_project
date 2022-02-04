@@ -42,7 +42,7 @@ We will select the best tool to implement every step, integrate them, and build 
 
 This project is structure following the [cookiecutter template](https://drivendata.github.io/cookiecutter-data-science/") and uses tools such as pre-commit to make it easier for other people to contribute.
 
-You can understand the project organization [here](https://github.com/Schots/mlops_project/wiki/The-Project-Template). 
+You can understand the project organization [here](https://github.com/Schots/mlops_project/wiki/1.-The-Project-Template). 
 
 
 ## Prerequisites
@@ -51,7 +51,7 @@ For `mlops_project` to work correctly, first, you should install the [prerequisi
 
 ## Contributing
 
-If you are interested in contributing to this project but you are a begginer on Github or never contributed to a project before, consider following [this tutorial](https://github.com/Schots/mlops_project/wiki/1.-Getting-started)
+If you are interested in contributing to this project but you are a begginer on Github or never contributed to a project before, consider following [this tutorial](https://github.com/Schots/mlops_project/wiki/2.-Getting-started)
 
 If you are familiar with open source projects and have an idea of how to improve this project follow the links below
 
@@ -59,7 +59,7 @@ If you are familiar with open source projects and have an idea of how to improve
 
 * [Contribution Example](https://github.com/Schots/mlops_project/wiki/4.-Contribution-Example)
 
-* [How to write good commit messages](https://github.com/Schots/mlops_project/wiki/4.-Writing-Meaningful-Commit-Messages)
+* [How to write good commit messages](https://github.com/Schots/mlops_project/wiki/5.-Writing-Meaningful-Commit-Messages)
 
 
 ## How to use?
