@@ -41,7 +41,7 @@ source_suffix = ".rst"
 master_doc = "index"
 
 # General information about the project.
-project = u"mlops_project"
+project = "mlops_project"
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -184,8 +184,8 @@ latex_documents = [
     (
         "index",
         "mlops_project.tex",
-        u"mlops_project Documentation",
-        u"MLOps.br",
+        "mlops_project Documentation",
+        "MLOps.br",
         "manual",
     ),
 ]
@@ -219,8 +219,8 @@ man_pages = [
     (
         "index",
         "mlops_project",
-        u"mlops_project Documentation",
-        [u"MLOps.br"],
+        "mlops_project Documentation",
+        ["MLOps.br"],
         1,
     )
 ]
@@ -238,8 +238,8 @@ texinfo_documents = [
     (
         "index",
         "mlops_project",
-        u"mlops_project Documentation",
-        u"MLOps.br",
+        "mlops_project Documentation",
+        "MLOps.br",
         "mlops_project",
         "an end-to-end mlops project",
         "Miscellaneous",
