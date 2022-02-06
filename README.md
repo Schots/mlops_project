@@ -40,7 +40,7 @@ We will select the best tool to implement every step, integrate them, and build 
 
 <br>
 
-This project is structure following the [cookiecutter template](https://drivendata.github.io/cookiecutter-data-science/") and uses tools such as pre-commit to make it easier for other people to contribute.
+This project is structured following the [cookiecutter template](https://drivendata.github.io/cookiecutter-data-science/) and uses tools such as pre-commit to make it easier for other people to contribute.
 
 You can understand the project organization [here](https://github.com/Schots/mlops_project/wiki/1.-The-Project-Template). 
 
@@ -117,5 +117,6 @@ Feel free to contact us on LinkedIn
 
 <img src="https://contrib.rocks/image?repo=gusbruschi13/gusbruschi13" width="50"> [Gustavo Bruschi](https://www.linkedin.com/in/gustavo-bruschi/)
 
+<img src="https://contrib.rocks/image?repo=leonsolon/meli-data-challente-2021" width="50"> [Leon Silva](https://www.linkedin.com/in/leonsolon/)
 
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
