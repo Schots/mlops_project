@@ -21,7 +21,7 @@ In this paradigm, teams can easily collaborate in models, with clear tracking of
 
 Some benefits:
 
-* Versioning data and code, making models to be auditable and reproducible.
+* Versioning data and code, making models auditable and reproducible.
 
 * Automated tests and building ensuring quality functioning of artifacts and availability for the delivery pipelines.
 
