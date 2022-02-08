@@ -16,7 +16,7 @@ matplotlib==3.5.1
     # via
     #   -r requirements.in
     #   seaborn
-numpy==1.22.1
+numpy==1.22.2
     # via
     #   -r requirements.in
     #   matplotlib
@@ -44,7 +44,7 @@ pytz==2021.3
     # via pandas
 scikit-learn==1.0.2
     # via -r requirements.in
-scipy==1.7.3
+scipy==1.8.0
     # via
     #   scikit-learn
     #   seaborn
