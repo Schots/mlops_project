@@ -190,7 +190,7 @@ pexpect==4.8.0
     # via ipython
 pickleshare==0.7.5
     # via ipython
-pip-tools==6.5.0
+pip-tools==6.5.1
     # via -r requirements-dev.in
 platformdirs==2.4.1
     # via
@@ -274,9 +274,13 @@ requests==2.27.1
     #   kaggle
     #   sphinx
 ruamel-yaml==0.17.20
-    # via pre-commit-hooks
+    # via
+    #   -c requirements.txt
+    #   pre-commit-hooks
 ruamel-yaml-clib==0.2.6
-    # via ruamel.yaml
+    # via
+    #   -c requirements.txt
+    #   ruamel-yaml
 send2trash==1.8.0
     # via notebook
 six==1.16.0
@@ -324,7 +328,7 @@ toml==0.10.2
     #   pylint
     #   pytest
     #   tox
-tomli==2.0.0
+tomli==2.0.1
     # via
     #   black
     #   nbqa
