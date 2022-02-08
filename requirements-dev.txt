@@ -6,6 +6,10 @@
 #
 alabaster==0.7.12
     # via sphinx
+argon2-cffi==21.3.0
+    # via notebook
+argon2-cffi-bindings==21.2.0
+    # via argon2-cffi
 astroid==2.9.3
     # via pylint
 asttokens==2.0.5
@@ -22,10 +26,14 @@ black==22.1.0
     # via
     #   -r requirements-dev.in
     #   ipython
+bleach==4.1.0
+    # via nbconvert
 certifi==2021.10.8
     # via
     #   kaggle
     #   requests
+cffi==1.15.0
+    # via argon2-cffi-bindings
 cfgv==3.3.1
     # via pre-commit
 charset-normalizer==2.0.11
@@ -39,6 +47,8 @@ debugpy==1.5.1
     # via ipykernel
 decorator==5.1.1
     # via ipython
+defusedxml==0.7.1
+    # via nbconvert
 distlib==0.3.4
     # via virtualenv
 docformatter==1.4
@@ -46,7 +56,9 @@ docformatter==1.4
 docutils==0.17.1
     # via sphinx
 entrypoints==0.4
-    # via jupyter-client
+    # via
+    #   jupyter-client
+    #   nbconvert
 executing==0.8.2
     # via stack-data
 filelock==3.4.2
@@ -65,14 +77,18 @@ importlib-resources==5.4.0
     # via jsonschema
 iniconfig==1.1.1
     # via pytest
-ipykernel==6.9.0
-    # via nbmake
+ipykernel==6.8.0
+    # via
+    #   nbmake
+    #   notebook
 ipython==8.0.1
     # via
     #   ipykernel
     #   nbqa
 ipython-genutils==0.2.0
-    # via nbformat
+    # via
+    #   nbformat
+    #   notebook
 isort==5.10.1
     # via
     #   -r requirements-dev.in
@@ -80,17 +96,25 @@ isort==5.10.1
 jedi==0.18.1
     # via ipython
 jinja2==3.0.3
-    # via sphinx
+    # via
+    #   nbconvert
+    #   notebook
+    #   sphinx
 jsonschema==4.4.0
     # via nbformat
 jupyter-client==7.1.2
     # via
     #   ipykernel
     #   nbclient
+    #   notebook
 jupyter-core==4.9.1
     # via
     #   jupyter-client
+    #   nbconvert
     #   nbformat
+    #   notebook
+jupyterlab-pygments==0.1.2
+    # via nbconvert
 kaggle==1.5.12
     # via -r requirements-dev.in
 lazy-object-proxy==1.7.1
@@ -103,14 +127,22 @@ matplotlib-inline==0.1.3
     #   ipython
 mccabe==0.6.1
     # via pylint
+mistune==0.8.4
+    # via nbconvert
 mypy-extensions==0.4.3
     # via black
 nbclient==0.5.10
-    # via nbmake
+    # via
+    #   nbconvert
+    #   nbmake
+nbconvert==6.4.1
+    # via notebook
 nbformat==5.1.3
     # via
     #   nbclient
+    #   nbconvert
     #   nbmake
+    #   notebook
 nbmake==1.2
     # via -r requirements-dev.in
 nbqa==1.2.3
@@ -120,14 +152,20 @@ nest-asyncio==1.5.4
     #   ipykernel
     #   jupyter-client
     #   nbclient
+    #   notebook
 nodeenv==1.6.0
     # via pre-commit
+notebook==6.4.8
+    # via -r requirements-dev.in
 packaging==21.3
     # via
     #   -c requirements.txt
+    #   bleach
     #   pytest
     #   sphinx
     #   tox
+pandocfilters==1.5.0
+    # via nbconvert
 parso==0.8.3
     # via jedi
 pathspec==0.9.0
@@ -138,7 +176,7 @@ pexpect==4.8.0
     # via ipython
 pickleshare==0.7.5
     # via ipython
-pip-tools==6.5.1
+pip-tools==6.5.0
     # via -r requirements-dev.in
 platformdirs==2.4.1
     # via
@@ -153,21 +191,29 @@ pre-commit==2.17.0
     # via -r requirements-dev.in
 pre-commit-hooks==4.1.0
     # via -r requirements-dev.in
-prompt-toolkit==3.0.27
+prometheus-client==0.13.1
+    # via notebook
+prompt-toolkit==3.0.26
     # via ipython
 ptyprocess==0.7.0
-    # via pexpect
+    # via
+    #   pexpect
+    #   terminado
 pure-eval==0.2.2
     # via stack-data
 py==1.11.0
     # via
     #   pytest
     #   tox
+pycparser==2.21
+    # via cffi
 pydantic==1.9.0
     # via nbmake
 pygments==2.11.2
     # via
     #   ipython
+    #   jupyterlab-pygments
+    #   nbconvert
     #   nbmake
     #   sphinx
 pylint==2.12.2
@@ -198,7 +244,9 @@ pytz==2021.3
 pyyaml==6.0
     # via pre-commit
 pyzmq==22.3.0
-    # via jupyter-client
+    # via
+    #   jupyter-client
+    #   notebook
 requests==2.27.1
     # via
     #   kaggle
@@ -206,11 +254,14 @@ requests==2.27.1
 ruamel-yaml==0.17.20
     # via pre-commit-hooks
 ruamel-yaml-clib==0.2.6
-    # via ruamel-yaml
+    # via ruamel.yaml
+send2trash==1.8.0
+    # via notebook
 six==1.16.0
     # via
     #   -c requirements.txt
     #   asttokens
+    #   bleach
     #   kaggle
     #   python-dateutil
     #   tox
@@ -233,6 +284,10 @@ sphinxcontrib-serializinghtml==1.1.5
     # via sphinx
 stack-data==0.1.4
     # via ipython
+terminado==0.13.1
+    # via notebook
+testpath==0.5.0
+    # via nbconvert
 text-unidecode==1.3
     # via python-slugify
 tokenize-rt==4.2.1
@@ -253,6 +308,8 @@ tornado==6.1
     # via
     #   ipykernel
     #   jupyter-client
+    #   notebook
+    #   terminado
 tox==3.24.5
     # via -r requirements-dev.in
 tqdm==4.62.3
@@ -265,7 +322,9 @@ traitlets==5.1.1
     #   jupyter-core
     #   matplotlib-inline
     #   nbclient
+    #   nbconvert
     #   nbformat
+    #   notebook
 typing-extensions==4.0.1
     # via
     #   astroid
@@ -284,6 +343,8 @@ virtualenv==20.13.1
     #   tox
 wcwidth==0.2.5
     # via prompt-toolkit
+webencodings==0.5.1
+    # via bleach
 wheel==0.37.1
     # via pip-tools
 wrapt==1.13.3

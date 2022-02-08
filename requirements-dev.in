@@ -14,3 +14,4 @@ pytest
 nbmake
 nbqa
 tox
+notebook
