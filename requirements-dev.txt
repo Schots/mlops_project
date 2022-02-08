@@ -337,7 +337,7 @@ urllib3==1.26.8
     # via
     #   kaggle
     #   requests
-virtualenv==20.13.0
+virtualenv==20.13.1
     # via
     #   pre-commit
     #   tox
