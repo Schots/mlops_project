@@ -1,11 +1,8 @@
-name: Test python versions
+name: Testing in different Python versions with Tox.
 on:
   push:
     branches:
-      - "*" # matches every branch that doesn't contain a '/'
-  pull_request:
-    branches:
-      - main
+      - "*"
 
 jobs:
   build:

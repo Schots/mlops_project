@@ -55,12 +55,15 @@ pip-compile: install-pip-tools
 	pip-compile --no-emit-index-url requirements.in
 	pip-compile --no-emit-index-url requirements-dev.in
 
+pip-downgrade:
+	$(PYTHON_INTERPRETER) -m pip install pip==21.3.1
+
 ## Install Python Dependencies & Install pre-commit hooks
-requirements: pip-compile check_installed_python
-	$(PYTHON_INTERPRETER) -m pip install --upgrade pip==21.3.1 &&\
+requirements: pip-downgrade pip-compile check_installed_python
 	$(PYTHON_INTERPRETER) -m pip install -r requirements-dev.txt --use-deprecated=legacy-resolver &&\
 	pre-commit install
 	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt --use-deprecated=legacy-resolver
+	pre-commit install --hook-type commit-msg
 
 ## Synchronize the Python Dependencies & Virtual Env
 sync-env: pip-compile
@@ -82,8 +85,8 @@ data: get_data
 clean:
 	@find . -type f -name "*.py[co]" -delete
 	@find . -type d -name "__pycache__" -delete
-	@find . -type d -name ".tox" -exec rm -rf "{}" \;
-	@find . -type d -name ".pytest_cache" -exec rm -rf "{}" \;
+	@find . -type d -name ".tox" -exec rm -r "{}" +
+	@find . -type d -name ".pytest_cache" -exec rm -r "{}" +
 
 #################################################################################
 # PROJECT RULES                                                                 #

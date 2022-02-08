@@ -1,9 +1,7 @@
 """Get data from kaggle."""
-import argparse
+import configparser
 import logging
 import subprocess
-import os
-from pathlib import Path
 from kaggle.api import KaggleApi
 
 
@@ -11,22 +9,15 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)-15s %(message)s")
 logger = logging.getLogger()
 
 
-def download_data(
-    competition,
-    train_data,
-    test_data,
-    output_dir,
-    credentials=".kaggle/kaggle.json",
-):
+def download_data():
 
-    """Downloading train and test data from Kaggle Titanic competition.
-
-    Args:
-        competition (str): name of competiton
-        train_data (str): name of train dataset
-        test_data (str): name of test dataset
-    """
-    credentials = Path.home().joinpath(credentials)
+    """Downloading train and test data from Kaggle Titanic competition."""
+    config = configparser.ConfigParser()
+    config.read("../../configs.ini")
+    competition_name = config["datasets"]["competition"]
+    train_data = config["datasets"]["train"]
+    test_data = config["datasets"]["test"]
+    output_dir = config["datasets"]["raw_folder"]
 
     api = KaggleApi()
     api.authenticate()
@@ -37,11 +28,11 @@ def download_data(
             "kaggle",
             "competitions",
             "download",
-            competition,
+            f"{competition_name}",
             "-f",
-            train_data,
+            f"{train_data}",
             "--path",
-            output_dir,
+            f"{output_dir}",
         ],
         check=True,
     )
@@ -52,52 +43,16 @@ def download_data(
             "kaggle",
             "competitions",
             "download",
-            competition,
+            f"{competition_name}",
             "-f",
-            test_data,
+            f"{test_data}",
             "--path",
-            output_dir,
+            f"{output_dir}",
         ],
         check=True,
     )
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "-c",
-        "--competition",
-        dest="competition",
-        required=True,
-        help="Kaggle competition to download",
-    )
-    parser.add_argument(
-        "-tr",
-        "--train_data",
-        dest="train_data",
-        required=True,
-        help="Train csv file",
-    )
-    parser.add_argument(
-        "-te",
-        "--test_data",
-        dest="test_data",
-        required=True,
-        help="Test csv file",
-    )
-    parser.add_argument(
-        "-o",
-        "--out-dir",
-        dest="output_dir",
-        default=os.path.dirname(Path(__file__).resolve()),
-        required=False,
-        help="output directory",
-    )
-    args = parser.parse_args()
 
-    download_data(
-        args.competition,
-        args.train_data,
-        args.test_data,
-        output_dir=args.output_dir,
-    )
+    download_data()
