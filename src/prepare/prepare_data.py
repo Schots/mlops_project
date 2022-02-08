@@ -2,10 +2,11 @@
 import sys
 import io
 import os
+from pathlib import Path
 import numpy as np
 import pandas as pd
-from pathlib import Path
 from sklearn.compose import ColumnTransformer
+import yaml
 
 # Test if the required parameters are received
 if len(sys.argv) != 3:
@@ -16,6 +17,9 @@ if len(sys.argv) != 3:
     )
     sys.exit(1)
 
+with open("params.yaml") as file:
+    params = yaml.load(file, Loader=yaml.SafeLoader)
+    params = params["dataset"]
 
 # Configure Paths and Folders
 input_data_folder, output_data_folder = sys.argv[1:]
@@ -34,9 +38,10 @@ train_in = pd.read_csv(train_in_path, index_col=[0])
 test_in = pd.read_csv(test_in_path, index_col=[0])
 
 x_train_in, y_train_in = (
-    train_in.drop("Survived", axis=1),
-    train_in[["Survived"]],
+    train_in.drop(params["target"], axis=1),
+    train_in[[params["target"]]],
 )
+
 x_test_in = test_in
 
 ## ======  Create a Pipeline to transform the data =============

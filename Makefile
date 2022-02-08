@@ -71,16 +71,22 @@ sync-env: pip-compile
 
 #################################################################################
 
-## Download Dataset
-get_data: requirements
-	$(PYTHON_INTERPRETER) download_dataset.py
+## (dvc) Execute the 'make_data' stage
+make_data:
+	@dvc repro make_data
 
-## Make Dataset
-data: get_data
-	$(PYTHON_INTERPRETER) src/data/make_dataset.py data/raw data/processed
+## (dvc) Execute the 'prepare' stage
+prepare:
+	@dvc repro prepare
 
+## (dvc) Execute the 'featurize' stage
+featurize:
+	@dvc repro featurize
+
+## (dvc) Execute all stages
 experiment:
 	@dvc repro
+
 
 #################################################################################
 

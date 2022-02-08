@@ -21,8 +21,11 @@ stages:
       md5: 61fdd54abdbf6a85b778e937122e1194
       size: 61194
     - path: src/prepare/prepare_data.py
-      md5: baca2e1c548bcec32623c74591b43357
-      size: 2229
+      md5: acf44ea47bcdd9c7b9608a2ae4605097
+      size: 2364
+    params:
+      params.yaml:
+        dataset.target: Survived
     outs:
     - path: data/prepared
       md5: de2663906f1e847952dbf335325b1e64.dir
@@ -38,8 +41,11 @@ stages:
       md5: 0b92347d7d2d77d47aa7031cf1f9cc64
       size: 62002
     - path: src/features/build_features.py
-      md5: baca2e1c548bcec32623c74591b43357
-      size: 2229
+      md5: 196956f43c73b7c9c6ef3ec6404a1571
+      size: 2363
+    params:
+      params.yaml:
+        dataset.target: Survived
     outs:
     - path: data/processed
       md5: de2663906f1e847952dbf335325b1e64.dir

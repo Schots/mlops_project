@@ -12,6 +12,8 @@ stages:
       - data/raw/train.csv
       - data/raw/test.csv
       - src/prepare/prepare_data.py
+    params:
+      - dataset.target
     outs:
       - data/prepared
   featurize:
@@ -20,5 +22,7 @@ stages:
       - data/prepared/train.csv
       - data/prepared/test.csv
       - src/features/build_features.py
+    params:
+      - dataset.target
     outs:
       - data/processed
