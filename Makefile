@@ -79,6 +79,9 @@ get_data: requirements
 data: get_data
 	$(PYTHON_INTERPRETER) src/data/make_dataset.py data/raw data/processed
 
+experiment:
+	@dvc repro
+
 #################################################################################
 
 ## Delete all compiled Python files
