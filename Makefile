@@ -73,19 +73,15 @@ sync-env: pip-compile
 
 ## (dvc) Execute the 'make_data' stage
 make_data:
-	@dvc repro make_data
+	$(PYTHON_INTERPRETER) download_dataset.py -d titanic
 
 ## (dvc) Execute the 'prepare' stage
 prepare:
-	@dvc repro prepare
+	$(PYTHON_INTERPRETER) src/prepare/prepare_data.py data/raw data/prepared
 
 ## (dvc) Execute the 'featurize' stage
 featurize:
-	@dvc repro featurize
-
-## (dvc) Execute all stages
-experiment:
-	@dvc repro
+	$(PYTHON_INTERPRETER) src/features/build_features.py data/prepared data/processed
 
 
 #################################################################################

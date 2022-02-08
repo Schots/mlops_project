@@ -1,13 +1,13 @@
 stages:
   make_data:
-    cmd: python3 download_dataset.py -d titanic
+    cmd: make make_data
     deps:
       - download_dataset.py
     outs:
       - data/raw
 
   prepare:
-    cmd: python3 src/prepare/prepare_data.py data/raw data/prepared
+    cmd: make prepare
     deps:
       - data/raw/train.csv
       - data/raw/test.csv
@@ -17,7 +17,7 @@ stages:
     outs:
       - data/prepared
   featurize:
-    cmd: python3 src/features/build_features.py data/prepared data/processed
+    cmd: make featurize
     deps:
       - data/prepared/train.csv
       - data/prepared/test.csv

@@ -1,7 +1,7 @@
 schema: '2.0'
 stages:
   make_data:
-    cmd: python3 download_dataset.py -d titanic
+    cmd: make make_data
     deps:
     - path: download_dataset.py
       md5: b00f242f6d21b1e657c21ce98f2502f8
@@ -12,7 +12,7 @@ stages:
       size: 93081
       nfiles: 3
   prepare:
-    cmd: python3 src/prepare/prepare_data.py data/raw data/prepared
+    cmd: make prepare
     deps:
     - path: data/raw/test.csv
       md5: 029c9cd22461f6dbe8d9ab01def965c6
@@ -21,8 +21,8 @@ stages:
       md5: 61fdd54abdbf6a85b778e937122e1194
       size: 61194
     - path: src/prepare/prepare_data.py
-      md5: acf44ea47bcdd9c7b9608a2ae4605097
-      size: 2364
+      md5: 0563db827931cf0c9f83b98e7ede3ed8
+      size: 2372
     params:
       params.yaml:
         dataset.target: Survived
@@ -32,7 +32,7 @@ stages:
       size: 90972
       nfiles: 2
   featurize:
-    cmd: python3 src/features/build_features.py data/prepared data/processed
+    cmd: make featurize
     deps:
     - path: data/prepared/test.csv
       md5: f5dbd232d64b8398185eae3371560f8f
@@ -41,8 +41,8 @@ stages:
       md5: 0b92347d7d2d77d47aa7031cf1f9cc64
       size: 62002
     - path: src/features/build_features.py
-      md5: 196956f43c73b7c9c6ef3ec6404a1571
-      size: 2363
+      md5: fd7e92228374cf1b74ff90757f0f37a8
+      size: 2371
     params:
       params.yaml:
         dataset.target: Survived
