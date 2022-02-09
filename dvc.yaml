@@ -1,6 +1,6 @@
 stages:
-  make_data:
-    cmd: make make_data
+  data:
+    cmd: make data
     deps:
       - download_dataset.py
     outs:
