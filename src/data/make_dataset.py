@@ -1,42 +1,59 @@
-# -*- coding: utf-8 -*-
-import os
-import logging
-from pathlib import Path
+"""Get data from kaggle."""
 import configparser
-import click
-from dotenv import find_dotenv, load_dotenv
-
-ROOT_DIR = os.path.abspath(os.curdir)
-print(ROOT_DIR)
-
-config = configparser.ConfigParser()
-config.read("configs.ini")
-
-raw_data_folder = config["datasets"]["raw_folder"]
-processed_data_folder = config["datasets"]["processed_folder"]
+import logging
+import subprocess
+from pathlib import Path
+from kaggle.api import KaggleApi
 
 
-@click.command()
-@click.argument("input_filepath", type=click.Path(exists=True))
-@click.argument("output_filepath", type=click.Path())
-def main(
-    input_filepath=raw_data_folder, output_filepath=processed_data_folder
-):
-    """Runs data processing scripts to turn raw data from (../raw) into cleaned
-    data ready to be analyzed (saved in ../processed)."""
-    logger = logging.getLogger(__name__)
-    logger.info("making final data set from raw data")
+logging.basicConfig(level=logging.INFO, format="%(asctime)-15s %(message)s")
+logger = logging.getLogger()
+
+
+def download_data():
+
+    """Downloading train and test data from Kaggle Titanic competition."""
+    config = configparser.ConfigParser()
+    config.read("configs.ini")
+    competition_name = config["datasets"]["competition"]
+    train_data = config["datasets"]["train"]
+    test_data = config["datasets"]["test"]
+    output_dir = config["datasets"]["raw_folder"]
+
+    api = KaggleApi()
+    api.authenticate()
+
+    logger.info("Downloading train data")
+    subprocess.run(
+        [
+            "kaggle",
+            "competitions",
+            "download",
+            f"{competition_name}",
+            "-f",
+            f"{train_data}",
+            "--path",
+            f"{output_dir}",
+        ],
+        check=True,
+    )
+
+    logger.info("Downloading test data")
+    subprocess.run(
+        [
+            "kaggle",
+            "competitions",
+            "download",
+            f"{competition_name}",
+            "-f",
+            f"{test_data}",
+            "--path",
+            f"{output_dir}",
+        ],
+        check=True,
+    )
 
 
 if __name__ == "__main__":
-    log_fmt = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-    logging.basicConfig(level=logging.INFO, format=log_fmt)
 
-    # not used in this stub but often useful for finding various files
-    project_dir = Path(__file__).resolve().parents[2]
-
-    # find .env automagically by walking up directories until it's found, then
-    # load up the .env entries as environment variables
-    load_dotenv(find_dotenv())
-
-    main()
+    download_data()

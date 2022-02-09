@@ -73,7 +73,7 @@ sync-env: pip-compile
 
 ## (dvc) Execute the 'make_data' stage
 data:
-	$(PYTHON_INTERPRETER) download_dataset.py -d titanic
+	$(PYTHON_INTERPRETER) src/data/make_dataset.py
 
 ## (dvc) Execute the 'prepare' stage
 prepare:
