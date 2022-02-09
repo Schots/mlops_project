@@ -4,7 +4,6 @@ import logging
 import subprocess
 from kaggle.api import KaggleApi
 
-
 logging.basicConfig(level=logging.INFO, format="%(asctime)-15s %(message)s")
 logger = logging.getLogger()
 
