@@ -2,7 +2,7 @@ stages:
   data:
     cmd: make data
     deps:
-      - download_dataset.py
+      - src/data/make_dataset.py
     outs:
       - data/raw
 

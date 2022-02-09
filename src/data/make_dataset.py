@@ -2,6 +2,7 @@
 import configparser
 import logging
 import subprocess
+from pathlib import Path
 from kaggle.api import KaggleApi
 
 
@@ -13,7 +14,7 @@ def download_data():
 
     """Downloading train and test data from Kaggle Titanic competition."""
     config = configparser.ConfigParser()
-    config.read("../../configs.ini")
+    config.read("configs.ini")
     competition_name = config["datasets"]["competition"]
     train_data = config["datasets"]["train"]
     test_data = config["datasets"]["test"]

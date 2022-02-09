@@ -51,3 +51,14 @@ stages:
       md5: de2663906f1e847952dbf335325b1e64.dir
       size: 90972
       nfiles: 2
+  data:
+    cmd: make data
+    deps:
+    - path: src/data/make_dataset.py
+      md5: 7aee3a2f7330da2e3d45305cd3d63bd1
+      size: 1340
+    outs:
+    - path: data/raw
+      md5: 87bb5025b342dce499fe38b06aba7132.dir
+      size: 89823
+      nfiles: 2
