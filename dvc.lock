@@ -1,0 +1,64 @@
+schema: '2.0'
+stages:
+  make_data:
+    cmd: make make_data
+    deps:
+    - path: download_dataset.py
+      md5: b00f242f6d21b1e657c21ce98f2502f8
+      size: 1932
+    outs:
+    - path: data/raw
+      md5: bf1a6a19059092be578a3807608e236c.dir
+      size: 93081
+      nfiles: 3
+  prepare:
+    cmd: make prepare
+    deps:
+    - path: data/raw/test.csv
+      md5: 029c9cd22461f6dbe8d9ab01def965c6
+      size: 28629
+    - path: data/raw/train.csv
+      md5: 61fdd54abdbf6a85b778e937122e1194
+      size: 61194
+    - path: src/prepare/prepare_data.py
+      md5: 0563db827931cf0c9f83b98e7ede3ed8
+      size: 2372
+    params:
+      params.yaml:
+        dataset.target: Survived
+    outs:
+    - path: data/prepared
+      md5: de2663906f1e847952dbf335325b1e64.dir
+      size: 90972
+      nfiles: 2
+  featurize:
+    cmd: make featurize
+    deps:
+    - path: data/prepared/test.csv
+      md5: f5dbd232d64b8398185eae3371560f8f
+      size: 28970
+    - path: data/prepared/train.csv
+      md5: 0b92347d7d2d77d47aa7031cf1f9cc64
+      size: 62002
+    - path: src/features/build_features.py
+      md5: fd7e92228374cf1b74ff90757f0f37a8
+      size: 2371
+    params:
+      params.yaml:
+        dataset.target: Survived
+    outs:
+    - path: data/processed
+      md5: de2663906f1e847952dbf335325b1e64.dir
+      size: 90972
+      nfiles: 2
+  data:
+    cmd: make data
+    deps:
+    - path: src/data/make_dataset.py
+      md5: 7aee3a2f7330da2e3d45305cd3d63bd1
+      size: 1340
+    outs:
+    - path: data/raw
+      md5: 87bb5025b342dce499fe38b06aba7132.dir
+      size: 89823
+      nfiles: 2

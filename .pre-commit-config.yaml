@@ -1,0 +1,103 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+exclude: ".md$"
+repos:
+  - repo: local
+    hooks:
+      - id: ccmlops
+        name: Conventional Commits for MlOps
+        entry: ./.hooks/conventional_commits_for_mlops.py
+        language: script
+        description: Checks if commit message follows the commit guidelines for MlOps
+        stages: [commit-msg]
+        always_run: true
+      - id: check-merge-conflict
+        name: check for merge conflicts
+        description: checks for files that contain merge conflict strings.
+        entry: check-merge-conflict
+        language: python
+        types: [text]
+      - id: trailing-whitespace
+        name: trim trailing whitespace
+        description: trims trailing whitespace.
+        entry: trailing-whitespace-fixer
+        language: python
+        types: [text]
+        stages: [commit, push, manual]
+      - id: end-of-file-fixer
+        name: fix end of files
+        description: ensures that a file is either empty, or ends with one newline.
+        entry: end-of-file-fixer
+        language: python
+        types: [text]
+        stages: [commit, push, manual]
+      - id: check-yaml
+        name: check yaml
+        description: checks yaml files for parseable syntax.
+        entry: check-yaml
+        language: python
+        types: [yaml]
+        stages: [commit]
+      - id: check-added-large-files
+        name: check for added large files
+        description: prevents giant files from being committed.
+        entry: check-added-large-files
+        language: python
+      - id: check-ast
+        name: check python ast
+        description: simply checks whether the files parse as valid python.
+        entry: check-ast
+        language: python
+        types: [python]
+      - id: check-docstring-first
+        name: check docstring is first
+        description: checks a common error of defining a docstring after code.
+        entry: check-docstring-first
+        language: python
+        types: [python]
+      - id: blacki
+        name: black
+        description: "Black: The uncompromising Python code formatter"
+        entry: black
+        require_serial: true
+        language: python
+        exclude: "kedro-init"
+        types_or: [python, pyi]
+        args: ["--line-length=79", "--experimental-string-processing"]
+      - id: docformatter
+        name: docformatter
+        description: formats docstrings to follow PEP 257.
+        entry: docformatter
+        language: python
+        types: [text]
+        args: [--in-place]
+        stages: [commit]
+      - id: pylint
+        name: pylint
+        entry: pylint
+        language: python
+        require_serial: true
+        types_or: [python, pyi]
+        args:
+          [
+            "--disable=E0401,E1101,E1102,R0913,R0914,W0703,E0602,C0103,C0114,W0611,W0102,W0105, W1406, C0330,C0326,W0107,R1716,R0902",
+            "--fail-under=9",
+          ]
+      - id: pip-sync-env
+        name: pip-sync-env
+        entry: bash -c 'make sync-env'
+        language: system
+      - id: nbqa-check-ast
+        name: check if Jupyter Notebook AST is valid (check for syntax errors)
+        description: Checks if the cells in a Jupyter Notebook has valid python code.
+        entry: nbqa
+        args: ['pre_commit_hooks.check_ast']
+        language: python
+        types: ['jupyter']
+      - id: nbmake
+        name: pytest --nbmake
+        description: runs nbmake to check if the Jupyter Notebook is valid.
+        entry: pytest
+        args: ['--nbmake']
+        language: system
+        types: ['jupyter']

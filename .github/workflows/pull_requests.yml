@@ -1,0 +1,33 @@
+name: Testing in different Python versions with Tox during PR.
+on:
+  pull_request:
+    branches:
+      - main
+    types: [labeled]
+
+jobs:
+  build:
+    name: Build & Test
+    runs-on: ubuntu-latest
+    if: contains(github.event.pull_request.labels.*.name, 'safe to test')
+    strategy:
+      fail-fast: False
+      matrix:
+        python-version: ["3.8", "3.9"]
+
+    steps:
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Check directory
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: |
+          make requirements
+
+      - name: Tox
+        run: |
+          tox -- -v -k "not ENV"
