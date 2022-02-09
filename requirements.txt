@@ -30,6 +30,8 @@ pandas==1.4.0
     # via
     #   -r requirements.in
     #   seaborn
+passlib==1.7.4
+    # via -r requirements.in
 pillow==9.0.1
     # via matplotlib
 pyparsing==3.0.7
