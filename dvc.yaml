@@ -1,0 +1,28 @@
+stages:
+  data:
+    cmd: make data
+    deps:
+      - download_dataset.py
+    outs:
+      - data/raw
+
+  prepare:
+    cmd: make prepare
+    deps:
+      - data/raw/train.csv
+      - data/raw/test.csv
+      - src/prepare/prepare_data.py
+    params:
+      - dataset.target
+    outs:
+      - data/prepared
+  featurize:
+    cmd: make featurize
+    deps:
+      - data/prepared/train.csv
+      - data/prepared/test.csv
+      - src/features/build_features.py
+    params:
+      - dataset.target
+    outs:
+      - data/processed
