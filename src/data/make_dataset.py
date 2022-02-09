@@ -1,59 +1,30 @@
-"""Get data from kaggle."""
-import configparser
+# -*- coding: utf-8 -*-
+import click
 import logging
-import subprocess
 from pathlib import Path
-from kaggle.api import KaggleApi
+from dotenv import find_dotenv, load_dotenv
 
 
-logging.basicConfig(level=logging.INFO, format="%(asctime)-15s %(message)s")
-logger = logging.getLogger()
+@click.command()
+@click.argument('input_filepath', type=click.Path(exists=True))
+@click.argument('output_filepath', type=click.Path())
+def main(input_filepath, output_filepath):
+    """ Runs data processing scripts to turn raw data from (../raw) into
+        cleaned data ready to be analyzed (saved in ../processed).
+    """
+    logger = logging.getLogger(__name__)
+    logger.info('making final data set from raw data')
 
 
-def download_data():
+if __name__ == '__main__':
+    log_fmt = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    logging.basicConfig(level=logging.INFO, format=log_fmt)
 
-    """Downloading train and test data from Kaggle Titanic competition."""
-    config = configparser.ConfigParser()
-    config.read("configs.ini")
-    competition_name = config["datasets"]["competition"]
-    train_data = config["datasets"]["train"]
-    test_data = config["datasets"]["test"]
-    output_dir = config["datasets"]["raw_folder"]
+    # not used in this stub but often useful for finding various files
+    project_dir = Path(__file__).resolve().parents[2]
 
-    api = KaggleApi()
-    api.authenticate()
+    # find .env automagically by walking up directories until it's found, then
+    # load up the .env entries as environment variables
+    load_dotenv(find_dotenv())
 
-    logger.info("Downloading train data")
-    subprocess.run(
-        [
-            "kaggle",
-            "competitions",
-            "download",
-            f"{competition_name}",
-            "-f",
-            f"{train_data}",
-            "--path",
-            f"{output_dir}",
-        ],
-        check=True,
-    )
-
-    logger.info("Downloading test data")
-    subprocess.run(
-        [
-            "kaggle",
-            "competitions",
-            "download",
-            f"{competition_name}",
-            "-f",
-            f"{test_data}",
-            "--path",
-            f"{output_dir}",
-        ],
-        check=True,
-    )
-
-
-if __name__ == "__main__":
-
-    download_data()
+    main()
