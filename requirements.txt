@@ -200,6 +200,7 @@ scikit-learn==1.0.2
     # via -r requirements.in
 scipy==1.8.0
     # via
+    #   -r requirements.in
     #   scikit-learn
     #   seaborn
 scmrepo==0.0.7
