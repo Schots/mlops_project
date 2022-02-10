@@ -91,7 +91,7 @@ If you are just interested in using this package, follow the steps below:
     To download the raw dataset, use the get_data
 
     ```sh
-    make get_data
+    make data
     ```
     type the dataset name when prompted. The zip file with data will be downloaded and unzipped under the _data/raw_ folder
 
