@@ -246,9 +246,7 @@ jupyter-core==4.9.1
 jupyterlab-pygments==0.1.2
     # via nbconvert
 kaggle==1.5.12
-    # via
-    #   -c requirements.txt
-    #   -r requirements-dev.in
+    # via -r requirements-dev.in
 lazy-object-proxy==1.7.1
     # via astroid
 mailchecker==4.1.11
@@ -520,6 +518,8 @@ sphinxcontrib-qthelp==1.0.3
     # via sphinx
 sphinxcontrib-serializinghtml==1.1.5
     # via sphinx
+squarify==0.4.3
+    # via -r requirements-dev.in
 stack-data==0.1.4
     # via ipython
 tabulate==0.8.9
