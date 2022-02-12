@@ -220,6 +220,8 @@ six==1.16.0
     #   python-dateutil
 smmap==5.0.0
     # via gitdb
+squarify==0.4.3
+    # via -r requirements.in
 tabulate==0.8.9
     # via dvc
 text-unidecode==1.3
