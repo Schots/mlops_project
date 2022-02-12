@@ -1,7 +1,3 @@
-from click.testing import CliRunner
-from download_dataset import download, PROMPT_STRING
-
-
 def test_nothing():
     """This is just a sample of test."""
     var = 1
