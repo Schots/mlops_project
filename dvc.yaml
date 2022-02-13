@@ -10,10 +10,14 @@ stages:
     cmd: make prepare
     deps:
       - data/raw/train.csv
-      - data/raw/test.csv
       - src/prepare/prepare_data.py
     params:
       - dataset.target
+      - prepare.random_state
+      - prepare.split
+      - prepare.missing.num_cols
+      - prepare.missing.cat_cols
+      - prepare.drop.cols
     outs:
       - data/prepared
   featurize:
@@ -24,5 +28,18 @@ stages:
       - src/features/build_features.py
     params:
       - dataset.target
+      - featurize.ohe_cols
     outs:
       - data/processed
+  train:
+    cmd: make train
+    deps:
+      - data/processed/train.joblib
+      - data/processed/test.joblib
+      - src/models/train_model.py
+    params:
+      - train.seed
+      - train.n_estimators
+      - train.min_split
+    outs:
+      - model.joblib

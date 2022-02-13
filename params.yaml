@@ -1,2 +1,20 @@
 dataset:
   target: Survived
+
+prepare:
+  random_state: 3141592
+  split: 0.2
+  missing:
+    cat_cols: ["Cabin", "Embarked"]
+    num_cols: ["Age"]
+  drop:
+    cols: ["Name", "Ticket"]
+
+featurize:
+  ohe_cols: ["Cabin", "Sex", "Embarked"]
+
+train:
+  seed: 2077
+  n_estimators: 100
+  min_split: 64
+  n_jobs: 2
