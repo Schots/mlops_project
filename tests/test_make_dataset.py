@@ -1,9 +1,16 @@
-import os
-from src.data.make_dataset import download_data
+"""Test make_dataset.py."""
+import configparser
+import yaml
 
 
 def test_download_data():
-    """Test that download_data() works."""
-    download_data()
-    assert os.path.exists(os.path.join(os.getcwd(), "data/raw", "train.csv"))
-    assert os.path.exists(os.path.join(os.getcwd(), "data/raw", "test.csv"))
+    """test if the output parameters of the make_dataset module are correct."""
+    config = configparser.ConfigParser()
+    config.read("configs.ini")
+    output_dir = config["datasets"]["raw_folder"]
+
+    with open("dvc.yaml", "r") as file:
+        stages_dvc = yaml.safe_load(file)
+    output_dvc = stages_dvc["stages"]["data"]["outs"][0]
+
+    assert output_dir == output_dvc
