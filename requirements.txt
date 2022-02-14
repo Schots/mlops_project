@@ -25,6 +25,7 @@ attrs==21.4.0
 certifi==2021.10.8
     # via
     #   dulwich
+    #   kaggle
     #   requests
 cffi==1.15.0
     # via
@@ -94,6 +95,8 @@ importlib-resources==5.4.0
     # via dvc
 joblib==1.1.0
     # via scikit-learn
+kaggle==1.5.12
+    # via -r requirements.in
 kiwisolver==1.3.2
     # via matplotlib
 mailchecker==4.1.11
@@ -126,8 +129,6 @@ pandas==1.4.0
     # via
     #   -r requirements.in
     #   seaborn
-passlib==1.7.4
-    # via -r requirements.in
 pathspec==0.9.0
     # via
     #   dvc
@@ -167,13 +168,16 @@ python-benedict==0.24.3
     # via dvc
 python-dateutil==2.8.2
     # via
+    #   kaggle
     #   matplotlib
     #   pandas
     #   python-benedict
 python-fsutil==0.6.0
     # via python-benedict
 python-slugify==5.0.2
-    # via python-benedict
+    # via
+    #   kaggle
+    #   python-benedict
 pytz==2021.3
     # via pandas
 pyyaml==6.0
@@ -182,6 +186,7 @@ requests==2.27.1
     # via
     #   dvc
     #   fsspec
+    #   kaggle
     #   python-benedict
 rich==11.2.0
     # via dvc
@@ -208,6 +213,7 @@ six==1.16.0
     # via
     #   configobj
     #   flatten-dict
+    #   kaggle
     #   python-benedict
     #   python-dateutil
 smmap==5.0.0
@@ -223,12 +229,15 @@ toml==0.10.2
     #   dvc
     #   python-benedict
 tqdm==4.62.3
-    # via dvc
+    # via
+    #   dvc
+    #   kaggle
 typing-extensions==4.0.1
     # via dvc
 urllib3==1.26.8
     # via
     #   dulwich
+    #   kaggle
     #   requests
 voluptuous==0.12.2
     # via dvc
