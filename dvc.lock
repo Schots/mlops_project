@@ -18,8 +18,8 @@ stages:
       md5: 61fdd54abdbf6a85b778e937122e1194
       size: 61194
     - path: src/prepare/prepare_data.py
-      md5: 28518f2f08e503a95a9a105191373fe6
-      size: 3403
+      md5: c1a9fbcdd5e8a13c410876751c5f919e
+      size: 3405
     params:
       params.yaml:
         dataset.target: Survived
@@ -69,17 +69,17 @@ stages:
       md5: 2026a7619d05f54a07816f1af63e5c15
       size: 766480
     - path: src/models/train_model.py
-      md5: 1111991405a0e7ec574bf2fe097e34aa
-      size: 1511
+      md5: b1be541ff27efecfa3b5dd529f8983d0
+      size: 1519
     params:
       params.yaml:
         train.min_split: 64
-        train.n_estimators: 500
+        train.n_estimators: 400
         train.seed: 2077
     outs:
     - path: model.joblib
-      md5: bc456ca9d1ecd2dc3b1cccd779ef6ebc
-      size: 1999378
+      md5: f25f1c0d1a7a5ab080d0897a3f07ac02
+      size: 1597814
   evaluate:
     cmd: make evaluation
     deps:
@@ -87,8 +87,8 @@ stages:
       md5: 6115f0ced682284bc8eee056ee34e330
       size: 195101
     - path: model.joblib
-      md5: bc456ca9d1ecd2dc3b1cccd779ef6ebc
-      size: 1999378
+      md5: f25f1c0d1a7a5ab080d0897a3f07ac02
+      size: 1597814
     - path: src/models/evaluate_model.py
       md5: 739652113ec6f18262e01852f2275f2e
       size: 2940
@@ -97,11 +97,11 @@ stages:
       md5: 9cee708c70fcd5002a0e5295caf0cfee
       size: 13094
     - path: reports/prc.json
-      md5: 0c4978c7404e4b1de500a8698fb8ade7
-      size: 3904
+      md5: 02e72cae4825610aec9352c5d6ac5683
+      size: 3873
     - path: reports/roc.json
-      md5: 3ba6f491df5eb48b221d0f12f1e650ca
-      size: 3015
+      md5: 696e81237ac0e7b1e0a4f99bc69a1000
+      size: 2852
     - path: reports/scores.json
-      md5: 39935de4cda27b0a6bca6a63be048951
+      md5: f78b70bb243712fb1bafd0133b30df09
       size: 104
