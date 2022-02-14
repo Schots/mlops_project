@@ -27,6 +27,8 @@ jobs:
         run: |
           echo ${{ github.sha }}
           echo $(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
+        continue-on-error: True
+
       - name: cml
         env:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
