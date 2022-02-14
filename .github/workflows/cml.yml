@@ -58,4 +58,5 @@ jobs:
           dvc plots diff --target reports/cfm.json --show-vega main > vega.json
           vl2png vega.json -s 1.3 | cml-publish --md >> report.md
           HEAD=$(git log -n1 --format=%h)
+          echo HEAD
           cml send-comment --pr --update --commit-sha=$HEAD report.md
