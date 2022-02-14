@@ -32,6 +32,8 @@ jobs:
           echo pull_request_sha = ${{ github.event.pull_request.head.sha }}
           echo even = ${{ github.event }}
           echo a = "$(gh pr view --json number -q .number || echo "")"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
         continue-on-error: True
 
