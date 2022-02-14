@@ -26,7 +26,7 @@ jobs:
       - name: Get commit Sha
         run: |
           echo ${{ github.sha }}
-
+          echo repos/$REPO/pulls | jq ".[] | select(.head.ref == '$BRANCH') | .url"
       - name: cml
         env:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
@@ -45,4 +45,4 @@ jobs:
           # Add figure to report
           dvc plots diff --target reports/cfm.json --show-vega main > vega.json
           vl2png vega.json -s 1.3 | cml-publish --md >> report.md
-          cml-send-comment --pr --update --commit-sha=${{ github.sha }} report.md
+          cml-send-comment report.md
