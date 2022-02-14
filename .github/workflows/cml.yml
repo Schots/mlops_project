@@ -16,7 +16,7 @@ jobs:
           echo CMT_SHA=${{ github.sha }}
           echo GH_REF=${{ github.ref }}
           echo PR_NUM=${{ github.event.pull_request.number }}
-          ecgo PR_SHA=${{ github.event.pull_request.head.sha }}
+          echo PR_SHA=${{ github.event.pull_request.head.sha }}
 
           echo "## Metrics Model" > report.md
           cat reports/scores.json >> report.md
