@@ -11,10 +11,10 @@ jobs:
         env:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          COMMIT_SHA = ${{ github.sha }}
-          REF = ${{ github.ref }}
-          PR_NUMBER = ${{ github.event.pull_request.number }}
-          PR_SHA = ${{ github.event.pull_request.head.sha }}
+          COMMIT_SHA=${{ github.sha }}
+          REF=${{ github.ref }}
+          PR_NUMBER=${{ github.event.pull_request.number }}
+          PR_SHA=${{ github.event.pull_request.head.sha }}
 
           echo "commit: ${COMMIT_SHA}, ref: ${ref}"
           echo "pull_request_number: ${PR_NUMBER}, pul_request_sha: ${PR_SHA}"
