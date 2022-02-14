@@ -1,45 +1,21 @@
-name: Train model
-
+name: Model-wine-quality
 on: [push]
-
 jobs:
   run:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: True
-      matrix:
-        python-version: ["3.8", "3.9"]
-
+    container: docker://ghcr.io/iterative/cml:0-dvc2-base1
     steps:
-      - name: Check directory
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-      - uses: iterative/setup-cml@v1
-
-      - uses: iterative/setup-dvc@v1
-
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
-        with:
-          python-version: ${{ matrix.python-version }}
-
-      - name: cml
+      - name: cml_run
         env:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
-          KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
-
         run: |
+          # Your ML workflow goes here
           pip install -r requirements.txt
+          python train.py
 
-          # Reproduce pipeline if any changes detected in dependencies
-          dvc repro
+          echo "## Metrics Model" > report.md
+          cat reports/scores.json >> report.md
 
-          # Use DVC metrics diff to compare metrics to main
-          git fetch --prune --unshallow
-          dvc metrics diff --show-md main >> report.md
-
-          # Add figure to report
-          dvc plots diff --target reports/cfm.json --show-vega main > vega.json
-          vl2png vega.json -s 1.3 | cml-publish --md >> report.md
           cml-send-comment report.md
