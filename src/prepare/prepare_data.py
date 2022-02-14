@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+"""This module is responsible for clean, fill and fix data."""
 import sys
 import os
 from pathlib import Path
@@ -20,7 +21,7 @@ if len(sys.argv) != 3:
     )
     sys.exit(1)
 
-with open("params.yaml") as file:
+with open("params.yaml", "r", encoding="utf-8") as file:
     params = yaml.load(file, Loader=yaml.SafeLoader)
     target = params["dataset"]["target"]
     prepare = params["prepare"]
@@ -32,7 +33,7 @@ with open("params.yaml") as file:
 
 
 # Save the input and output paths received as parameter
-input_folder, output_folder = sys.argv[1:]
+input_folder, output_folder = sys.argv[1], sys.argv[2]
 
 # If doesn't exist, create the output data folder
 os.makedirs(output_folder, exist_ok=True)
@@ -56,7 +57,7 @@ data = pd.read_csv(data_path, index_col=[0])
 # Separe the predictors from the target variable
 X, y = (
     data.drop(target, axis=1),
-    data[[target]],
+    data[target],
 )
 
 # Split into train/test data

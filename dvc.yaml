@@ -35,7 +35,6 @@ stages:
     cmd: make train
     deps:
       - data/processed/train.joblib
-      - data/processed/test.joblib
       - src/models/train_model.py
     params:
       - train.seed
@@ -43,3 +42,26 @@ stages:
       - train.min_split
     outs:
       - model.joblib
+  evaluate:
+    cmd: make evaluation
+    deps:
+      - data/processed/test.joblib
+      - src/models/evaluate_model.py
+      - model.joblib
+    metrics:
+      - reports/scores.json:
+          cache: false
+    plots:
+      - reports/prc.json:
+          cache: false
+          x: recall
+          y: precision
+      - reports/roc.json:
+          cache: false
+          x: fpr
+          y: tpr
+      - reports/cfm.json:
+          cache: false
+          template: confusion
+          x: actual
+          y: predicted

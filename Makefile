@@ -87,6 +87,11 @@ featurize:
 train:
 	$(PYTHON_INTERPRETER) src/models/train_model.py data/processed .
 
+## (dvc) Execute the 'evaluate' stage
+evaluation:
+	$(PYTHON_INTERPRETER) src/models/evaluate_model.py data/processed . \
+	reports/scores.json reports/prc.json reports/roc.json reports/cfm.json
+
 #################################################################################
 
 ## Delete all compiled Python files

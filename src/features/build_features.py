@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+"""This module is responsible for feature engineering such as normalization,
+standardization, encoding, etc."""
 import sys
 import os
 from pathlib import Path
@@ -18,13 +20,13 @@ if len(sys.argv) != 3:
     )
     sys.exit(1)
 
-with open("params.yaml") as file:
+with open("params.yaml", "r", encoding="utf-8") as file:
     params = yaml.load(file, Loader=yaml.SafeLoader)
     target = params["dataset"]["target"]
     ohe_cols = params["featurize"]["ohe_cols"]
 
 # Configure Paths and Folders
-input_folder, output_folder = sys.argv[1:]
+input_folder, output_folder = sys.argv[1], sys.argv[2]
 
 # If doesn't exist, create the output data folder
 os.makedirs(output_folder, exist_ok=True)
