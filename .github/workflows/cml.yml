@@ -6,18 +6,17 @@ jobs:
     container: docker://ghcr.io/iterative/cml:0-dvc2-base1
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+      - uses: iterative/setup-cml@v1
 
       - name: cml_run
         env:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          COMMIT_SHA=${{ github.sha }}
-          REF=${{ github.ref }}
-          PR_NUMBER=${{ github.event.pull_request.number }}
-          PR_SHA=${{ github.event.pull_request.head.sha }}
-
-          echo "commit: ${COMMIT_SHA}, ref: ${ref}"
-          echo "pull_request_number: ${PR_NUMBER}, pul_request_sha: ${PR_SHA}"
+          echo CMT_SHA=${{ github.sha }}
+          echo GH_REF=${{ github.ref }}
+          echo PR_NUM=${{ github.event.pull_request.number }}
+          ecgo PR_SHA=${{ github.event.pull_request.head.sha }}
 
           echo "## Metrics Model" > report.md
           cat reports/scores.json >> report.md
