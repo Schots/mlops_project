@@ -1,11 +1,15 @@
-name: Model-wine-quality
+name: CML
+
 on: [push, pull_request]
+
 jobs:
-  run:
+  build:
     runs-on: ubuntu-latest
-    container: docker://ghcr.io/iterative/cml:0-dvc2-base1
+    container: docker://ghcr.io/iterative/cml:latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       - name: Get commit Sha
         run: |
@@ -15,15 +19,16 @@ jobs:
           echo pull_request_number = ${{ github.event.pull_request.number }}
           echo pull_request_sha = ${{ github.event.pull_request.head.sha }}
           echo b = "$(gh pr list --repo Schots/mlops_project)"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: cml_run
+      - name: CML PR
         env:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo "## Metrics Model" > report.md
-          cat reports/scores.json >> report.md
-          HEAD=$(git log -n1 --format=%h)
-          echo ${HEAD}
-          cml-send-comment --pr=85 --update report.md
+          echo "foo" > foo
+          cml pr "foo"
+      - name: CML report
+        env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "## Metrics" >> report.md
+          cml send-comment --pr=85 --update report.md
