@@ -1,4 +1,4 @@
-name: Train model
+name: Train model & Evaluate model
 
 on:
   push:
@@ -39,8 +39,7 @@ jobs:
           echo pull_request_sha = ${{ github.event.pull_request.head.sha }}
           echo "$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")"
           echo a = "$(gh pr view --json number -q .number || echo "")"
-          echo repos/$REPO/pulls | jq ".[] | select(.head.ref == '$BRANCH') | .url"
-          echo "$(gh pr list --repo Schots/mlops_project)
+          echo b = "$(gh pr list --repo Schots/mlops_project)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
