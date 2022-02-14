@@ -59,4 +59,4 @@ jobs:
           vl2png vega.json -s 1.3 | cml-publish --md >> report.md
           HEAD=$(git log -n1 --format=%h)
           echo ${HEAD}
-          cml send-comment --pr=80 --update --commit-sha=$HEAD report.md
+          cml send-comment --pr --update --commit-sha=$HEAD report.md
