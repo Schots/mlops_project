@@ -26,7 +26,7 @@ jobs:
       - name: Get commit Sha
         run: |
           echo ${{ github.sha }}
-          echo repos/$REPO/pulls | jq ".[] | select(.head.ref == '$BRANCH') | .url"
+          echo $(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
       - name: cml
         env:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
