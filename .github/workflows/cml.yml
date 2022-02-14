@@ -26,8 +26,11 @@ jobs:
       - name: Get commit Sha
         run: |
           echo current_sha = ${{ github.sha }}
+          echo current_ref = ${{ github.ref }}
+          echo pull_request_number = ${{ github.event.number }}
           echo pull_request_number = ${{ github.event.pull_request.number }}
           echo pull_request_sha = ${{ github.event.pull_request.head.sha }}
+          echo even = ${{ github.event }}
 
         continue-on-error: True
 
