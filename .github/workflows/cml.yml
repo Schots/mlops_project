@@ -13,7 +13,7 @@ jobs:
   run:
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: True
+      fail-fast: False
       matrix:
         python-version: ["3.8", "3.9"]
 
@@ -39,6 +39,8 @@ jobs:
           echo pull_request_sha = ${{ github.event.pull_request.head.sha }}
           echo "$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")"
           echo a = "$(gh pr view --json number -q .number || echo "")"
+          echo repos/$REPO/pulls | jq ".[] | select(.head.ref == '$BRANCH') | .url"
+          echo "$(gh pr list --repo Schots/mlops_project)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
