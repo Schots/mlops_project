@@ -1,13 +1,9 @@
-name: Train model & Evaluate model
+name: CML train & evaluate model
 
 on:
   push:
     branches:
       - "*"
-  pull_request:
-    branches:
-      - "main"
-    types: [synchronize]
 
 jobs:
   run:
@@ -37,7 +33,7 @@ jobs:
           echo pull_event_number = ${{ github.event.number }}
           echo pull_request_number = ${{ github.event.pull_request.number }}
           echo pull_request_sha = ${{ github.event.pull_request.head.sha }}
-          echo b = "$(gh pr list --repo Schots/mlops_project --author @me)"
+          echo b = "$(gh pr list --author @me --repo Schots/mlops_project)"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
