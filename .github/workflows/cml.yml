@@ -37,9 +37,7 @@ jobs:
           echo pull_event_number = ${{ github.event.number }}
           echo pull_request_number = ${{ github.event.pull_request.number }}
           echo pull_request_sha = ${{ github.event.pull_request.head.sha }}
-          echo "$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")"
-          echo a = "$(gh pr view --json number -q .number || echo "")"
-          echo b = "$(gh pr list --repo Schots/mlops_project)"
+          echo b = "$(gh pr list --repo Schots/mlops_project --author @me)"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -63,4 +61,5 @@ jobs:
           # Add figure to report
           dvc plots diff --target reports/cfm.json --show-vega main > vega.json
           vl2png vega.json -s 1.3 | cml-publish --md >> report.md
-          cml-send-comment report.md
+          HEAD=$(git log -n1 --format=%h)
+          cml send-comment --pr --update --commit-sha=$HEAD report.md
