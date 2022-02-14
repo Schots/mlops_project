@@ -30,5 +30,8 @@ jobs:
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo "## Metrics" >> report.md
-          cml send-comment --pr=85 --update report.md
+          echo "## Metrics Model" > report.md
+          cat reports/scores.json >> report.md
+          HEAD=$(git log -n1 --format=%h)
+          echo ${HEAD}
+          cml-send-comment --pr --update report.md
