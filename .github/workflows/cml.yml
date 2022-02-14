@@ -26,7 +26,8 @@ jobs:
       - name: Get commit Sha
         run: |
           echo ${{ github.sha }}
-          echo $(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
+          echo ${{ github.event.pull_request.number }}
+
         continue-on-error: True
 
       - name: cml
