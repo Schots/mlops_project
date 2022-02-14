@@ -11,10 +11,6 @@ jobs:
         env:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Your ML workflow goes here
-          pip install -r requirements.txt
-          python train.py
-
           echo "## Metrics Model" > report.md
           cat reports/scores.json >> report.md
 
