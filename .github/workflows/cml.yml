@@ -6,8 +6,8 @@ on:
       - "*"
   pull_request:
     branches:
-      - "main"
-    types: [opened, synchronize]
+      - main
+    types: [labeled]
 
 jobs:
   run:
