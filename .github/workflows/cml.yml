@@ -1,4 +1,4 @@
-name: Train model
+name: CML train & evaluate model
 
 on: [push]
 
@@ -6,7 +6,7 @@ jobs:
   run:
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: True
+      fail-fast: False
       matrix:
         python-version: ["3.8", "3.9"]
 
