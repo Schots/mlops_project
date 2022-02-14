@@ -6,8 +6,8 @@ on:
       - "*"
   pull_request:
     branches:
-      - main
-    types: [labeled]
+      - "main"
+    types: [synchronize]
 
 jobs:
   run:
@@ -20,16 +20,6 @@ jobs:
     steps:
       - name: Check directory
         uses: actions/checkout@v2
-        run: |
-          echo current_sha = ${{ github.sha }}
-          echo current_ref = ${{ github.ref }}
-          echo pull_event_number = ${{ github.event.number }}
-          echo pull_request_number = ${{ github.event.pull_request.number }}
-          echo pull_request_sha = ${{ github.event.pull_request.head.sha }}
-          echo a = "$(gh pr view --json number -q .number || echo "")"
-
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: iterative/setup-cml@v1
 
@@ -39,6 +29,20 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
+
+      - name: Get commit Sha
+        run: |
+          echo current_sha = ${{ github.sha }}
+          echo current_ref = ${{ github.ref }}
+          echo pull_request_number = ${{ github.event.number }}
+          echo pull_request_number = ${{ github.event.pull_request.number }}
+          echo pull_request_sha = ${{ github.event.pull_request.head.sha }}
+          echo even = ${{ github.event }}
+          echo a = "$(gh pr view --json number -q .number || echo "")"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+        continue-on-error: True
 
       - name: cml
         env:
