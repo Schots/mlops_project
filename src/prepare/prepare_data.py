@@ -57,7 +57,7 @@ data = pd.read_csv(data_path, index_col=[0])
 # Separe the predictors from the target variable
 X, y = (
     data.drop(target, axis=1),
-    data[target],
+    data[[target]],
 )
 
 # Split into train/test data
