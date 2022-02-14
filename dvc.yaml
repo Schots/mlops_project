@@ -20,6 +20,7 @@ stages:
       - prepare.drop.cols
     outs:
       - data/prepared
+
   featurize:
     cmd: make featurize
     deps:
@@ -31,6 +32,7 @@ stages:
       - featurize.ohe_cols
     outs:
       - data/processed
+
   train:
     cmd: make train
     deps:
@@ -42,6 +44,7 @@ stages:
       - train.min_split
     outs:
       - model.joblib
+
   evaluate:
     cmd: make evaluation
     deps:
