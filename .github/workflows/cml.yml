@@ -15,4 +15,4 @@ jobs:
           cat reports/scores.json >> report.md
           HEAD=$(git log -n1 --format=%h)
           echo ${HEAD}
-          cml-send-comment report.md
+          cml-send-comment --pr --update --commit-sha=$HEAD report.md
