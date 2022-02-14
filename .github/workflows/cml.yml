@@ -20,6 +20,4 @@ jobs:
 
           echo "## Metrics Model" > report.md
           cat reports/scores.json >> report.md
-          HEAD=$(git log -n1 --format=%h)
-          echo ${HEAD}
           cml-send-comment --pr=${PR_NUMBER} --update report.md
