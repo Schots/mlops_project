@@ -125,7 +125,7 @@ packaging==21.3
     # via
     #   dvc
     #   matplotlib
-pandas==1.4.0
+pandas==1.4.1
     # via
     #   -r requirements.in
     #   seaborn
