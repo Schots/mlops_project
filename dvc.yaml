@@ -54,14 +54,22 @@ stages:
     plots:
       - reports/prc.json:
           cache: false
+          title: "Precision Recall"
+          x_label: "Recall"
+          y_label: "Precision"
           x: recall
           y: precision
       - reports/roc.json:
           cache: false
+          title: "ROC"
+          x_label: "False positive rate"
+          y_label: "True positive rate"
           x: fpr
           y: tpr
       - reports/cfm.json:
           cache: false
           template: confusion
+          x_label: "True label"
+          y_label: "Predicted label"
           x: actual
           y: predicted
