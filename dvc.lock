@@ -65,17 +65,9 @@ stages:
   train:
     cmd: make train
     deps:
-    - path: data/processed/train.joblib
-      md5: 2026a7619d05f54a07816f1af63e5c15
-      size: 766480
-    - path: src/models/train_model.py
-      md5: b1be541ff27efecfa3b5dd529f8983d0
-      size: 1519
-    params:
-      params.yaml:
-        train.min_split: 64
-        train.n_estimators: 400
-        train.seed: 2077
+    - path: src/data/make_dataset.py
+      md5: 16a344863da4bc5797f0b9e217cb69ff
+      size: 1341
     outs:
     - path: model.joblib
       md5: f25f1c0d1a7a5ab080d0897a3f07ac02
