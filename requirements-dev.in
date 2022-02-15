@@ -9,6 +9,7 @@ pip-tools
 click
 Sphinx
 python-dotenv>=0.5.1
+kaggle
 pytest
 nbmake
 nbqa
