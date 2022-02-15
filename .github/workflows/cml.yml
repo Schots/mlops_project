@@ -1,0 +1,49 @@
+name: CML train & evaluate model
+
+on: push
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check directory
+        uses: actions/checkout@v2
+
+      - uses: iterative/setup-cml@v1
+
+      - uses: iterative/setup-dvc@v1
+
+      - uses: actions/setup-python@v2
+        with:
+          python-version: "3.8"
+
+      - name: cml
+        env:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+          KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+
+        run: |
+          pip install -r requirements.txt
+
+          # Reproduce pipeline if any changes detected in dependencies
+          dvc repro
+
+          # Use DVC metrics diff to compare metrics to main
+          git fetch --prune --unshallow
+
+          echo "## Metrics" > report.md
+          dvc metrics diff --show-md main >> report.md
+
+          echo "## Plots" >> report.md
+          dvc plots diff --target reports/cfm.json --show-vega main > vega0.json
+          vl2png vega0.json -s 1.3 | cml-publish --md >> report.md
+
+          dvc plots diff --target reports/roc.json --show-vega main > vega1.json
+          vl2png vega1.json -s 1.3 | cml-publish --md >> report.md
+
+          dvc plots diff --target reports/prc.json --show-vega main > vega2.json
+          vl2png vega2.json -s 1.3 | cml-publish --md >> report.md
+
+          cml-send-comment --update report.md

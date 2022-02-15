@@ -63,7 +63,6 @@ certifi==2021.10.8
     # via
     #   -c requirements.txt
     #   dulwich
-    #   kaggle
     #   requests
 cffi==1.15.0
     # via
@@ -245,10 +244,6 @@ jupyter-core==4.9.1
     #   notebook
 jupyterlab-pygments==0.1.2
     # via nbconvert
-kaggle==1.5.12
-    # via
-    #   -c requirements.txt
-    #   -r requirements-dev.in
 lazy-object-proxy==1.7.1
     # via astroid
 mailchecker==4.1.11
@@ -427,7 +422,6 @@ python-dateutil==2.8.2
     # via
     #   -c requirements.txt
     #   jupyter-client
-    #   kaggle
     #   python-benedict
 python-dotenv==0.19.2
     # via -r requirements-dev.in
@@ -438,7 +432,6 @@ python-fsutil==0.6.0
 python-slugify==5.0.2
     # via
     #   -c requirements.txt
-    #   kaggle
     #   python-benedict
 pytz==2021.3
     # via
@@ -458,7 +451,6 @@ requests==2.27.1
     #   -c requirements.txt
     #   dvc
     #   fsspec
-    #   kaggle
     #   python-benedict
     #   sphinx
 rich==11.2.0
@@ -495,7 +487,6 @@ six==1.16.0
     #   bleach
     #   configobj
     #   flatten-dict
-    #   kaggle
     #   python-benedict
     #   python-dateutil
     #   tox
@@ -520,6 +511,8 @@ sphinxcontrib-qthelp==1.0.3
     # via sphinx
 sphinxcontrib-serializinghtml==1.1.5
     # via sphinx
+squarify==0.4.3
+    # via -r requirements-dev.in
 stack-data==0.1.4
     # via ipython
 tabulate==0.8.9
@@ -563,7 +556,6 @@ tqdm==4.62.3
     # via
     #   -c requirements.txt
     #   dvc
-    #   kaggle
 traitlets==5.1.1
     # via
     #   ipykernel
@@ -589,7 +581,6 @@ urllib3==1.26.8
     # via
     #   -c requirements.txt
     #   dulwich
-    #   kaggle
     #   requests
 virtualenv==20.13.1
     # via

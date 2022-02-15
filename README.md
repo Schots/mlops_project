@@ -5,7 +5,7 @@
 ![GitHub Contributors Image](https://contrib.rocks/image?repo=schots/mlops_project)
 
 <div style="background-color:white; height: 100%">
-<h1 align="center"> <img width=300px src=img/logo.png> </h1>
+<h1 align="center"> <img width=300px src=img/readme/logo.png> </h1>
 </div>
 
 ## MLOps
@@ -14,7 +14,7 @@
 The MLOps is the process of continuous integration and continuous delivery of Machine Learning artifacts as a software product, keeping it inside a loop of **Design**, **Model Development** and **Operations**.
 
 
-<div align="center"><img width=400px src=img/mlopscicle.png></div>
+<div align="center"><img width=400px src=img/readme/mlopscicle.png></div>
 
 
 In this paradigm, teams can easily collaborate in models, with clear tracking of the data throughout the process of cleaning, processing, and feature creation. Automating every repetitive process avoids human error and reduces the delivery time, ensuring the team keeps focusing on the **Business Problem**.
@@ -36,7 +36,7 @@ The scope of this project is delimited as you can see in the image below.
 
 We will select the best tool to implement every step, integrate them, and build a Machine Learning Orchestrator.  That said, in the end, new ML experiments will be easily made, and delivered as simple as typing a terminal command or clicking on a button!
 
-<div align="center"><img width=500px src=img/mlopsscope.png></div>
+<div align="center"><img width=500px src=img/readme/mlopsscope.png></div>
 
 <br>
 
@@ -113,7 +113,7 @@ Feel free to contact us on LinkedIn
 
 <img src="https://contrib.rocks/image?repo=bobcastaldeli/Resume" width="50"> [Roberto Castaldelli](https://github.com/bobcastaldeli)
 
-*Jaime Cirilo
+Jaime Vinícius
 
 <img src="https://contrib.rocks/image?repo=gusbruschi13/gusbruschi13" width="50"> [Gustavo Bruschi](https://www.linkedin.com/in/gustavo-bruschi/)
 

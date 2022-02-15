@@ -127,8 +127,6 @@ pandas==1.4.1
     # via
     #   -r requirements.in
     #   seaborn
-passlib==1.7.4
-    # via -r requirements.in
 pathspec==0.9.0
     # via
     #   dvc
