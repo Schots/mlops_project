@@ -23,7 +23,7 @@ jobs:
 
       - name: Tox
         run: |
-          tox
+          tox -p auto
         env:
           KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
           KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
