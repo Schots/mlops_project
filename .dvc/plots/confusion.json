@@ -9,14 +9,11 @@
         "type": "nominal"
     },
     "spec": {
-        "transform": [
-            {
-                "aggregate": [
-                    {
-                        "op": "count",
-                        "as": "xy_count"
-                    }
-                ],
+        "transform": [{
+                "aggregate": [{
+                    "op": "count",
+                    "as": "xy_count"
+                }],
                 "groupby": [
                     "<DVC_METRIC_Y>",
                     "<DVC_METRIC_X>"
@@ -41,13 +38,11 @@
                 "value": 0
             },
             {
-                "joinaggregate": [
-                    {
-                        "op": "max",
-                        "field": "xy_count",
-                        "as": "max_count"
-                    }
-                ],
+                "joinaggregate": [{
+                    "op": "max",
+                    "field": "xy_count",
+                    "as": "max_count"
+                }],
                 "groupby": []
             },
             {
@@ -69,11 +64,10 @@
                 "title": "<DVC_METRIC_Y_LABEL>"
             }
         },
-        "layer": [
-            {
+        "layer": [{
                 "mark": "rect",
-                "width": 300,
-                "height": 300,
+                "width": 200,
+                "height": 200,
                 "encoding": {
                     "color": {
                         "field": "xy_count",
