@@ -131,7 +131,7 @@ dulwich==0.20.32
     # via
     #   -c requirements.txt
     #   scmrepo
-dvc==2.9.3
+dvc==2.9.4
     # via
     #   -c requirements.txt
     #   -r requirements-dev.in

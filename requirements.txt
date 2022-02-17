@@ -57,7 +57,7 @@ dpath==2.0.6
     # via dvc
 dulwich==0.20.32
     # via scmrepo
-dvc==2.9.3
+dvc==2.9.4
     # via -r requirements.in
 flatten-dict==0.4.2
     # via dvc
@@ -91,6 +91,8 @@ idna==3.3
     # via
     #   requests
     #   yarl
+importlib-resources==5.4.0
+    # via dvc
 joblib==1.1.0
     # via scikit-learn
 kaggle==1.5.12
@@ -247,6 +249,8 @@ yarl==1.7.2
     # via aiohttp
 zc-lockfile==2.0
     # via dvc
+zipp==3.7.0
+    # via importlib-resources
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools
