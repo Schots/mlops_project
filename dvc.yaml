@@ -20,6 +20,7 @@ stages:
       - prepare.drop.cols
     outs:
       - data/prepared
+      - models/pre_processing.joblib
   featurize:
     cmd: make featurize
     deps:
@@ -31,6 +32,7 @@ stages:
       - featurize.ohe_cols
     outs:
       - data/processed
+      - models/featurize.joblib
   train:
     cmd: make train
     deps:
@@ -41,13 +43,13 @@ stages:
       - train.n_estimators
       - train.min_split
     outs:
-      - model.joblib
+      - models/model.joblib
   evaluate:
     cmd: make evaluation
     deps:
       - data/processed/test.joblib
       - src/models/evaluate_model.py
-      - model.joblib
+      - models/model.joblib
     metrics:
       - reports/scores.json:
           cache: false

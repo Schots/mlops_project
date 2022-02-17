@@ -13,11 +13,12 @@ from sklearn.impute import SimpleImputer
 import yaml
 
 # Test if the required parameters are received
-if len(sys.argv) != 3:
+if len(sys.argv) != 4:
     sys.stderr.write("Arguments error. Usage:\n")
     sys.stderr.write(
         "\tpython3 src/prepare/prepare_dataset.py data-dir-path"
-        " features-dir-path\n"
+        " features-dir-path"
+        " model-path-dir\n"
     )
     sys.exit(1)
 
@@ -33,7 +34,7 @@ with open("params.yaml", "r", encoding="utf-8") as file:
 
 
 # Save the input and output paths received as parameter
-input_folder, output_folder = sys.argv[1], sys.argv[2]
+input_folder, output_folder, model_folder = sys.argv[1], sys.argv[2], sys.argv[3]
 
 # If doesn't exist, create the output data folder
 os.makedirs(output_folder, exist_ok=True)
@@ -48,7 +49,7 @@ data_path = Path(f"{input_folder}/train.csv").resolve()
 # pipeline object as .joblib
 train_out_path = Path(f"{output_folder}/train.csv").resolve()
 test_out_path = Path(f"{output_folder}/test.csv").resolve()
-pipeline_out_path = Path(f"{output_folder}/pre_processing.joblib").resolve()
+pipeline_out_path = Path(f"{model_folder}/pre_processing.joblib").resolve()
 
 
 # Load data and split in train and test

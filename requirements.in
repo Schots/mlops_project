@@ -1,5 +1,7 @@
+kaggle
+dvc
 numpy
-pandas>=1.4.1
+pandas
 scikit-learn
 matplotlib
 seaborn

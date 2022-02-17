@@ -12,11 +12,12 @@ from sklearn.preprocessing import OneHotEncoder
 import yaml
 
 # Test if the required parameters are received
-if len(sys.argv) != 3:
+if len(sys.argv) != 4:
     sys.stderr.write("Arguments error. Usage:\n")
     sys.stderr.write(
         "\tpython3 src/features/build_features.py prepared-dir-path"
-        " features-dir-path\n"
+        " features-dir-path"
+        " model-dir-path\n"
     )
     sys.exit(1)
 
@@ -26,7 +27,7 @@ with open("params.yaml", "r", encoding="utf-8") as file:
     ohe_cols = params["featurize"]["ohe_cols"]
 
 # Configure Paths and Folders
-input_folder, output_folder = sys.argv[1], sys.argv[2]
+input_folder, output_folder, model_folder = sys.argv[1], sys.argv[2], sys.argv[3]
 
 # If doesn't exist, create the output data folder
 os.makedirs(output_folder, exist_ok=True)
@@ -39,7 +40,7 @@ test_in_path = Path(f"{input_folder}/test.csv").resolve()
 # be stored according to the paths defined below
 train_out_path = Path(f"{output_folder}/train.joblib").resolve()
 test_out_path = Path(f"{output_folder}/test.joblib").resolve()
-pipeline_out_path = Path(f"{output_folder}/featurize.joblib").resolve()
+pipeline_out_path = Path(f"{model_folder}/featurize.joblib").resolve()
 
 
 # Load the preprocessed data
@@ -75,12 +76,8 @@ featurize.fit(X_train)
 
 cols = featurize.get_feature_names_out()
 
-X_train = pd.DataFrame(
-    featurize.transform(X_train), index=X_train.index, columns=cols
-)
-X_test = pd.DataFrame(
-    featurize.transform(X_test), index=X_test.index, columns=cols
-)
+X_train = pd.DataFrame(featurize.transform(X_train), index=X_train.index, columns=cols)
+X_test = pd.DataFrame(featurize.transform(X_test), index=X_test.index, columns=cols)
 
 # Rebuild the dataset with features + target
 train_out = pd.concat([X_train, y_train], axis=1)

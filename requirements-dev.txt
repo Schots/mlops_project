@@ -6,16 +6,23 @@
 #
 aiohttp==3.8.1
     # via
+    #   -c requirements.txt
     #   aiohttp-retry
     #   fsspec
 aiohttp-retry==2.4.6
-    # via dvc
+    # via
+    #   -c requirements.txt
+    #   dvc
 aiosignal==1.2.0
-    # via aiohttp
+    # via
+    #   -c requirements.txt
+    #   aiohttp
 alabaster==0.7.12
     # via sphinx
 appdirs==1.4.4
-    # via dvc
+    # via
+    #   -c requirements.txt
+    #   dvc
 argon2-cffi==21.3.0
     # via notebook
 argon2-cffi-bindings==21.2.0
@@ -25,13 +32,20 @@ astroid==2.9.3
 asttokens==2.0.5
     # via stack-data
 async-timeout==4.0.2
-    # via aiohttp
+    # via
+    #   -c requirements.txt
+    #   aiohttp
 asyncssh==2.8.1
-    # via scmrepo
+    # via
+    #   -c requirements.txt
+    #   scmrepo
 atpublic==3.0.1
-    # via flufl-lock
+    # via
+    #   -c requirements.txt
+    #   flufl-lock
 attrs==21.4.0
     # via
+    #   -c requirements.txt
     #   aiohttp
     #   jsonschema
     #   pytest
@@ -47,11 +61,13 @@ bleach==4.1.0
     # via nbconvert
 certifi==2021.10.8
     # via
+    #   -c requirements.txt
     #   dulwich
     #   kaggle
     #   requests
 cffi==1.15.0
     # via
+    #   -c requirements.txt
     #   argon2-cffi-bindings
     #   cryptography
     #   pygit2
@@ -59,6 +75,7 @@ cfgv==3.3.1
     # via pre-commit
 charset-normalizer==2.0.12
     # via
+    #   -c requirements.txt
     #   aiohttp
     #   requests
 click==8.0.3
@@ -68,14 +85,21 @@ click==8.0.3
     #   pip-tools
 colorama==0.4.4
     # via
+    #   -c requirements.txt
     #   dvc
     #   rich
 commonmark==0.9.1
-    # via rich
+    # via
+    #   -c requirements.txt
+    #   rich
 configobj==5.0.6
-    # via dvc
+    # via
+    #   -c requirements.txt
+    #   dvc
 cryptography==36.0.1
-    # via asyncssh
+    # via
+    #   -c requirements.txt
+    #   asyncssh
 debugpy==1.5.1
     # via ipykernel
 decorator==5.1.1
@@ -83,23 +107,35 @@ decorator==5.1.1
 defusedxml==0.7.1
     # via nbconvert
 dictdiffer==0.9.0
-    # via dvc
+    # via
+    #   -c requirements.txt
+    #   dvc
 diskcache==5.4.0
-    # via dvc
+    # via
+    #   -c requirements.txt
+    #   dvc
 distlib==0.3.4
     # via virtualenv
 distro==1.7.0
-    # via dvc
+    # via
+    #   -c requirements.txt
+    #   dvc
 docformatter==1.4
     # via -r requirements-dev.in
 docutils==0.17.1
     # via sphinx
 dpath==2.0.6
-    # via dvc
+    # via
+    #   -c requirements.txt
+    #   dvc
 dulwich==0.20.32
-    # via scmrepo
+    # via
+    #   -c requirements.txt
+    #   scmrepo
 dvc==2.9.4
-    # via -r requirements-dev.in
+    # via
+    #   -c requirements.txt
+    #   -r requirements-dev.in
 entrypoints==0.4
     # via
     #   jupyter-client
@@ -111,35 +147,53 @@ filelock==3.5.1
     #   tox
     #   virtualenv
 flatten-dict==0.4.2
-    # via dvc
+    # via
+    #   -c requirements.txt
+    #   dvc
 flufl-lock==7.0
-    # via dvc
+    # via
+    #   -c requirements.txt
+    #   dvc
 frozenlist==1.3.0
     # via
+    #   -c requirements.txt
     #   aiohttp
     #   aiosignal
 fsspec[http]==2022.1.0
     # via
+    #   -c requirements.txt
     #   dvc
     #   scmrepo
 ftfy==6.1.1
-    # via python-benedict
+    # via
+    #   -c requirements.txt
+    #   python-benedict
 funcy==1.17
     # via
+    #   -c requirements.txt
     #   dvc
     #   scmrepo
 future==0.18.2
-    # via grandalf
+    # via
+    #   -c requirements.txt
+    #   grandalf
 gitdb==4.0.9
-    # via gitpython
+    # via
+    #   -c requirements.txt
+    #   gitpython
 gitpython==3.1.26
-    # via scmrepo
+    # via
+    #   -c requirements.txt
+    #   scmrepo
 grandalf==0.6
-    # via dvc
+    # via
+    #   -c requirements.txt
+    #   dvc
 identify==2.4.10
     # via pre-commit
 idna==3.3
     # via
+    #   -c requirements.txt
     #   requests
     #   yarl
 imagesize==1.3.0
@@ -148,6 +202,7 @@ importlib-metadata==4.11.1
     # via sphinx
 importlib-resources==5.4.0
     # via
+    #   -c requirements.txt
     #   dvc
     #   jsonschema
 iniconfig==1.1.1
@@ -191,11 +246,15 @@ jupyter-core==4.9.2
 jupyterlab-pygments==0.1.2
     # via nbconvert
 kaggle==1.5.12
-    # via -r requirements-dev.in
+    # via
+    #   -c requirements.txt
+    #   -r requirements-dev.in
 lazy-object-proxy==1.7.1
     # via astroid
 mailchecker==4.1.12
-    # via python-benedict
+    # via
+    #   -c requirements.txt
+    #   python-benedict
 markupsafe==2.0.1
     # via jinja2
 matplotlib-inline==0.1.3
@@ -208,12 +267,15 @@ mistune==0.8.4
     # via nbconvert
 multidict==6.0.2
     # via
+    #   -c requirements.txt
     #   aiohttp
     #   yarl
 mypy-extensions==0.4.3
     # via black
 nanotime==0.5.2
-    # via dvc
+    # via
+    #   -c requirements.txt
+    #   dvc
 nbclient==0.5.11
     # via
     #   nbconvert
@@ -237,7 +299,9 @@ nest-asyncio==1.5.4
     #   nbclient
     #   notebook
 networkx==2.6.3
-    # via dvc
+    # via
+    #   -c requirements.txt
+    #   dvc
 nodeenv==1.6.0
     # via pre-commit
 notebook==6.4.8
@@ -256,6 +320,7 @@ parso==0.8.3
     # via jedi
 pathspec==0.9.0
     # via
+    #   -c requirements.txt
     #   black
     #   dvc
     #   scmrepo
@@ -264,7 +329,9 @@ pep517==0.12.0
 pexpect==4.8.0
     # via ipython
 phonenumbers==8.12.43
-    # via python-benedict
+    # via
+    #   -c requirements.txt
+    #   python-benedict
 pickleshare==0.7.5
     # via ipython
 pip-tools==6.5.1
@@ -279,7 +346,9 @@ pluggy==1.0.0
     #   pytest
     #   tox
 ply==3.11
-    # via dvc
+    # via
+    #   -c requirements.txt
+    #   dvc
 pre-commit==2.17.0
     # via -r requirements-dev.in
 pre-commit-hooks==4.1.0
@@ -290,6 +359,7 @@ prompt-toolkit==3.0.28
     # via ipython
 psutil==5.9.0
     # via
+    #   -c requirements.txt
     #   dvc
     #   flufl-lock
 ptyprocess==0.7.0
@@ -303,17 +373,26 @@ py==1.11.0
     #   pytest
     #   tox
 pyasn1==0.4.8
-    # via dvc
+    # via
+    #   -c requirements.txt
+    #   dvc
 pycparser==2.21
-    # via cffi
+    # via
+    #   -c requirements.txt
+    #   cffi
 pydantic==1.9.0
     # via nbmake
 pydot==1.4.2
-    # via dvc
+    # via
+    #   -c requirements.txt
+    #   dvc
 pygit2==1.8.0
-    # via scmrepo
+    # via
+    #   -c requirements.txt
+    #   scmrepo
 pygments==2.11.2
     # via
+    #   -c requirements.txt
     #   ipython
     #   jupyterlab-pygments
     #   nbconvert
@@ -322,6 +401,7 @@ pygments==2.11.2
     #   sphinx
 pygtrie==2.4.2
     # via
+    #   -c requirements.txt
     #   dvc
     #   scmrepo
 pylint==2.12.2
@@ -340,7 +420,9 @@ pytest==6.2.5
     #   -r requirements-dev.in
     #   nbmake
 python-benedict==0.24.3
-    # via dvc
+    # via
+    #   -c requirements.txt
+    #   dvc
 python-dateutil==2.8.2
     # via
     #   -c requirements.txt
@@ -350,9 +432,12 @@ python-dateutil==2.8.2
 python-dotenv==0.19.2
     # via -r requirements-dev.in
 python-fsutil==0.6.0
-    # via python-benedict
+    # via
+    #   -c requirements.txt
+    #   python-benedict
 python-slugify==6.0.1
     # via
+    #   -c requirements.txt
     #   kaggle
     #   python-benedict
 pytz==2021.3
@@ -361,6 +446,7 @@ pytz==2021.3
     #   babel
 pyyaml==6.0
     # via
+    #   -c requirements.txt
     #   pre-commit
     #   python-benedict
 pyzmq==22.3.0
@@ -369,27 +455,39 @@ pyzmq==22.3.0
     #   notebook
 requests==2.27.1
     # via
+    #   -c requirements.txt
     #   dvc
     #   fsspec
     #   kaggle
     #   python-benedict
     #   sphinx
 rich==11.2.0
-    # via dvc
+    # via
+    #   -c requirements.txt
+    #   dvc
 ruamel-yaml==0.17.21
     # via
+    #   -c requirements.txt
     #   dvc
     #   pre-commit-hooks
 ruamel-yaml-clib==0.2.6
-    # via ruamel-yaml
+    # via
+    #   -c requirements.txt
+    #   ruamel-yaml
 scmrepo==0.0.7
-    # via dvc
+    # via
+    #   -c requirements.txt
+    #   dvc
 send2trash==1.8.0
     # via notebook
 shortuuid==1.0.8
-    # via dvc
+    # via
+    #   -c requirements.txt
+    #   dvc
 shtab==1.5.3
-    # via dvc
+    # via
+    #   -c requirements.txt
+    #   dvc
 six==1.16.0
     # via
     #   -c requirements.txt
@@ -403,7 +501,9 @@ six==1.16.0
     #   tox
     #   virtualenv
 smmap==5.0.0
-    # via gitdb
+    # via
+    #   -c requirements.txt
+    #   gitdb
 snowballstemmer==2.2.0
     # via sphinx
 sphinx==4.4.0
@@ -425,17 +525,22 @@ squarify==0.4.3
 stack-data==0.2.0
     # via ipython
 tabulate==0.8.9
-    # via dvc
+    # via
+    #   -c requirements.txt
+    #   dvc
 terminado==0.13.1
     # via notebook
 testpath==0.5.0
     # via nbconvert
 text-unidecode==1.3
-    # via python-slugify
+    # via
+    #   -c requirements.txt
+    #   python-slugify
 tokenize-rt==4.2.1
     # via nbqa
 toml==0.10.2
     # via
+    #   -c requirements.txt
     #   dvc
     #   pre-commit
     #   pre-commit-hooks
@@ -458,6 +563,7 @@ tox==3.24.5
     # via -r requirements-dev.in
 tqdm==4.62.3
     # via
+    #   -c requirements.txt
     #   dvc
     #   kaggle
 traitlets==5.1.1
@@ -473,6 +579,7 @@ traitlets==5.1.1
     #   notebook
 typing-extensions==4.1.1
     # via
+    #   -c requirements.txt
     #   astroid
     #   black
     #   dvc
@@ -482,6 +589,7 @@ untokenize==0.1.1
     # via docformatter
 urllib3==1.26.8
     # via
+    #   -c requirements.txt
     #   dulwich
     #   kaggle
     #   requests
@@ -490,9 +598,12 @@ virtualenv==20.13.1
     #   pre-commit
     #   tox
 voluptuous==0.12.2
-    # via dvc
+    # via
+    #   -c requirements.txt
+    #   dvc
 wcwidth==0.2.5
     # via
+    #   -c requirements.txt
     #   ftfy
     #   prompt-toolkit
 webencodings==0.5.1
@@ -502,13 +613,20 @@ wheel==0.37.1
 wrapt==1.13.3
     # via astroid
 xmltodict==0.12.0
-    # via python-benedict
+    # via
+    #   -c requirements.txt
+    #   python-benedict
 yarl==1.7.2
-    # via aiohttp
+    # via
+    #   -c requirements.txt
+    #   aiohttp
 zc-lockfile==2.0
-    # via dvc
+    # via
+    #   -c requirements.txt
+    #   dvc
 zipp==3.7.0
     # via
+    #   -c requirements.txt
     #   importlib-metadata
     #   importlib-resources
 

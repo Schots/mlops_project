@@ -18,8 +18,8 @@ stages:
       md5: 61fdd54abdbf6a85b778e937122e1194
       size: 61194
     - path: src/prepare/prepare_data.py
-      md5: c1a9fbcdd5e8a13c410876751c5f919e
-      size: 3405
+      md5: 6bdafc67e7e2dec3a6d0536b5fd2555e
+      size: 3457
     params:
       params.yaml:
         dataset.target: Survived
@@ -35,9 +35,12 @@ stages:
         prepare.split: 0.2
     outs:
     - path: data/prepared
-      md5: 5192d1a6d35e6f5a4fcaf7a7c51fb0d2.dir
-      size: 34096
-      nfiles: 3
+      md5: 746a8034073b4e5f9851d0f9c8512dc3.dir
+      size: 31634
+      nfiles: 2
+    - path: models/pre_processing.joblib
+      md5: c2ddfc2c926d9ff11de03fad06d5e792
+      size: 2462
   featurize:
     cmd: make featurize
     deps:
@@ -48,8 +51,8 @@ stages:
       md5: 9942ccf497e0329aef57f232c82036e2
       size: 25274
     - path: src/features/build_features.py
-      md5: 93f975ed50e13c1056e9cdc782badba3
-      size: 2667
+      md5: a83af04b45f41b90e4d7266a1181fc9c
+      size: 2707
     params:
       params.yaml:
         dataset.target: Survived
@@ -59,17 +62,28 @@ stages:
         - Embarked
     outs:
     - path: data/processed
-      md5: fb6ab124da89aa7c0383d9e7996d00f9.dir
-      size: 965283
-      nfiles: 3
+      md5: 412b934e35d1a2074112b486c836d4c2.dir
+      size: 961581
+      nfiles: 2
+    - path: models/featurize.joblib
+      md5: d08033e4350514b82fbd8d7b6d0559eb
+      size: 3702
   train:
     cmd: make train
     deps:
-    - path: src/data/make_dataset.py
-      md5: 16a344863da4bc5797f0b9e217cb69ff
-      size: 1341
+    - path: data/processed/train.joblib
+      md5: 2026a7619d05f54a07816f1af63e5c15
+      size: 766480
+    - path: src/models/train_model.py
+      md5: 853cf5263a27e5f2c707ca410b506c3a
+      size: 1509
+    params:
+      params.yaml:
+        train.min_split: 64
+        train.n_estimators: 400
+        train.seed: 2077
     outs:
-    - path: model.joblib
+    - path: models/model.joblib
       md5: f25f1c0d1a7a5ab080d0897a3f07ac02
       size: 1597814
   evaluate:
@@ -78,7 +92,7 @@ stages:
     - path: data/processed/test.joblib
       md5: 6115f0ced682284bc8eee056ee34e330
       size: 195101
-    - path: model.joblib
+    - path: models/model.joblib
       md5: f25f1c0d1a7a5ab080d0897a3f07ac02
       size: 1597814
     - path: src/models/evaluate_model.py
@@ -89,11 +103,11 @@ stages:
       md5: 9cee708c70fcd5002a0e5295caf0cfee
       size: 13094
     - path: reports/prc.json
-      md5: 02e72cae4825610aec9352c5d6ac5683
-      size: 3873
+      md5: 3038518d408c00771ffb716989ebd0f0
+      size: 3874
     - path: reports/roc.json
-      md5: 696e81237ac0e7b1e0a4f99bc69a1000
-      size: 2852
+      md5: f856968532f3325bef4e09183d2948d8
+      size: 2854
     - path: reports/scores.json
       md5: f78b70bb243712fb1bafd0133b30df09
       size: 104
