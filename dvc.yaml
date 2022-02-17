@@ -22,7 +22,7 @@ stages:
       - data/prepared
       - models/pre_processing.joblib
   featurize:
-    cmd: make featurize
+    cmd: make features
     deps:
       - data/prepared/train.csv
       - data/prepared/test.csv

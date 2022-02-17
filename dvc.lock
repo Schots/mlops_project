@@ -42,7 +42,7 @@ stages:
       md5: c2ddfc2c926d9ff11de03fad06d5e792
       size: 2462
   featurize:
-    cmd: make featurize
+    cmd: make features
     deps:
     - path: data/prepared/test.csv
       md5: 8d5866b69f1c8c676780928288f1c63d
