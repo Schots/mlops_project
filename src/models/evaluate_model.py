@@ -59,6 +59,8 @@ model = joblib.load(model_path)
 y_pred = model.predict(X_test)
 y_pred_proba = model.predict_proba(X_test)[:, 1]
 
+print(y_pred)
+
 # Accuracy
 acc = accuracy_score(y_test, y_pred)
 
@@ -111,9 +113,11 @@ with open(roc_file, "w", encoding="utf-8") as fd:
 with open(cfm_file, "w", encoding="utf-8") as fd:
     json.dump(
         {
-            "confusion": [
+            "cfm": [
                 {"actual": int(actual), "predicted": int(pred)}
-                for actual, pred in zip(y_test.values.ravel(), y_pred)
+                for actual, pred in zip(
+                    y_test.values.ravel(), y_pred_proba.round()
+                )
             ]
         },
         fd,
