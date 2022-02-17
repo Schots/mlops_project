@@ -4,18 +4,115 @@
 #
 #    pip-compile --no-emit-index-url requirements.in
 #
+aiohttp==3.8.1
+    # via
+    #   aiohttp-retry
+    #   fsspec
+aiohttp-retry==2.4.6
+    # via dvc
+aiosignal==1.2.0
+    # via aiohttp
+appdirs==1.4.4
+    # via dvc
+async-timeout==4.0.2
+    # via aiohttp
+asyncssh==2.8.1
+    # via scmrepo
+atpublic==3.0.1
+    # via flufl-lock
+attrs==21.4.0
+    # via aiohttp
+certifi==2021.10.8
+    # via
+    #   dulwich
+    #   kaggle
+    #   requests
+cffi==1.15.0
+    # via
+    #   cryptography
+    #   pygit2
+charset-normalizer==2.0.12
+    # via
+    #   aiohttp
+    #   requests
+colorama==0.4.4
+    # via
+    #   dvc
+    #   rich
+commonmark==0.9.1
+    # via rich
+configobj==5.0.6
+    # via dvc
+cryptography==36.0.1
+    # via asyncssh
 cycler==0.11.0
     # via matplotlib
+dictdiffer==0.9.0
+    # via dvc
+diskcache==5.4.0
+    # via dvc
+distro==1.7.0
+    # via dvc
+dpath==2.0.6
+    # via dvc
+dulwich==0.20.32
+    # via scmrepo
+dvc==2.9.4
+    # via -r requirements.in
+flatten-dict==0.4.2
+    # via dvc
+flufl-lock==7.0
+    # via dvc
 fonttools==4.29.1
     # via matplotlib
+frozenlist==1.3.0
+    # via
+    #   aiohttp
+    #   aiosignal
+fsspec[http]==2022.1.0
+    # via
+    #   dvc
+    #   scmrepo
+ftfy==6.1.1
+    # via python-benedict
+funcy==1.17
+    # via
+    #   dvc
+    #   scmrepo
+future==0.18.2
+    # via grandalf
+gitdb==4.0.9
+    # via gitpython
+gitpython==3.1.26
+    # via scmrepo
+grandalf==0.6
+    # via dvc
+idna==3.3
+    # via
+    #   requests
+    #   yarl
+importlib-resources==5.4.0
+    # via dvc
 joblib==1.1.0
     # via scikit-learn
+kaggle==1.5.12
+    # via -r requirements.in
 kiwisolver==1.3.2
     # via matplotlib
+mailchecker==4.1.12
+    # via python-benedict
 matplotlib==3.5.1
     # via
     #   -r requirements.in
     #   seaborn
+multidict==6.0.2
+    # via
+    #   aiohttp
+    #   yarl
+nanotime==0.5.2
+    # via dvc
+networkx==2.6.3
+    # via dvc
 numpy==1.22.2
     # via
     #   -r requirements.in
@@ -25,23 +122,78 @@ numpy==1.22.2
     #   scipy
     #   seaborn
 packaging==21.3
-    # via matplotlib
+    # via
+    #   dvc
+    #   matplotlib
 pandas==1.4.1
     # via
     #   -r requirements.in
     #   seaborn
+pathspec==0.9.0
+    # via
+    #   dvc
+    #   scmrepo
+phonenumbers==8.12.43
+    # via python-benedict
 pillow==9.0.1
     # via matplotlib
+ply==3.11
+    # via dvc
+psutil==5.9.0
+    # via
+    #   dvc
+    #   flufl-lock
+pyasn1==0.4.8
+    # via dvc
+pycparser==2.21
+    # via cffi
+pydot==1.4.2
+    # via dvc
+pygit2==1.8.0
+    # via scmrepo
+pygments==2.11.2
+    # via rich
+pygtrie==2.4.2
+    # via
+    #   dvc
+    #   scmrepo
 pyparsing==3.0.7
     # via
+    #   dvc
+    #   grandalf
     #   matplotlib
     #   packaging
+    #   pydot
+python-benedict==0.24.3
+    # via dvc
 python-dateutil==2.8.2
     # via
+    #   kaggle
     #   matplotlib
     #   pandas
+    #   python-benedict
+python-fsutil==0.6.0
+    # via python-benedict
+python-slugify==6.0.1
+    # via
+    #   kaggle
+    #   python-benedict
 pytz==2021.3
     # via pandas
+pyyaml==6.0
+    # via python-benedict
+requests==2.27.1
+    # via
+    #   dvc
+    #   fsspec
+    #   kaggle
+    #   python-benedict
+rich==11.2.0
+    # via dvc
+ruamel-yaml==0.17.21
+    # via dvc
+ruamel-yaml-clib==0.2.6
+    # via ruamel-yaml
 scikit-learn==1.0.2
     # via -r requirements.in
 scipy==1.8.0
@@ -49,9 +201,56 @@ scipy==1.8.0
     #   -r requirements.in
     #   scikit-learn
     #   seaborn
+scmrepo==0.0.7
+    # via dvc
 seaborn==0.11.2
     # via -r requirements.in
+shortuuid==1.0.8
+    # via dvc
+shtab==1.5.3
+    # via dvc
 six==1.16.0
-    # via python-dateutil
+    # via
+    #   configobj
+    #   flatten-dict
+    #   kaggle
+    #   python-benedict
+    #   python-dateutil
+smmap==5.0.0
+    # via gitdb
+tabulate==0.8.9
+    # via dvc
+text-unidecode==1.3
+    # via python-slugify
 threadpoolctl==3.1.0
     # via scikit-learn
+toml==0.10.2
+    # via
+    #   dvc
+    #   python-benedict
+tqdm==4.62.3
+    # via
+    #   dvc
+    #   kaggle
+typing-extensions==4.1.1
+    # via dvc
+urllib3==1.26.8
+    # via
+    #   dulwich
+    #   kaggle
+    #   requests
+voluptuous==0.12.2
+    # via dvc
+wcwidth==0.2.5
+    # via ftfy
+xmltodict==0.12.0
+    # via python-benedict
+yarl==1.7.2
+    # via aiohttp
+zc-lockfile==2.0
+    # via dvc
+zipp==3.7.0
+    # via importlib-resources
+
+# The following packages are considered to be unsafe in a requirements file:
+# setuptools

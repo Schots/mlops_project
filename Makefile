@@ -24,9 +24,6 @@ endif
 # COMMANDS                                                                      #
 #################################################################################
 
-install:
-	$(PYTHON_INTERPRETER) -m pip install -e .
-
 # Verify Python Version
 check_installed_python:
 	$(eval INSTALLED := $(shell $(PYTHON_INTERPRETER) --version | tr -cd '[[:digit:][:punct:]]'))
@@ -73,23 +70,23 @@ sync-env: pip-compile
 
 ## (dvc) Execute the 'make_data' stage
 data:
-	$(PYTHON_INTERPRETER) src/data/make_dataset.py
+	@$(PYTHON_INTERPRETER) src/data/make_dataset.py
 
 ## (dvc) Execute the 'prepare' stage
 prepare:
-	$(PYTHON_INTERPRETER) src/prepare/prepare_data.py data/raw data/prepared
+	@$(PYTHON_INTERPRETER) src/prepare/prepare_data.py data/raw data/prepared models
 
 ## (dvc) Execute the 'featurize' stage
-featurize:
-	$(PYTHON_INTERPRETER) src/features/build_features.py data/prepared data/processed
+features:
+	@$(PYTHON_INTERPRETER) src/features/build_features.py data/prepared data/processed models
 
 ## (dvc) Execute the 'train' stage
 train:
-	$(PYTHON_INTERPRETER) src/models/train_model.py data/processed .
+	@$(PYTHON_INTERPRETER) src/models/train_model.py data/processed models
 
 ## (dvc) Execute the 'evaluate' stage
 evaluation:
-	$(PYTHON_INTERPRETER) src/models/evaluate_model.py data/processed . \
+	@$(PYTHON_INTERPRETER) src/models/evaluate_model.py data/processed models \
 	reports/scores.json reports/prc.json reports/roc.json reports/cfm.json
 
 #################################################################################
