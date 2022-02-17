@@ -39,9 +39,8 @@ stages:
       - data/processed/train.joblib
       - src/models/train_model.py
     params:
-      - train.seed
-      - train.n_estimators
-      - train.min_split
+      - train.classifier
+      - train.classifier_args
     outs:
       - models/model.joblib
   evaluate:
