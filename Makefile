@@ -24,9 +24,6 @@ endif
 # COMMANDS                                                                      #
 #################################################################################
 
-install:
-	$(PYTHON_INTERPRETER) -m pip install -e .
-
 # Verify Python Version
 check_installed_python:
 	$(eval INSTALLED := $(shell $(PYTHON_INTERPRETER) --version | tr -cd '[[:digit:][:punct:]]'))
