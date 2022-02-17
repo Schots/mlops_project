@@ -39,6 +39,7 @@ stages:
       - data/processed/train.joblib
       - src/models/train_model.py
     params:
+      - dataset.target
       - train.classifier
       - train.classifier_args
     outs:
@@ -49,6 +50,8 @@ stages:
       - data/processed/test.joblib
       - src/models/evaluate_model.py
       - models/model.joblib
+    params:
+      - dataset.target
     metrics:
       - reports/scores.json:
           cache: false

@@ -75,10 +75,11 @@ stages:
       md5: 2026a7619d05f54a07816f1af63e5c15
       size: 766480
     - path: src/models/train_model.py
-      md5: b8fce1b1e21efcef778ffc454cefee8a
-      size: 1667
+      md5: 071428f68be644e86b32b17065503178
+      size: 1675
     params:
       params.yaml:
+        dataset.target: Survived
         train.classifier: RandomForestClassifier
         train.classifier_args:
           random_state: 2077
@@ -101,16 +102,19 @@ stages:
     - path: src/models/evaluate_model.py
       md5: 739652113ec6f18262e01852f2275f2e
       size: 2940
+    params:
+      params.yaml:
+        dataset.target: Survived
     outs:
     - path: reports/cfm.json
       md5: 9cee708c70fcd5002a0e5295caf0cfee
       size: 13094
     - path: reports/prc.json
-      md5: 73dc1fd4ecec971ca5537d31a659b2d7
+      md5: 29695a1c74a09a1d286b8d0dd7704594
       size: 3874
     - path: reports/roc.json
-      md5: f444fcdf59a9484d043c1d5377301317
-      size: 2853
+      md5: 57fa8f5911ba8cf6ba2c9a63a864b0c8
+      size: 2854
     - path: reports/scores.json
       md5: f78b70bb243712fb1bafd0133b30df09
       size: 104
