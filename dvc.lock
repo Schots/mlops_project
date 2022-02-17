@@ -83,13 +83,13 @@ stages:
         train.classifier: RandomForestClassifier
         train.classifier_args:
           random_state: 2077
-          n_estimators: 2
-          min_samples_split: 150
+          n_estimators: 1
+          min_samples_split: 10
           n_jobs: -1
     outs:
     - path: models/model.joblib
-      md5: d1097093a15d858443a5e0ab9e2ed3db
-      size: 9219
+      md5: a6a400201a16b69bb9849103e9e7880d
+      size: 13995
   evaluate:
     cmd: make evaluation
     deps:
@@ -97,24 +97,24 @@ stages:
       md5: 6115f0ced682284bc8eee056ee34e330
       size: 195101
     - path: models/model.joblib
-      md5: d1097093a15d858443a5e0ab9e2ed3db
-      size: 9219
+      md5: a6a400201a16b69bb9849103e9e7880d
+      size: 13995
     - path: src/models/evaluate_model.py
-      md5: 739652113ec6f18262e01852f2275f2e
-      size: 2940
+      md5: bcdf16e614da105c6ae81353aa0b71eb
+      size: 2919
     params:
       params.yaml:
         dataset.target: Survived
     outs:
     - path: reports/cfm.json
-      md5: 9cee708c70fcd5002a0e5295caf0cfee
-      size: 13094
+      md5: 667d4688b6e969b610c2c2fadc82c1ba
+      size: 13088
     - path: reports/prc.json
-      md5: fbe98e32e3bfcc4efb397f5d5bbbadb4
-      size: 1472
+      md5: bb51695feed0c610dea4acf948f619d6
+      size: 1430
     - path: reports/roc.json
-      md5: 78b09016a2bf6b15b7e5987761bdb1ff
-      size: 1505
+      md5: 372c194af3210b748b005f48e04f6aa0
+      size: 1455
     - path: reports/scores.json
-      md5: d2104db51dcff90b05c07be214bbf0dc
+      md5: 2776e6344701ee71fe156ed77cf0e914
       size: 104
