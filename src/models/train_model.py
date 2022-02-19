@@ -49,10 +49,17 @@ classifiers = {
     "GradientBoostingClassifier": GradientBoostingClassifier,
 }
 
-try:
+## Verify if all parameters passed by the yaml are valid
+## classifier parameters
+attributes = dir(classifiers[clf]())
+invalid_arg = [arg for arg in clf_args if arg not in attributes]
+
+if not invalid_arg:
     model = classifiers[clf](**clf_args)
-except Exception as e:
-    print(f"Error during model creation: {e}")
+else:
+    print(
+        f"Error: {classifiers[clf].__name__} invalid parameters {invalid_arg}"
+    )
     sys.exit(1)
 
 # ==============================
