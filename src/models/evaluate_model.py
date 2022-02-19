@@ -84,11 +84,11 @@ avg_prec = average_precision_score(y_test, y_pred_proba)
 with open(scores_file, "w", encoding="utf-8") as fd:
     json.dump(
         {
-            "avg_prec": avg_prec,
-            "roc_auc": roc_auc,
-            "acc": acc,
-            "brier": brier,
-            "mattheus": matthews,
+            "Avg Precision": avg_prec,
+            "ROC_AUC": roc_auc,
+            "Accuracy": acc,
+            "Brier score": brier,
+            "MCC (Matthews)": matthews,
         },
         fd,
         indent=4,
