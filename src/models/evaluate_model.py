@@ -15,6 +15,7 @@ from sklearn.metrics import (
     average_precision_score,
     roc_auc_score,
     brier_score_loss,
+    matthews_corrcoef,
 )
 
 if len(sys.argv) != 7:
@@ -66,6 +67,9 @@ acc = accuracy_score(y_test, y_pred)
 # Brier Score
 brier = brier_score_loss(y_test, y_pred_proba)
 
+# Matthews Correlation Coefficient
+matthews = matthews_corrcoef(y_test, y_pred)
+
 # ROC curve and metrics
 fpr, tpr, roc_thresholds = roc_curve(y_test, y_pred_proba)
 roc_auc = roc_auc_score(y_test, y_pred_proba)
@@ -79,7 +83,13 @@ avg_prec = average_precision_score(y_test, y_pred_proba)
 # Create scores.json file
 with open(scores_file, "w", encoding="utf-8") as fd:
     json.dump(
-        {"avg_prec": avg_prec, "roc_auc": roc_auc, "acc": acc, "brier": brier},
+        {
+            "avg_prec": avg_prec,
+            "roc_auc": roc_auc,
+            "acc": acc,
+            "brier": brier,
+            "mattheus": matthews,
+        },
         fd,
         indent=4,
     )

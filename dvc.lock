@@ -100,8 +100,8 @@ stages:
       md5: a6a400201a16b69bb9849103e9e7880d
       size: 13995
     - path: src/models/evaluate_model.py
-      md5: c153c61c7c894f8f95f7e2f71992ffd0
-      size: 3035
+      md5: ab1a291d0444616fe68b47cd421369a6
+      size: 3232
     params:
       params.yaml:
         dataset.target: Survived
@@ -116,5 +116,5 @@ stages:
       md5: 372c194af3210b748b005f48e04f6aa0
       size: 1455
     - path: reports/scores.json
-      md5: 9d87253dfea83ba7e7395970fd962218
-      size: 138
+      md5: bb7f970124585acfd249a29a7b1d6322
+      size: 174
