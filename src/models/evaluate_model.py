@@ -14,6 +14,7 @@ from sklearn.metrics import (
     accuracy_score,
     average_precision_score,
     roc_auc_score,
+    brier_score_loss,
 )
 
 if len(sys.argv) != 7:
@@ -59,10 +60,11 @@ model = joblib.load(model_path)
 y_pred = model.predict(X_test)
 y_pred_proba = model.predict_proba(X_test)[:, 1]
 
-print(y_pred)
-
 # Accuracy
 acc = accuracy_score(y_test, y_pred)
+
+# Brier Score
+brier = brier_score_loss(y_test, y_pred_proba)
 
 # ROC curve and metrics
 fpr, tpr, roc_thresholds = roc_curve(y_test, y_pred_proba)
@@ -77,7 +79,9 @@ avg_prec = average_precision_score(y_test, y_pred_proba)
 # Create scores.json file
 with open(scores_file, "w", encoding="utf-8") as fd:
     json.dump(
-        {"avg_prec": avg_prec, "roc_auc": roc_auc, "acc": acc}, fd, indent=4
+        {"avg_prec": avg_prec, "roc_auc": roc_auc, "acc": acc, "brier": brier},
+        fd,
+        indent=4,
     )
 
 
