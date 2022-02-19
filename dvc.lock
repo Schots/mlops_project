@@ -75,8 +75,8 @@ stages:
       md5: 2026a7619d05f54a07816f1af63e5c15
       size: 766480
     - path: src/models/train_model.py
-      md5: 071428f68be644e86b32b17065503178
-      size: 1675
+      md5: 44fbcb6d3af03e9202ba590532c09bc1
+      size: 1907
     params:
       params.yaml:
         dataset.target: Survived
@@ -100,8 +100,8 @@ stages:
       md5: a6a400201a16b69bb9849103e9e7880d
       size: 13995
     - path: src/models/evaluate_model.py
-      md5: bcdf16e614da105c6ae81353aa0b71eb
-      size: 2919
+      md5: 9cf3e145c6fc80f368949e4e4f15111e
+      size: 3322
     params:
       params.yaml:
         dataset.target: Survived
@@ -116,5 +116,5 @@ stages:
       md5: 372c194af3210b748b005f48e04f6aa0
       size: 1455
     - path: reports/scores.json
-      md5: 2776e6344701ee71fe156ed77cf0e914
-      size: 104
+      md5: 628d107fa6ea25e5aa3616aa0bb6cf4c
+      size: 196
