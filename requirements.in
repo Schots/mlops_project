@@ -1,7 +1,9 @@
-numpy
+numpy==1.21.5
 pandas
 scikit-learn
 matplotlib
 seaborn
 scipy
 statsmodels
+shap
+xgboost
