@@ -38,12 +38,15 @@ jobs:
 
           echo "## Plots" >> report.md
           dvc plots diff --target reports/cfm.json --show-vega main > vega0.json
-          vl2png vega0.json -s 1.3 | cml-publish --md >> report.md
+          vl2png -s 1.3 vega0.json vega0.png
+          cml-publish vega0.png --md >> report.md
 
           dvc plots diff --target reports/roc.json --show-vega main > vega1.json
-          vl2png vega1.json -s 1.3 | cml-publish --md >> report.md
+          vl2png -s 1.3 vega1.json vega1.png
+          cml-publish vega1.png --md >> report.md
 
           dvc plots diff --target reports/prc.json --show-vega main > vega2.json
-          vl2png vega2.json -s 1.3 | cml-publish --md >> report.md
+          vl2png -s 1.3 vega2.json vega2.png
+          cml-publish vega2.png --md >> report.md
 
           cml-send-comment --update report.md
