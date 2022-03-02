@@ -4,6 +4,8 @@
 #
 #    pip-compile --no-emit-index-url requirements.in
 #
+cloudpickle==2.0.0
+    # via shap
 cycler==0.11.0
     # via matplotlib
 fonttools==4.29.1
@@ -12,28 +14,37 @@ joblib==1.1.0
     # via scikit-learn
 kiwisolver==1.3.2
     # via matplotlib
+llvmlite==0.38.0
+    # via numba
 matplotlib==3.5.1
     # via
     #   -r requirements.in
     #   seaborn
-numpy==1.22.2
+numba==0.55.1
+    # via shap
+numpy==1.21.5
     # via
     #   -r requirements.in
     #   matplotlib
+    #   numba
     #   pandas
     #   patsy
     #   scikit-learn
     #   scipy
     #   seaborn
+    #   shap
     #   statsmodels
+    #   xgboost
 packaging==21.3
     # via
     #   matplotlib
+    #   shap
     #   statsmodels
 pandas==1.4.1
     # via
     #   -r requirements.in
     #   seaborn
+    #   shap
     #   statsmodels
 patsy==0.5.2
     # via statsmodels
@@ -50,20 +61,35 @@ python-dateutil==2.8.2
 pytz==2021.3
     # via pandas
 scikit-learn==1.0.2
-    # via -r requirements.in
+    # via
+    #   -r requirements.in
+    #   shap
 scipy==1.8.0
     # via
     #   -r requirements.in
     #   scikit-learn
     #   seaborn
+    #   shap
     #   statsmodels
+    #   xgboost
 seaborn==0.11.2
+    # via -r requirements.in
+shap==0.40.0
     # via -r requirements.in
 six==1.16.0
     # via
     #   patsy
     #   python-dateutil
+slicer==0.0.7
+    # via shap
 statsmodels==0.13.2
     # via -r requirements.in
 threadpoolctl==3.1.0
     # via scikit-learn
+tqdm==4.62.3
+    # via shap
+xgboost==1.5.2
+    # via -r requirements.in
+
+# The following packages are considered to be unsafe in a requirements file:
+# setuptools
