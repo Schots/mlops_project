@@ -86,7 +86,7 @@ statsmodels==0.13.2
     # via -r requirements.in
 threadpoolctl==3.1.0
     # via scikit-learn
-tqdm==4.63.0
+tqdm==4.63.1
     # via shap
 xgboost==1.5.2
     # via -r requirements.in

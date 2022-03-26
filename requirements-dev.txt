@@ -20,7 +20,7 @@ argon2-cffi==21.3.0
     # via notebook
 argon2-cffi-bindings==21.2.0
     # via argon2-cffi
-astroid==2.9.3
+astroid==2.11.1
     # via pylint
 asttokens==2.0.5
     # via stack-data
@@ -73,7 +73,7 @@ configobj==5.0.6
     # via dvc
 cryptography==36.0.2
     # via asyncssh
-debugpy==1.5.1
+debugpy==1.6.0
     # via ipykernel
 decorator==5.1.1
     # via ipython
@@ -81,6 +81,8 @@ defusedxml==0.7.1
     # via nbconvert
 dictdiffer==0.9.0
     # via dvc
+dill==0.3.4
+    # via pylint
 diskcache==5.4.0
     # via dvc
 distlib==0.3.4
@@ -165,7 +167,7 @@ isort==5.10.1
     #   pylint
 jedi==0.18.1
     # via ipython
-jinja2==3.0.3
+jinja2==3.1.1
     # via
     #   nbconvert
     #   notebook
@@ -197,7 +199,7 @@ matplotlib-inline==0.1.3
     # via
     #   ipykernel
     #   ipython
-mccabe==0.6.1
+mccabe==0.7.0
     # via pylint
 mistune==0.8.4
     # via nbconvert
@@ -320,7 +322,7 @@ pygtrie==2.4.2
     # via
     #   dvc
     #   scmrepo
-pylint==2.12.2
+pylint==2.13.0
     # via -r requirements-dev.in
 pyparsing==3.0.7
     # via
@@ -343,7 +345,7 @@ python-dateutil==2.8.2
     #   jupyter-client
     #   kaggle
     #   python-benedict
-python-dotenv==0.19.2
+python-dotenv==0.20.0
     # via -r requirements-dev.in
 python-fsutil==0.6.0
     # via python-benedict
@@ -436,7 +438,6 @@ toml==0.10.2
     #   dvc
     #   pre-commit
     #   pre-commit-hooks
-    #   pylint
     #   python-benedict
     #   tox
 tomli==2.0.1
@@ -444,6 +445,7 @@ tomli==2.0.1
     #   black
     #   nbqa
     #   pep517
+    #   pylint
     #   pytest
 tornado==6.1
     # via
@@ -453,7 +455,7 @@ tornado==6.1
     #   terminado
 tox==3.24.5
     # via -r requirements-dev.in
-tqdm==4.63.0
+tqdm==4.63.1
     # via
     #   -c requirements.txt
     #   dvc
@@ -483,7 +485,7 @@ urllib3==1.26.9
     #   dulwich
     #   kaggle
     #   requests
-virtualenv==20.13.4
+virtualenv==20.14.0
     # via
     #   pre-commit
     #   tox
@@ -497,7 +499,7 @@ webencodings==0.5.1
     # via bleach
 wheel==0.37.1
     # via pip-tools
-wrapt==1.13.3
+wrapt==1.14.0
     # via astroid
 xmltodict==0.12.0
     # via python-benedict
