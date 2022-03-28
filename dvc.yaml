@@ -6,33 +6,29 @@ stages:
     outs:
       - data/raw
 
-  prepare:
-    cmd: make prepare
+  featurize:
+    cmd: make features
     deps:
       - data/raw/train.csv
-      - src/prepare/prepare_data.py
+      - data/raw/test.csv
+      - src/features/build_features.py
     params:
       - dataset.target
       - prepare.random_state
       - prepare.split
-      - prepare.missing.num_cols
-      - prepare.missing.cat_cols
-      - prepare.drop.cols
+      - prepare.stratify
+      - prepare.missing.numerical
+      - prepare.missing.categorical
+      - featurize.count
+      - featurize.boolean
+      - featurize.discretize
+      - featurize.title
+
     outs:
-      - data/prepared
-      - models/pre_processing.joblib
-  featurize:
-    cmd: make features
-    deps:
-      - data/prepared/train.csv
-      - data/prepared/test.csv
-      - src/features/build_features.py
-    params:
-      - dataset.target
-      - featurize.ohe_cols
-    outs:
+
       - data/processed
       - models/featurize.joblib
+
   train:
     cmd: make train
     deps:
@@ -44,6 +40,7 @@ stages:
       - train.classifier_args
     outs:
       - models/model.joblib
+
   evaluate:
     cmd: make evaluation
     deps:

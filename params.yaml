@@ -3,15 +3,17 @@ dataset:
 
 prepare:
   random_state: 3141592
-  split: 0.2
+  split: 0.3
+  stratify: y
   missing:
-    cat_cols: ["Cabin", "Embarked"]
-    num_cols: ["Age"]
-  drop:
-    cols: ["Name", "Ticket"]
+    categorical: ["Embarked"]
+    numerical: ["Age"]
 
 featurize:
-  ohe_cols: ["Cabin", "Sex", "Embarked"]
+  count: ["SibSp", "Parch"]
+  boolean: ["SibSp", "Parch"]
+  discretize: ["Fare"]
+  title: ["Name"]
 
 train:
   classifier: RandomForestClassifier

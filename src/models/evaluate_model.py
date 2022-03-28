@@ -16,6 +16,7 @@ from sklearn.metrics import (
     roc_auc_score,
     brier_score_loss,
     matthews_corrcoef,
+    f1_score,
 )
 
 if len(sys.argv) != 7:
@@ -64,6 +65,9 @@ y_pred_proba = model.predict_proba(X_test)[:, 1]
 # Accuracy
 acc = accuracy_score(y_test, y_pred)
 
+# F1-score
+f1 = f1_score(y_test, y_pred)
+
 # Brier Score
 brier = brier_score_loss(y_test, y_pred_proba)
 
@@ -89,6 +93,7 @@ with open(scores_file, "w", encoding="utf-8") as fd:
             "Accuracy": acc,
             "Brier score": brier,
             "MCC (Matthews)": matthews,
+            "F1-score": f1,
         },
         fd,
         indent=4,
