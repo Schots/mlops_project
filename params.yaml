@@ -19,6 +19,6 @@ train:
   classifier: RandomForestClassifier
   classifier_args:
     random_state: 2077
-    n_estimators: 1
-    min_samples_split: 10
+    n_estimators: 10
+    min_samples_split: 20
     n_jobs: -1
