@@ -20,7 +20,7 @@ argon2-cffi==21.3.0
     # via notebook
 argon2-cffi-bindings==21.2.0
     # via argon2-cffi
-astroid==2.9.3
+astroid==2.11.1
     # via pylint
 asttokens==2.0.5
     # via stack-data
@@ -39,10 +39,10 @@ babel==2.9.1
     # via sphinx
 backcall==0.2.0
     # via ipython
+beautifulsoup4==4.10.0
+    # via nbconvert
 black==22.1.0
-    # via
-    #   -r requirements-dev.in
-    #   ipython
+    # via -r requirements-dev.in
 bleach==4.1.0
     # via nbconvert
 certifi==2021.10.8
@@ -66,16 +66,14 @@ click==8.0.4
     #   black
     #   pip-tools
 colorama==0.4.4
-    # via
-    #   dvc
-    #   rich
+    # via dvc
 commonmark==0.9.1
     # via rich
 configobj==5.0.6
     # via dvc
-cryptography==36.0.1
+cryptography==36.0.2
     # via asyncssh
-debugpy==1.5.1
+debugpy==1.6.0
     # via ipykernel
 decorator==5.1.1
     # via ipython
@@ -83,6 +81,8 @@ defusedxml==0.7.1
     # via nbconvert
 dictdiffer==0.9.0
     # via dvc
+dill==0.3.4
+    # via pylint
 diskcache==5.4.0
     # via dvc
 distlib==0.3.4
@@ -95,15 +95,15 @@ docutils==0.17.1
     # via sphinx
 dpath==2.0.6
     # via dvc
-dulwich==0.20.32
+dulwich==0.20.35
     # via scmrepo
-dvc==2.9.4
+dvc==2.9.5
     # via -r requirements-dev.in
 entrypoints==0.4
     # via
     #   jupyter-client
     #   nbconvert
-executing==0.8.2
+executing==0.8.3
     # via stack-data
 filelock==3.6.0
     # via
@@ -117,7 +117,7 @@ frozenlist==1.3.0
     # via
     #   aiohttp
     #   aiosignal
-fsspec[http]==2022.1.0
+fsspec[http]==2022.2.0
     # via
     #   dvc
     #   scmrepo
@@ -131,11 +131,11 @@ future==0.18.2
     # via grandalf
 gitdb==4.0.9
     # via gitpython
-gitpython==3.1.26
+gitpython==3.1.27
     # via scmrepo
 grandalf==0.6
     # via dvc
-identify==2.4.10
+identify==2.4.12
     # via pre-commit
 idna==3.3
     # via
@@ -143,33 +143,25 @@ idna==3.3
     #   yarl
 imagesize==1.3.0
     # via sphinx
-importlib-metadata==4.11.1
-    # via sphinx
-importlib-resources==5.4.0
-    # via
-    #   dvc
-    #   jsonschema
 iniconfig==1.1.1
     # via pytest
-ipykernel==6.9.1
+ipykernel==6.9.2
     # via
     #   nbmake
     #   notebook
-ipython==8.0.1
+ipython==8.1.1
     # via
     #   ipykernel
     #   nbqa
 ipython-genutils==0.2.0
-    # via
-    #   nbformat
-    #   notebook
+    # via notebook
 isort==5.10.1
     # via
     #   -r requirements-dev.in
     #   pylint
 jedi==0.18.1
     # via ipython
-jinja2==3.0.3
+jinja2==3.1.1
     # via
     #   nbconvert
     #   notebook
@@ -193,15 +185,15 @@ kaggle==1.5.12
     # via -r requirements-dev.in
 lazy-object-proxy==1.7.1
     # via astroid
-mailchecker==4.1.12
+mailchecker==4.1.14
     # via python-benedict
-markupsafe==2.1.0
+markupsafe==2.1.1
     # via jinja2
 matplotlib-inline==0.1.3
     # via
     #   ipykernel
     #   ipython
-mccabe==0.6.1
+mccabe==0.7.0
     # via pylint
 mistune==0.8.4
     # via nbconvert
@@ -213,21 +205,21 @@ mypy-extensions==0.4.3
     # via black
 nanotime==0.5.2
     # via dvc
-nbclient==0.5.11
+nbclient==0.5.13
     # via
     #   nbconvert
     #   nbmake
-nbconvert==6.4.2
+nbconvert==6.4.4
     # via notebook
-nbformat==5.1.3
+nbformat==5.2.0
     # via
     #   nbclient
     #   nbconvert
     #   nbmake
     #   notebook
-nbmake==1.2
+nbmake==1.3.0
     # via -r requirements-dev.in
-nbqa==1.2.3
+nbqa==1.3.1
     # via -r requirements-dev.in
 nest-asyncio==1.5.4
     # via
@@ -235,11 +227,11 @@ nest-asyncio==1.5.4
     #   jupyter-client
     #   nbclient
     #   notebook
-networkx==2.6.3
+networkx==2.7.1
     # via dvc
 nodeenv==1.6.0
     # via pre-commit
-notebook==6.4.8
+notebook==6.4.10
     # via -r requirements-dev.in
 packaging==21.3
     # via
@@ -262,13 +254,13 @@ pep517==0.12.0
     # via pip-tools
 pexpect==4.8.0
     # via ipython
-phonenumbers==8.12.43
+phonenumbers==8.12.45
     # via python-benedict
 pickleshare==0.7.5
     # via ipython
 pip-tools==6.5.1
     # via -r requirements-dev.in
-platformdirs==2.5.0
+platformdirs==2.5.1
     # via
     #   black
     #   pylint
@@ -291,6 +283,7 @@ psutil==5.9.0
     # via
     #   dvc
     #   flufl-lock
+    #   ipykernel
 ptyprocess==0.7.0
     # via
     #   pexpect
@@ -309,7 +302,7 @@ pydantic==1.9.0
     # via nbmake
 pydot==1.4.2
     # via dvc
-pygit2==1.8.0
+pygit2==1.9.1
     # via scmrepo
 pygments==2.11.2
     # via
@@ -323,7 +316,7 @@ pygtrie==2.4.2
     # via
     #   dvc
     #   scmrepo
-pylint==2.12.2
+pylint==2.13.0
     # via -r requirements-dev.in
 pyparsing==3.0.7
     # via
@@ -334,7 +327,7 @@ pyparsing==3.0.7
     #   pydot
 pyrsistent==0.18.1
     # via jsonschema
-pytest==6.2.5
+pytest==7.1.1
     # via
     #   -r requirements-dev.in
     #   nbmake
@@ -346,15 +339,15 @@ python-dateutil==2.8.2
     #   jupyter-client
     #   kaggle
     #   python-benedict
-python-dotenv==0.19.2
+python-dotenv==0.20.0
     # via -r requirements-dev.in
 python-fsutil==0.6.0
     # via python-benedict
-python-slugify==6.0.1
+python-slugify==6.1.1
     # via
     #   kaggle
     #   python-benedict
-pytz==2021.3
+pytz==2022.1
     # via
     #   -c requirements.txt
     #   babel
@@ -373,7 +366,7 @@ requests==2.27.1
     #   kaggle
     #   python-benedict
     #   sphinx
-rich==11.2.0
+rich==12.0.1
     # via dvc
 ruamel-yaml==0.17.21
     # via
@@ -404,7 +397,9 @@ smmap==5.0.0
     # via gitdb
 snowballstemmer==2.2.0
     # via sphinx
-sphinx==4.4.0
+soupsieve==2.3.1
+    # via beautifulsoup4
+sphinx==4.5.0
     # via -r requirements-dev.in
 sphinxcontrib-applehelp==1.0.2
     # via sphinx
@@ -424,9 +419,9 @@ stack-data==0.2.0
     # via ipython
 tabulate==0.8.9
     # via dvc
-terminado==0.13.1
+terminado==0.13.3
     # via notebook
-testpath==0.5.0
+testpath==0.6.0
     # via nbconvert
 text-unidecode==1.3
     # via python-slugify
@@ -437,8 +432,6 @@ toml==0.10.2
     #   dvc
     #   pre-commit
     #   pre-commit-hooks
-    #   pylint
-    #   pytest
     #   python-benedict
     #   tox
 tomli==2.0.1
@@ -446,6 +439,8 @@ tomli==2.0.1
     #   black
     #   nbqa
     #   pep517
+    #   pylint
+    #   pytest
 tornado==6.1
     # via
     #   ipykernel
@@ -454,7 +449,7 @@ tornado==6.1
     #   terminado
 tox==3.24.5
     # via -r requirements-dev.in
-tqdm==4.62.3
+tqdm==4.63.1
     # via
     #   -c requirements.txt
     #   dvc
@@ -472,19 +467,16 @@ traitlets==5.1.1
     #   notebook
 typing-extensions==4.1.1
     # via
-    #   astroid
-    #   black
     #   dvc
     #   pydantic
-    #   pylint
 untokenize==0.1.1
     # via docformatter
-urllib3==1.26.8
+urllib3==1.26.9
     # via
     #   dulwich
     #   kaggle
     #   requests
-virtualenv==20.13.1
+virtualenv==20.14.0
     # via
     #   pre-commit
     #   tox
@@ -498,7 +490,7 @@ webencodings==0.5.1
     # via bleach
 wheel==0.37.1
     # via pip-tools
-wrapt==1.13.3
+wrapt==1.14.0
     # via astroid
 xmltodict==0.12.0
     # via python-benedict
@@ -506,10 +498,6 @@ yarl==1.7.2
     # via aiohttp
 zc-lockfile==2.0
     # via dvc
-zipp==3.7.0
-    # via
-    #   importlib-metadata
-    #   importlib-resources
 
 # The following packages are considered to be unsafe in a requirements file:
 # pip
