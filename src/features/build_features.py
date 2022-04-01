@@ -94,7 +94,11 @@ X, y = (
 
 # Split into train/test data
 X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=split, random_state=random_state, stratify=y
+    X,
+    y,
+    test_size=split,
+    random_state=random_state,
+    stratify=locals()[stratify],
 )
 
 
