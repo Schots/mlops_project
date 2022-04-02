@@ -1,0 +1,88 @@
+schema: '2.0'
+stages:
+  data:
+    cmd: make data
+    deps:
+    - path: src/data/make_dataset.py
+      md5: 16a344863da4bc5797f0b9e217cb69ff
+      size: 1341
+    outs:
+    - path: data/raw
+      md5: 87bb5025b342dce499fe38b06aba7132.dir
+      size: 89823
+      nfiles: 2
+  featurize:
+    cmd: make features
+    deps:
+    - path: data/raw/test.csv
+      md5: 029c9cd22461f6dbe8d9ab01def965c6
+      size: 28629
+    - path: data/raw/train.csv
+      md5: 61fdd54abdbf6a85b778e937122e1194
+      size: 61194
+    - path: src/features/build_features.py
+      md5: 15ec93b93590e15db16e94f68effb4b2
+      size: 6012
+    params:
+      params.yaml:
+        dataset.target: Survived
+        prepare.random_state: 3141592
+        prepare.test_size: 0.3
+    outs:
+    - path: data/processed
+      md5: 2c16883eaca0d1f813ed14e06a50df8e.dir
+      size: 1093270
+      nfiles: 2
+    - path: models/features.joblib
+      md5: d5f820f76e8a4a6df88f61e68116ba1d
+      size: 8218
+  train:
+    cmd: make train
+    deps:
+    - path: data/processed/train.joblib
+      md5: 469bb784a9e8f6b074b64039b62b154e
+      size: 763895
+    - path: src/models/train_model.py
+      md5: 8f4f84fd7c3918a7b23100aa33d65f55
+      size: 2597
+    params:
+      params.yaml:
+        dataset.target: Survived
+        train.clf: RandomForestClassifier
+        train.clf_params:
+          random_state: 2077
+          n_estimators: 10
+          min_samples_split: 20
+          n_jobs: -1
+    outs:
+    - path: models/model.joblib
+      md5: 34b5ba782b17366c8cb4a4d40ac93289
+      size: 85756
+  evaluate:
+    cmd: make evaluation
+    deps:
+    - path: data/processed/test.joblib
+      md5: d229f37704e3deefc0adf554f07a9f3b
+      size: 329375
+    - path: models/model.joblib
+      md5: 34b5ba782b17366c8cb4a4d40ac93289
+      size: 85756
+    - path: src/models/evaluate_model.py
+      md5: 04bee88246ece9a385773a64268606a8
+      size: 4464
+    params:
+      params.yaml:
+        dataset.target: Survived
+    outs:
+    - path: reports/cfm.json
+      md5: ef31694abd2b0b7d197db6cbe00fc2bb
+      size: 19585
+    - path: reports/prc.json
+      md5: 8aac5df073df08f065e5803603215ecc
+      size: 20541
+    - path: reports/roc.json
+      md5: ad100fa148031242f00649b292032f7d
+      size: 12420
+    - path: reports/scores.json
+      md5: b1b4218679f38f5f93569467a46d4ffa
+      size: 232

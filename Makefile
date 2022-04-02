@@ -74,16 +74,16 @@ data:
 
 ## (dvc) Execute the 'featurize' stage
 features:
-	@$(PYTHON_INTERPRETER) src/features/build_features.py data/raw data/processed models
+	@$(PYTHON_INTERPRETER) src/features/build_features.py -i data/raw -o data/processed -m models
 
 ## (dvc) Execute the 'train' stage
 train:
-	@$(PYTHON_INTERPRETER) src/models/train_model.py data/processed models
+	@$(PYTHON_INTERPRETER) src/models/train_model.py -i data/processed -m models
 
 ## (dvc) Execute the 'evaluate' stage
 evaluation:
-	@$(PYTHON_INTERPRETER) src/models/evaluate_model.py data/processed models \
-	reports/scores.json reports/prc.json reports/roc.json reports/cfm.json
+	@$(PYTHON_INTERPRETER) src/models/evaluate_model.py -i data/processed -m models \
+	-s reports/scores.json -p reports/prc.json -r reports/roc.json -c reports/cfm.json
 
 #################################################################################
 
