@@ -3,21 +3,11 @@ dataset:
 
 prepare:
   random_state: 3141592
-  split: 0.3
-  stratify: y
-  missing:
-    categorical: ["Embarked"]
-    numerical: ["Age"]
-
-featurize:
-  count: ["SibSp", "Parch"]
-  boolean: ["SibSp", "Parch"]
-  discretize: ["Fare"]
-  title: ["Name"]
+  test_size: 0.3
 
 train:
-  classifier: RandomForestClassifier
-  classifier_args:
+  clf: RandomForestClassifier
+  clf_params:
     random_state: 2077
     n_estimators: 10
     min_samples_split: 20

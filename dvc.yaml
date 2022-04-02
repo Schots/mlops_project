@@ -15,14 +15,7 @@ stages:
     params:
       - dataset.target
       - prepare.random_state
-      - prepare.split
-      - prepare.stratify
-      - prepare.missing.numerical
-      - prepare.missing.categorical
-      - featurize.count
-      - featurize.boolean
-      - featurize.discretize
-      - featurize.title
+      - prepare.test_size
 
     outs:
 
@@ -36,8 +29,8 @@ stages:
       - src/models/train_model.py
     params:
       - dataset.target
-      - train.classifier
-      - train.classifier_args
+      - train.clf
+      - train.clf_params
     outs:
       - models/model.joblib
 

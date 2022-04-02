@@ -11,9 +11,11 @@ from sklearn.pipeline import make_pipeline, make_union
 from sklearn.compose import make_column_transformer, make_column_selector
 from sklearn.model_selection import train_test_split
 from sklearn.impute import SimpleImputer
-from sklearn.preprocessing import OneHotEncoder
+from sklearn.preprocessing import OneHotEncoder, OrdinalEncoder
 from sklearn.preprocessing import FunctionTransformer
 from custom_transformers import (
+    identify_deck,
+    fill_by_group,
     count_features,
     discretize_feature,
     boolean_feature,
@@ -49,19 +51,6 @@ with open("params.yaml", "r", encoding="utf-8") as file:
 
     # Find the preprocess steps in the file.
     prepare = params["prepare"]
-    random_state = prepare["random_state"]
-    split = prepare["split"]
-    stratify = prepare["stratify"]
-
-    cat_missing = prepare["missing"]["categorical"]
-    num_missing = prepare["missing"]["numerical"]
-
-    # Find the feature creation steps in the file.
-    featurize = params["featurize"]
-    count_feat = featurize["count"]
-    discretize_feat = featurize["discretize"]
-    boolean_feat = featurize["boolean"]
-    title_feat = featurize["title"]
 
 # Read the parameters received from the command line
 input_folder, output_folder, model_folder = (
@@ -88,66 +77,90 @@ data = pd.read_csv(data_path, index_col=[0])
 # Split the predictors and the target
 X, y = (
     data.drop(target, axis=1),
-    data[[target]],
+    data.pop(target),
 )
-
 
 # Split into train/test data
 X_train, X_test, y_train, y_test = train_test_split(
-    X,
-    y,
-    test_size=split,
-    random_state=random_state,
-    stratify=locals()[stratify],
+    X, y, **prepare, stratify=y
 )
 
 
-# ======= Pre-processing Pipeline =========
+# ======= Data Pipeline =========
 
-pre_processing = make_column_transformer(
-    (SimpleImputer(strategy="median"), num_missing),
+data_pipeline = make_column_transformer(
+    # Create the familysize feature
     (
-        make_pipeline(
-            SimpleImputer(strategy="most_frequent"),
-            OneHotEncoder(handle_unknown="ignore", sparse=False),
-        ),
-        cat_missing,
+        FunctionTransformer(count_features, kw_args={"offset": 1}),
+        ["SibSp", "Parch"],
     ),
-)
-
-
-# ======= Featurization Pipeline =========
-
-featurize = make_column_transformer(
-    (FunctionTransformer(count_features, kw_args={"offset": 1}), count_feat),
-    (FunctionTransformer(boolean_feature), boolean_feat),
-    (
-        FunctionTransformer(discretize_feature, kw_args={"quantiles": 4}),
-        discretize_feat,
-    ),
+    # Create is_alone feature
+    (FunctionTransformer(boolean_feature), ["SibSp", "Parch"]),
+    # Create the title feature
     (
         make_pipeline(
             FunctionTransformer(extract_titles),
             OneHotEncoder(handle_unknown="ignore", sparse=False),
         ),
-        title_feat,
+        ["Name"],
     ),
-    verbose_feature_names_out=False,
+    # Create the deck feature
+    (
+        make_pipeline(
+            FunctionTransformer(identify_deck),
+            OneHotEncoder(handle_unknown="ignore", sparse=False),
+        ),
+        ["Cabin"],
+    ),
+    # Create the fare_band feature
+    (
+        make_pipeline(
+            SimpleImputer(strategy="median"),
+            FunctionTransformer(
+                discretize_feature,
+                kw_args=dict(
+                    bins=[0, 8, 15, 32, 100, 600],
+                    labels=["Very Low", "Low", "Medium", "High", "Very High"],
+                ),
+            ),
+            OrdinalEncoder(
+                categories=[["Very Low", "Low", "Medium", "High", "Very High"]]
+            ),
+        ),
+        ["Fare"],
+    ),
+    # Create the age_band feature
+    (
+        make_pipeline(
+            FunctionTransformer(
+                fill_by_group,
+                kw_args=dict(group_by="Pclass", fill_by="median"),
+            ),
+            FunctionTransformer(
+                discretize_feature,
+                kw_args=dict(
+                    bins=[0, 14, 24, 64, 150],
+                    labels=["Children", "Youth", "Adults", "Seniors"],
+                ),
+            ),
+            OrdinalEncoder(
+                categories=[["Children", "Youth", "Adults", "Seniors"]]
+            ),
+        ),
+        ["Age", "Pclass"],
+    ),
+    (
+        make_pipeline(
+            SimpleImputer(strategy="most_frequent"),
+            OneHotEncoder(handle_unknown="ignore", sparse=False),
+        ),
+        ["Embarked", "Sex", "Pclass"],
+    ),
+    ("passthrough", ["SibSp", "Parch"]),
 )
-
-# ======= Model Pipeline =================
-
-data_pipeline = make_union(pre_processing, featurize)
-
-# ========================================
-
 
 # Fit & Transform the selected columns, then rebuild the DataFrame
 data_pipeline.fit(X_train)
-
-
-# cols = featurize.get_feature_names_out()   # ohe does not provide get_feature_names_out()
-
 X_train = pd.DataFrame(data_pipeline.transform(X_train), index=X_train.index)
 X_test = pd.DataFrame(data_pipeline.transform(X_test), index=X_test.index)
 
@@ -160,4 +173,4 @@ joblib.dump(train_out, train_out_path)
 joblib.dump(test_out, test_out_path)
 
 # Save the pipeline
-joblib.dump(featurize, pipeline_out_path)
+joblib.dump(data_pipeline, pipeline_out_path)

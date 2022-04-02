@@ -93,6 +93,9 @@ clean:
 	@find . -type d -name "__pycache__" -delete
 	@find . -type d -name ".tox" -exec rm -r "{}" +
 	@find . -type d -name ".pytest_cache" -exec rm -r "{}" +
+	@find models -type f -name "*.joblib" -delete
+	@find data/raw -type f -name "*.csv" -delete
+	@find data/processed -type f -name "*.joblib" -delete
 
 #################################################################################
 # PROJECT RULES                                                                 #
