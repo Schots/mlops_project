@@ -40,7 +40,7 @@ def evaluate(
 
     X_test, y_test = (
         test.drop(target, axis=1),
-        test[[target]],
+        test.pop(target),
     )
 
     # Load the model
