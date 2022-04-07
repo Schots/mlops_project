@@ -12,22 +12,15 @@ stages:
       - data/raw/train.csv
       - data/raw/test.csv
       - src/features/build_features.py
+
     params:
       - dataset.target
       - prepare.random_state
-      - prepare.split
-      - prepare.stratify
-      - prepare.missing.numerical
-      - prepare.missing.categorical
-      - featurize.count
-      - featurize.boolean
-      - featurize.discretize
-      - featurize.title
+      - prepare.test_size
 
     outs:
-
       - data/processed
-      - models/featurize.joblib
+      - models/features.joblib
 
   train:
     cmd: make train
@@ -36,8 +29,8 @@ stages:
       - src/models/train_model.py
     params:
       - dataset.target
-      - train.classifier
-      - train.classifier_args
+      - train.clf
+      - train.clf_params
     outs:
       - models/model.joblib
 

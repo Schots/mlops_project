@@ -11,36 +11,6 @@ stages:
       md5: 87bb5025b342dce499fe38b06aba7132.dir
       size: 89823
       nfiles: 2
-  prepare:
-    cmd: make prepare
-    deps:
-    - path: data/raw/train.csv
-      md5: 61fdd54abdbf6a85b778e937122e1194
-      size: 61194
-    - path: src/prepare/prepare_data.py
-      md5: 6bdafc67e7e2dec3a6d0536b5fd2555e
-      size: 3457
-    params:
-      params.yaml:
-        dataset.target: Survived
-        prepare.drop.cols:
-        - Name
-        - Ticket
-        prepare.missing.cat_cols:
-        - Cabin
-        - Embarked
-        prepare.missing.num_cols:
-        - Age
-        prepare.random_state: 3141592
-        prepare.split: 0.2
-    outs:
-    - path: data/prepared
-      md5: 746a8034073b4e5f9851d0f9c8512dc3.dir
-      size: 31634
-      nfiles: 2
-    - path: models/pre_processing.joblib
-      md5: c2ddfc2c926d9ff11de03fad06d5e792
-      size: 2462
   featurize:
     cmd: make features
     deps:
@@ -51,83 +21,69 @@ stages:
       md5: 61fdd54abdbf6a85b778e937122e1194
       size: 61194
     - path: src/features/build_features.py
-      md5: f10301f9f6e7799bbaebf71d32e83d42
-      size: 4843
+      md5: 25b67c52a0247013634d034af41c0ecb
+      size: 6291
     params:
       params.yaml:
         dataset.target: Survived
-        featurize.boolean:
-        - SibSp
-        - Parch
-        featurize.count:
-        - SibSp
-        - Parch
-        featurize.discretize:
-        - Fare
-        featurize.title:
-        - Name
-        prepare.missing.categorical:
-        - Embarked
-        prepare.missing.numerical:
-        - Age
         prepare.random_state: 3141592
-        prepare.split: 0.3
-        prepare.stratify: y
+        prepare.test_size: 0.3
     outs:
     - path: data/processed
-      md5: 3b51f88ac0cf1a9c0116679196d5e4e9.dir
-      size: 173242
+      md5: 2c16883eaca0d1f813ed14e06a50df8e.dir
+      size: 1093270
       nfiles: 2
-    - path: models/featurize.joblib
-      md5: 6574c41143d10d0c633893e0db1c71c1
-      size: 2575
+    - path: models/features.joblib
+      md5: d5f820f76e8a4a6df88f61e68116ba1d
+      size: 8218
   train:
     cmd: make train
     deps:
     - path: data/processed/train.joblib
-      md5: 81caf6a8730321b9e882bf6c5d712532
-      size: 120701
+      md5: 469bb784a9e8f6b074b64039b62b154e
+      size: 763895
     - path: src/models/train_model.py
-      md5: 44fbcb6d3af03e9202ba590532c09bc1
-      size: 1907
+      md5: eeb90e8e1526090efce0e7ecb8b74d9a
+      size: 2672
     params:
       params.yaml:
         dataset.target: Survived
-        train.classifier: RandomForestClassifier
-        train.classifier_args:
+        train.clf: RandomForestClassifier
+        train.clf_params:
           random_state: 2077
-          n_estimators: 10
-          min_samples_split: 20
+          n_estimators: 20
+          min_samples_split: 2
+          max_depth: 5
           n_jobs: -1
     outs:
     - path: models/model.joblib
-      md5: 6807b40f917087b2934edb8dbdb4e417
-      size: 67180
+      md5: 995b1c19a471c829df692920f73f3a60
+      size: 59175
   evaluate:
     cmd: make evaluation
     deps:
     - path: data/processed/test.joblib
-      md5: bfa765d023d92a798a47bbf139fcd41d
-      size: 52541
+      md5: d229f37704e3deefc0adf554f07a9f3b
+      size: 329375
     - path: models/model.joblib
-      md5: 6807b40f917087b2934edb8dbdb4e417
-      size: 67180
+      md5: 995b1c19a471c829df692920f73f3a60
+      size: 59175
     - path: src/models/evaluate_model.py
-      md5: b18738b91d98e02ef24ef414ac52479c
-      size: 3406
+      md5: 29f4f0c0048fa099bf9ef1c49269cd47
+      size: 4466
     params:
       params.yaml:
         dataset.target: Survived
     outs:
     - path: reports/cfm.json
-      md5: 5be6204133b38bc2ecfa518f211ca1b6
+      md5: fc88bc6116c7bf0235a0a8d0caacdb9e
       size: 19585
     - path: reports/prc.json
-      md5: 7f731658026ca253adf58b359cd2b1ff
-      size: 22811
+      md5: dd94517f08d7af31dbc2dd00e875613f
+      size: 19561
     - path: reports/roc.json
-      md5: 80f3f5de9a42b7eb29cc3032b680d9c0
-      size: 15333
+      md5: 96024ebba8b8cf3e053be443499f736d
+      size: 10418
     - path: reports/scores.json
-      md5: 37124d3cf7f3241e69d18182faf450c0
-      size: 232
+      md5: 10991bbf041c58c14c9b36bf9d113fbb
+      size: 231
