@@ -12,7 +12,7 @@ import joblib
 import yaml
 
 
-def train(input_folder, model_folder):
+def main(input_folder, model_folder):
 
     with open("params.yaml", "r", encoding="utf-8") as file:
         params = yaml.load(file, Loader=yaml.SafeLoader)
@@ -90,4 +90,4 @@ if __name__ == "__main__":
         help="Path to the folder where the models will be stored.",
     )
     args = parser.parse_args()
-    train(**vars(args))
+    main(**vars(args))

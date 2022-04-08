@@ -21,7 +21,7 @@ from sklearn.metrics import (
 )
 
 
-def evaluate(
+def main(
     input_folder, model_folder, scores_file, prc_file, roc_file, cfm_file
 ):
 
@@ -172,4 +172,4 @@ if __name__ == "__main__":
         help="File where the confusion matrix will be saved",
     )
     args = parser.parse_args()
-    evaluate(**vars(args))
+    main(**vars(args))
