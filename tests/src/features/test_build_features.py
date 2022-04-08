@@ -5,12 +5,13 @@ from src.features.build_features import main
 
 
 def test_main_no_args():
-    """Test that the make_dataset.py script runs without any arguments."""
+    """Test that the make_dataset.py script doesn't run without any
+    arguments."""
     with pytest.raises(TypeError):
         main()
 
 
-def test_main_with_args():
-    """Test that the make_dataset.py script doesn't runs with arguments."""
-    with pytest.raises(TypeError):
-        main(1, 1, 1)
+def test_main_with_invalid_args():
+    """Test that the make_dataset.py script run with arguments."""
+    with pytest.raises(FileNotFoundError):
+        main(1, "a", [])
