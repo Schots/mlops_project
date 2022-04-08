@@ -12,7 +12,7 @@ fonttools==4.31.2
     # via matplotlib
 joblib==1.1.0
     # via scikit-learn
-kiwisolver==1.4.0
+kiwisolver==1.4.2
     # via matplotlib
 llvmlite==0.38.0
     # via numba
@@ -40,7 +40,7 @@ packaging==21.3
     #   matplotlib
     #   shap
     #   statsmodels
-pandas==1.4.1
+pandas==1.4.2
     # via
     #   -r requirements.in
     #   seaborn
@@ -48,7 +48,7 @@ pandas==1.4.1
     #   statsmodels
 patsy==0.5.2
     # via statsmodels
-pillow==9.0.1
+pillow==9.1.0
     # via matplotlib
 pyparsing==3.0.7
     # via
@@ -86,7 +86,7 @@ statsmodels==0.13.2
     # via -r requirements.in
 threadpoolctl==3.1.0
     # via scikit-learn
-tqdm==4.63.1
+tqdm==4.64.0
     # via shap
 xgboost==1.5.2
     # via -r requirements.in
