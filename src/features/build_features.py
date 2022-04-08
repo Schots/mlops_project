@@ -2,6 +2,7 @@
 """This module is responsible for feature engineering such as normalization,
 standardization, encoding, etc."""
 import sys
+import logging
 import os
 import argparse
 from pathlib import Path
@@ -14,7 +15,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import OneHotEncoder, OrdinalEncoder
 from sklearn.preprocessing import FunctionTransformer
-from custom_transformers import (
+from .custom_transformers import (
     identify_deck,
     fill_by_group,
     count_features,
@@ -25,19 +26,29 @@ from custom_transformers import (
 
 import yaml
 
+logging.basicConfig(
+    level=logging.ERROR, format="%(asctime)s | %(name)s | %(message)s"
+)
+logger = logging.getLogger(__name__)
 
-def build_features(input_folder, output_folder, model_folder):
+
+def main(input_folder, output_folder, model_folder):
 
     # Open the configuration file. All the parameters are stored in the params.yaml file.
     # In this file the user can specify the parameters for the feature engineering, such as
     # the target, the preprocess steps, feature creation, feature selection, etc.
-    with open("params.yaml", "r", encoding="utf-8") as file:
-        # Load the entire file
-        params = yaml.load(file, Loader=yaml.SafeLoader)
-        # Find the target (y variable) in the file.
-        target = params["dataset"]["target"]
-        # Find the preprocess steps in the file.
-        prepare = params["prepare"]
+    try:
+        with open("params.yaml", "r", encoding="utf-8") as file:
+            # Load the entire file
+            params = yaml.load(file, Loader=yaml.SafeLoader)
+            # Find the target (y variable) in the file.
+            target = params["dataset"]["target"]
+            # Find the preprocess steps in the file.
+            prepare = params["prepare"]
+
+    except Exception as e:
+        logger.error(f"{e}")
+        sys.exit(1)
 
     # If doesn't exist, create the output data folder
     os.makedirs(output_folder, exist_ok=True)
@@ -164,6 +175,8 @@ def build_features(input_folder, output_folder, model_folder):
     # Save the pipeline
     joblib.dump(data_pipeline, pipeline_out_path)
 
+    sys.exit(0)
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
@@ -191,4 +204,4 @@ if __name__ == "__main__":
         help="The folder where the models will be stored.",
     )
     args = parser.parse_args()
-    build_features(**vars(args))
+    main(**vars(args))
