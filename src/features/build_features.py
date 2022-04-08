@@ -16,7 +16,7 @@ from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import OneHotEncoder, OrdinalEncoder
 from sklearn.preprocessing import FunctionTransformer
 
-from src.features.custom_transformers import (
+from custom_transformers import (
     identify_deck,
     fill_by_group,
     count_features,

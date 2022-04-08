@@ -1,4 +1,4 @@
-.PHONY: clean data
+.PHONY: clean data tests
 
 #################################################################################
 # GLOBALS                                                                       #
@@ -96,6 +96,10 @@ clean:
 	@find models -type f -name "*.joblib" -delete
 	@find data/raw -type f -name "*.csv" -delete
 	@find data/processed -type f -name "*.joblib" -delete
+
+## Test the project
+tests:
+	PYTHONPATH=./src/data:./src/features:./src/models:./src/visualization pytest
 
 #################################################################################
 # PROJECT RULES                                                                 #
