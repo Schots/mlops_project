@@ -5,8 +5,8 @@ __pycache__/
 # C extensions
 *.so
 
-# Ingore the data folder
-data/
+# Ingore the data folder on the root of the project
+/data/
 
 # Distribution / packaging
 .Python
