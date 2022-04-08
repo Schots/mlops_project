@@ -27,6 +27,9 @@ jobs:
         run: |
           make requirements
 
+          # Install package
+          pip install -e .
+
           # Reproduce pipeline if any changes detected in dependencies
           dvc repro
 
