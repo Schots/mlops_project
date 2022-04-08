@@ -1,4 +1,5 @@
 """Get data from kaggle."""
+import sys
 import configparser
 import logging
 import subprocess
@@ -6,11 +7,13 @@ from pathlib import Path
 from kaggle.api import KaggleApi
 
 
-logging.basicConfig(level=logging.INFO, format="%(asctime)-15s %(message)s")
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s | %(name)s | %(message)s"
+)
 logger = logging.getLogger()
 
 
-def download_data():
+def main():
 
     """Downloading train and test data from Kaggle Titanic competition."""
     config = configparser.ConfigParser()
@@ -52,8 +55,8 @@ def download_data():
         ],
         check=True,
     )
+    sys.exit(0)
 
 
 if __name__ == "__main__":
-
-    download_data()
+    main()
