@@ -2,6 +2,7 @@
 """This module is responsible by the model creation and model training."""
 import sys
 import argparse
+import configparser
 from pathlib import Path
 from sklearn.ensemble import (
     RandomForestClassifier,
@@ -11,10 +12,13 @@ from sklearn.ensemble import (
 import joblib
 import yaml
 
+PARAMS_FILE = "params.yaml"
+
 
 def main(input_folder, model_folder):
+    """Function to train the model."""
 
-    with open("params.yaml", "r", encoding="utf-8") as file:
+    with open(PARAMS_FILE, "r", encoding="utf-8") as file:
         params = yaml.load(file, Loader=yaml.SafeLoader)
         target = params["dataset"]["target"]
         clf = params["train"]["clf"]
@@ -72,22 +76,39 @@ def main(input_folder, model_folder):
     # Save the model
     joblib.dump(model, model_out_path)
 
+    sys.exit(0)
+
 
 if __name__ == "__main__":
+
+    # Parse arguments from configs.ini file
+    config = configparser.ConfigParser()
+    config.read("configs.ini")
+
+    # Convert to pathlib objects
+    processed_folder = Path(config["datasets"]["processed_folder"]).resolve()
+    models_folder = Path(config["datasets"]["models_folder"]).resolve()
+
+    # Parse arguments from the command line
     parser = argparse.ArgumentParser(
-        description="Train a model using the featurized data."
+        description="Train a model using the features."
     )
     parser.add_argument(
         "-i",
         "--input_folder",
-        type=str,
-        help="Path to the input folder containing the featurized data.",
+        type=Path,
+        default=processed_folder,
+        help="Path to the input folder containing the features.",
     )
     parser.add_argument(
         "-m",
         "--model_folder",
-        type=str,
+        type=Path,
+        default=models_folder,
         help="Path to the folder where the models will be stored.",
     )
+
     args = parser.parse_args()
+
+    # Call the main function
     main(**vars(args))

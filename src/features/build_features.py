@@ -4,6 +4,7 @@ standardization, encoding, etc."""
 import sys
 import logging
 import os
+import configparser
 import argparse
 from pathlib import Path
 import joblib
@@ -32,14 +33,23 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+PARAMS_FILE = "params.yaml"
+
 
 def main(input_folder, output_folder, model_folder):
+    """Build features.
+
+    Args:
+        input_folder (pathlib): the folder where the raw data is stored
+        output_folder (pathlib): the folder where the processed data will be
+        model_folder (pathlib): the folder where the models will be stored
+    """
 
     # Open the configuration file. All the parameters are stored in the params.yaml file.
     # In this file the user can specify the parameters for the feature engineering, such as
     # the target, the preprocess steps, feature creation, feature selection, etc.
     try:
-        with open("params.yaml", "r", encoding="utf-8") as file:
+        with open(PARAMS_FILE, "r", encoding="utf-8") as file:
             # Load the entire file
             params = yaml.load(file, Loader=yaml.SafeLoader)
             # Find the target (y variable) in the file.
@@ -48,7 +58,7 @@ def main(input_folder, output_folder, model_folder):
             prepare = params["prepare"]
 
     except Exception as e:
-        logger.error(f"{e}")
+        logger.error("%s", e)
         sys.exit(1)
 
     # If doesn't exist, create the output data folder
@@ -180,29 +190,42 @@ def main(input_folder, output_folder, model_folder):
 
 
 if __name__ == "__main__":
+
+    # Parse arguments from configs.ini file
+    config = configparser.ConfigParser()
+    config.read("configs.ini")
+
+    # Convert to pathlib objects
+    raw_folder = Path(config["datasets"]["raw_folder"]).resolve()
+    processed_folder = Path(config["datasets"]["processed_folder"]).resolve()
+    models_folder = Path(config["datasets"]["models_folder"]).resolve()
+
+    # Parse arguments from command line
     parser = argparse.ArgumentParser(
         description="Build features for the titanic dataset."
     )
     parser.add_argument(
         "-i",
         "--input_folder",
-        type=str,
-        default="data/raw",
+        type=Path,
+        default=raw_folder,
         help="The folder where the raw data is stored.",
     )
     parser.add_argument(
         "-o",
         "--output_folder",
-        type=str,
-        default="data/processed",
+        type=Path,
+        default=processed_folder,
         help="The folder where the processed data will be stored.",
     )
     parser.add_argument(
         "-m",
         "--model_folder",
-        type=str,
-        default="models",
+        type=Path,
+        default=models_folder,
         help="The folder where the models will be stored.",
     )
     args = parser.parse_args()
+
+    # Call the main function
     main(**vars(args))

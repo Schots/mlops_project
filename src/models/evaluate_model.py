@@ -3,6 +3,7 @@
 plots."""
 import json
 import argparse
+import configparser
 import math
 import sys
 from pathlib import Path
@@ -20,12 +21,15 @@ from sklearn.metrics import (
     f1_score,
 )
 
+PARAMS_FILE = "params.yaml"
+
 
 def main(
     input_folder, model_folder, scores_file, prc_file, roc_file, cfm_file
 ):
+    """Evaluating the model."""
 
-    with open("params.yaml", "r", encoding="utf-8") as file:
+    with open(PARAMS_FILE, "r", encoding="utf-8") as file:
         params = yaml.load(file, Loader=yaml.SafeLoader)
         target = params["dataset"]["target"]
 
@@ -130,46 +134,67 @@ def main(
             indent=4,
         )
 
+    sys.exit(0)
+
 
 if __name__ == "__main__":
+
+    # Parse arguments from configs.ini file
+    config = configparser.ConfigParser()
+    config.read("configs.ini")
+
+    # Convert to pathlib objects
+    processed_folder = Path(config["datasets"]["processed_folder"]).resolve()
+    models_folder = Path(config["datasets"]["models_folder"]).resolve()
+    reports_folder = Path(config["datasets"]["reports_folder"]).resolve()
+
+    # Parse arguments from the command line
     parser = argparse.ArgumentParser(
         description="Evaluate the model and create the plots"
     )
     parser.add_argument(
         "-i",
         "--input_folder",
-        type=str,
+        type=Path,
+        default=processed_folder,
         help="Folder where the featurized test dataset is located",
     )
     parser.add_argument(
         "-m",
         "--model_folder",
-        type=str,
+        type=Path,
+        default=models_folder,
         help="Folder where the model is located",
     )
     parser.add_argument(
         "-s",
         "--scores_file",
         type=str,
+        default=reports_folder / "scores.json",
         help="File where the scores will be saved",
     )
     parser.add_argument(
         "-p",
         "--prc_file",
         type=str,
+        default=reports_folder / "prc.json",
         help="File where the PRC curve will be saved",
     )
     parser.add_argument(
         "-r",
         "--roc_file",
         type=str,
+        default=reports_folder / "roc.json",
         help="File where the ROC curve will be saved",
     )
     parser.add_argument(
         "-c",
         "--cfm_file",
         type=str,
+        default=reports_folder / "cfm.json",
         help="File where the confusion matrix will be saved",
     )
     args = parser.parse_args()
+
+    # Call the main function
     main(**vars(args))
