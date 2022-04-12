@@ -63,7 +63,7 @@ repos:
         language: python
         exclude: "kedro-init"
         types_or: [python, pyi]
-        args: ["--line-length=79", "--experimental-string-processing"]
+        args: ["--line-length=79", "--preview"]
       - id: docformatter
         name: docformatter
         description: formats docstrings to follow PEP 257.
