@@ -8,14 +8,14 @@ import pytest
 from src.models.train_model import main
 
 
-def test_main_no_args_DEV():
+def test_main_no_args():
     """Test that the make_dataset.py script doesn't run without any
     arguments."""
     with pytest.raises(TypeError):
         main()
 
 
-def test_main_with_config_file_DEV(load_config):
+def test_main_with_config_file_ENV(load_config):
     """Test that the make_dataset.py script runs with the correct arguments."""
 
     # Valid arguments
@@ -27,7 +27,7 @@ def test_main_with_config_file_DEV(load_config):
         main(input_folder, models_folder)
 
 
-def test_main_with_valid_DEV(temp_folder):
+def test_main_with_temp_ENV(temp_folder):
     """Test that the make_dataset.py script runs with the correct arguments."""
     # Valid arguments
 

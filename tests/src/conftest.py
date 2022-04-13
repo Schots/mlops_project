@@ -11,13 +11,13 @@ def temp_folder(tmp_path_factory):
     temporary folder."""
     tempfolder = tmp_path_factory.mktemp("data")
 
-    raw_temp = tempfolder / "raw"
+    raw_temp = tempfolder.joinpath("raw")
     raw_temp.mkdir()
 
-    processed_temp = tempfolder / "processed"
+    processed_temp = tempfolder.joinpath("processed")
     processed_temp.mkdir()
 
-    models_temp = tempfolder / "models"
+    models_temp = tempfolder.joinpath("models")
     models_temp.mkdir()
 
     return tempfolder

@@ -1,4 +1,4 @@
-# pylint: disable=E1121, R0801
+# pylint: disable=E1120, R0801
 """Test src/data/make_dataset.py."""
 import os
 from pathlib import Path
@@ -13,7 +13,7 @@ def test_main_no_args():
         main()
 
 
-def test_main_config_file_DEV(load_config):
+def test_main_config_file_ENV(load_config):
     """Test that the make_dataset.py script runs with the correct arguments."""
 
     # Valid arguments
@@ -26,7 +26,7 @@ def test_main_config_file_DEV(load_config):
         main(competition_name, train_data, test_data, output_folder)
 
 
-def test_main_with_valid_DEV(temp_folder):
+def test_main_with_temp_ENV(temp_folder):
     """Test that the make_dataset.py script runs with the correct arguments."""
     # Valid arguments
     competition_name = "titanic"
