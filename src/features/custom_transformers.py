@@ -10,10 +10,9 @@ def identify_deck(X, fill_missing="UNK"):
     Use the prefix letter as identifier and mark missing values with the
     "fill_missing" value.
     """
-    X = X.apply(
-        lambda s: s[0] if s.str.contains("^[A-Za-z]").any() else fill_missing,
-        axis=1,
-    )
+    X = X.apply(lambda x: x.str.extract("([A-Za-z]+)", expand=False))
+    X = X.fillna(fill_missing)
+
     return np.array(X).reshape(-1, 1)
 
 
@@ -49,4 +48,21 @@ def boolean_feature(X):
 def extract_titles(X):
     """Extract the title from the name feature."""
     X = X.apply(lambda x: x.str.extract(r" ([A-Za-z]+)\.", expand=False))
+    X = X.replace(
+        [
+            "Rev",
+            "Don",
+            "Countess",
+            "Sir",
+            "Lady",
+            "Jonkheer",
+            "Col",
+            "Capt",
+            "Major",
+            "Master",
+            "Dr",
+        ],
+        "Rare",
+    )
+    X = X.replace(["Mlle", "Mme", "Ms"], "Miss")
     return np.array(X).reshape(-1, 1)

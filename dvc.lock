@@ -4,8 +4,8 @@ stages:
     cmd: make data
     deps:
     - path: src/data/make_dataset.py
-      md5: 16a344863da4bc5797f0b9e217cb69ff
-      size: 1341
+      md5: 740f1691d70520da59a72c8ee236fefa
+      size: 2384
     outs:
     - path: data/raw
       md5: 87bb5025b342dce499fe38b06aba7132.dir
@@ -21,8 +21,8 @@ stages:
       md5: 61fdd54abdbf6a85b778e937122e1194
       size: 61194
     - path: src/features/build_features.py
-      md5: 25b67c52a0247013634d034af41c0ecb
-      size: 6291
+      md5: 6583e4cf0e38770ac2103c6d184cff77
+      size: 7310
     params:
       params.yaml:
         dataset.target: Survived
@@ -30,21 +30,21 @@ stages:
         prepare.test_size: 0.3
     outs:
     - path: data/processed
-      md5: 2c16883eaca0d1f813ed14e06a50df8e.dir
-      size: 1093270
+      md5: 48e22359720a2750cba92c3341f64b22.dir
+      size: 1014818
       nfiles: 2
     - path: models/features.joblib
-      md5: d5f820f76e8a4a6df88f61e68116ba1d
-      size: 8218
+      md5: 6a842259c6ddd406d92aaefea7f2c34e
+      size: 8094
   train:
     cmd: make train
     deps:
     - path: data/processed/train.joblib
-      md5: 469bb784a9e8f6b074b64039b62b154e
-      size: 763895
+      md5: e9d785f2debf23ad7aeb4f890faf22d4
+      size: 709049
     - path: src/models/train_model.py
-      md5: eeb90e8e1526090efce0e7ecb8b74d9a
-      size: 2672
+      md5: d8dd7cfbe198055c3b69cde0a07ee8c1
+      size: 3203
     params:
       params.yaml:
         dataset.target: Survived
@@ -57,33 +57,33 @@ stages:
           n_jobs: -1
     outs:
     - path: models/model.joblib
-      md5: 995b1c19a471c829df692920f73f3a60
-      size: 59175
+      md5: 03457dba05a3f5120feb8f199e20af3b
+      size: 55863
   evaluate:
     cmd: make evaluation
     deps:
     - path: data/processed/test.joblib
-      md5: d229f37704e3deefc0adf554f07a9f3b
-      size: 329375
+      md5: 62511f9f8328c0fbfe41f4ab524d40b3
+      size: 305769
     - path: models/model.joblib
-      md5: 995b1c19a471c829df692920f73f3a60
-      size: 59175
+      md5: 03457dba05a3f5120feb8f199e20af3b
+      size: 55863
     - path: src/models/evaluate_model.py
-      md5: 29f4f0c0048fa099bf9ef1c49269cd47
-      size: 4466
+      md5: 1aeaa1a15962207db1edd2cad830e6c2
+      size: 5320
     params:
       params.yaml:
         dataset.target: Survived
     outs:
     - path: reports/cfm.json
-      md5: fc88bc6116c7bf0235a0a8d0caacdb9e
+      md5: f3b678844685b171afadce43bdee68ec
       size: 19585
     - path: reports/prc.json
-      md5: dd94517f08d7af31dbc2dd00e875613f
-      size: 19561
+      md5: 69fb9364f94cf2d2b95e0a35bf9e03fa
+      size: 19194
     - path: reports/roc.json
-      md5: 96024ebba8b8cf3e053be443499f736d
-      size: 10418
+      md5: 61c2040f6dbde34d5d7eab215e68a0fa
+      size: 12270
     - path: reports/scores.json
-      md5: 10991bbf041c58c14c9b36bf9d113fbb
-      size: 231
+      md5: 7fa95ef53c3317295e8e7e25b57c46f4
+      size: 230
