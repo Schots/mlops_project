@@ -3,6 +3,7 @@
 import os
 from pathlib import Path
 import configparser
+import pandas as pd
 import pytest
 from src.data.make_dataset import main
 
@@ -32,7 +33,7 @@ def test_main_with_temp_ENV(temp_folder):
     competition_name = "titanic"
     train_data = "train.csv"
     test_data = "test.csv"
-    output_folder = temp_folder / "raw"
+    output_folder = temp_folder.joinpath("raw")
 
     # Create raw folder inside the temp_folder
     with pytest.raises(SystemExit):

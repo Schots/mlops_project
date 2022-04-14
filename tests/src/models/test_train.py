@@ -31,9 +31,8 @@ def test_main_with_temp_ENV(temp_folder):
     """Test that the make_dataset.py script runs with the correct arguments."""
     # Valid arguments
 
-    input_folder = temp_folder / "features"
+    input_folder = temp_folder / "processed"
     models_folder = temp_folder / "models"
 
-    # print(input_folder, output_folder, models_folder)
     with pytest.raises(SystemExit):
         main(input_folder, models_folder)
