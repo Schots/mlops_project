@@ -25,10 +25,10 @@ def main(input_folder, model_folder):
         clf_params = params["train"]["clf_params"]
 
     # Path to the featurized train.joblib dataset
-    train_in_path = Path(f"{input_folder}/train.joblib").resolve()
+    train_in_path = Path(input_folder) / "train.joblib"
 
     # Path where the trained model will be stored
-    model_out_path = Path(f"{model_folder}/model.joblib").resolve()
+    model_out_path = Path(model_folder) / "model.joblib"
 
     # Load the featurized data
     train = joblib.load(train_in_path)

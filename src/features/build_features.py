@@ -3,7 +3,6 @@
 standardization, encoding, etc."""
 import sys
 import logging
-import os
 import configparser
 import argparse
 from pathlib import Path
@@ -62,16 +61,16 @@ def main(input_folder, output_folder, model_folder):
         sys.exit(1)
 
     # If doesn't exist, create the output data folder
-    os.makedirs(output_folder, exist_ok=True)
+    Path.mkdir(output_folder, exist_ok=True)
 
     # Path to raw train.csv and test.csv data sets
-    data_path = Path(f"{input_folder}/train.csv").resolve()
+    data_path = Path(input_folder) / "train.csv"
 
     # The resulting data of the featurization process will
     # be stored according to the following paths
-    train_out_path = Path(f"{output_folder}/train.joblib").resolve()
-    test_out_path = Path(f"{output_folder}/test.joblib").resolve()
-    pipeline_out_path = Path(f"{model_folder}/features.joblib").resolve()
+    train_out_path = Path(output_folder) / "train.joblib"
+    test_out_path = Path(output_folder) / "test.joblib"
+    pipeline_out_path = Path(model_folder) / "features.joblib"
 
     # Load raw data and split in train and test
     data = pd.read_csv(data_path, index_col=[0])

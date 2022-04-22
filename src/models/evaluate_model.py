@@ -34,10 +34,10 @@ def main(
         target = params["dataset"]["target"]
 
     # Path to the featurized test.joblib dataset
-    test_in_path = Path(f"{input_folder}/test.joblib").resolve()
+    test_in_path = Path(input_folder) / "test.joblib"
 
     # Path to the model
-    model_path = Path(f"{model_folder}/model.joblib").resolve()
+    model_path = Path(model_folder) / "model.joblib"
 
     # Load the featurized data
     test = joblib.load(test_in_path)
