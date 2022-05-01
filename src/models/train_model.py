@@ -11,13 +11,14 @@ import joblib
 import yaml
 
 
-def train(input_folder, model_folder):
+def train(input_folder, model_folder, params=None):
+    if params is None:
+        with open("params.yaml", "r", encoding="utf-8") as file:
+            params = yaml.load(file, Loader=yaml.SafeLoader)
 
-    with open("params.yaml", "r", encoding="utf-8") as file:
-        params = yaml.load(file, Loader=yaml.SafeLoader)
-        target = params["dataset"]["target"]
-        clf = params["train"]["clf"]
-        clf_params = params["train"]["clf_params"]
+    target = params["dataset"]["target"]
+    clf = params["train"]["clf"]
+    clf_params = params["train"]["clf_params"]
 
     # Path to the featurized train.joblib dataset
     train_in_path = Path(f"{input_folder}/train.joblib").resolve()
