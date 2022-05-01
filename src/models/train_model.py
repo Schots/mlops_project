@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 """This module is responsible by the model creation and model training."""
-import sys
 import argparse
 from pathlib import Path
 from sklearn.ensemble import (
@@ -44,11 +43,7 @@ def train(input_folder, model_folder):
 
     # If the classifier is not in the dictionary, exit with error
     if clf not in classifiers.keys():
-        print(
-            f"Error: {classifiers[clf].__name__} is not a supported"
-            " classifier."
-        )
-        sys.exit(1)
+        raise ValueError(f"Classifier {clf} not found.")
 
     ## Verify if all parameters passed by the yaml are valid
     ## classifier parameters
@@ -57,11 +52,7 @@ def train(input_folder, model_folder):
 
     # If there are invalid parameters, print an error message and exit
     if invalid_arg:
-        print(
-            f"Error: {classifiers[clf].__name__} invalid parameters"
-            f" {invalid_arg}"
-        )
-        sys.exit(1)
+        raise ValueError(f"Error: Invalid parameters {invalid_arg}")
 
     # Instantiate the classifier
     model = classifiers[clf](**clf_params)
