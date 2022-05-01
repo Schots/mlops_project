@@ -47,12 +47,12 @@ def train(input_folder, model_folder, params=None):
     model_out_path = Path(f"{model_folder}/model.joblib").resolve()
 
     # Load the featurized data
-    train = joblib.load(train_in_path)
+    train_data = joblib.load(train_in_path)
 
     # Split the data into features and target
     X_train, y_train = (
-        train.drop(target, axis=1),
-        train.pop(target),
+        train_data.drop(target, axis=1),
+        train_data.pop(target),
     )
 
     # Instantiate the classifier
