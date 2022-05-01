@@ -20,21 +20,6 @@ def train(input_folder, model_folder, params=None):
     clf = params["train"]["clf"]
     clf_params = params["train"]["clf_params"]
 
-    # Path to the featurized train.joblib dataset
-    train_in_path = Path(f"{input_folder}/train.joblib").resolve()
-
-    # Path where the trained model will be stored
-    model_out_path = Path(f"{model_folder}/model.joblib").resolve()
-
-    # Load the featurized data
-    train = joblib.load(train_in_path)
-
-    # Split the data into features and target
-    X_train, y_train = (
-        train.drop(target, axis=1),
-        train.pop(target),
-    )
-
     # Dictionary of classifiers
     classifiers = {
         "RandomForestClassifier": RandomForestClassifier,
@@ -54,6 +39,21 @@ def train(input_folder, model_folder, params=None):
     # If there are invalid parameters, print an error message and exit
     if invalid_arg:
         raise ValueError(f"Error: Invalid parameters {invalid_arg}")
+
+    # Path to the featurized train.joblib dataset
+    train_in_path = Path(f"{input_folder}/train.joblib").resolve()
+
+    # Path where the trained model will be stored
+    model_out_path = Path(f"{model_folder}/model.joblib").resolve()
+
+    # Load the featurized data
+    train = joblib.load(train_in_path)
+
+    # Split the data into features and target
+    X_train, y_train = (
+        train.drop(target, axis=1),
+        train.pop(target),
+    )
 
     # Instantiate the classifier
     model = classifiers[clf](**clf_params)
