@@ -22,7 +22,7 @@ matplotlib==3.5.1
     #   seaborn
 numba==0.55.1
     # via shap
-numpy==1.21.5
+numpy==1.21.6
     # via
     #   -r requirements.in
     #   matplotlib
