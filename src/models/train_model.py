@@ -80,7 +80,27 @@ if __name__ == "__main__":
     args = parser.parse_args()
     if args.help_classifiers:
         print("[bold red]Available classifiers:[/bold red]")
-        for clf in __all_classifiers.keys():
-            print(f"\t{clf}")
+        for i, clf in enumerate(__all_classifiers.keys()):
+            print(f"\t[bold green]{i}-[bold green]{clf}")
+        print("Press [bold red]q[/bold red] to exit.")
+        print(
+            "Press the [bold red]number[/bold red] of the classifier to get a"
+            " description."
+        )
+        keychar = input()
+        while keychar != "q":
+            if keychar.isdigit():
+                classfier = getattr(
+                    Classifiers,
+                    list(__all_classifiers.keys())[int(keychar) - 1],
+                )
+                print(classfier.__doc__)
+            print("Press [bold red]q[/bold red] to exit.")
+            print(
+                "Press the [bold red]number[/bold red] of the classifier to"
+                " get a description."
+            )
+            keychar = input()
+
     else:
         train()
