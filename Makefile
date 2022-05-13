@@ -80,6 +80,10 @@ features:
 train:
 	@$(PYTHON_INTERPRETER) src/models/train_model.py
 
+## list all the classifers available
+help-classifiers:
+	@$(PYTHON_INTERPRETER) src/models/train_model.py --help_classifiers
+
 ## (dvc) Execute the 'evaluate' stage
 evaluation:
 	@$(PYTHON_INTERPRETER) src/models/evaluate_model.py -i data/processed -m models \

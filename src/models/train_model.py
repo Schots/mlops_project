@@ -5,6 +5,7 @@ from pathlib import Path
 from collections import namedtuple
 from sklearn.base import ClassifierMixin
 from sklearn.utils import all_estimators
+from rich import print, box
 import joblib
 import yaml
 
@@ -71,5 +72,15 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="Train a model using the featurized data."
     )
+    parser.add_argument(
+        "--help_classifiers",
+        action="store_true",
+        help="List all available classifiers.",
+    )
     args = parser.parse_args()
-    train()
+    if args.help_classifiers:
+        print("[bold red]Available classifiers:[/bold red]")
+        for clf in __all_classifiers.keys():
+            print(f"\t{clf}")
+    else:
+        train()
