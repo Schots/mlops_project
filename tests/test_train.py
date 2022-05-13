@@ -20,9 +20,7 @@ def test_train_model_raise_exception():
         with open("params.yaml", "r", encoding="utf-8") as file:
             params = yaml.load(file, Loader=yaml.SafeLoader)
         params["train"]["clf"] = "RandomForestRegressor"
-        input_folder = "data/processed"
-        model_folder = "models"
-        train(input_folder, model_folder, params)
+        train(params)
 
 
 def test_train_model__wrong_params_raise_exception():
@@ -31,6 +29,4 @@ def test_train_model__wrong_params_raise_exception():
         with open("params.yaml", "r", encoding="utf-8") as file:
             params = yaml.load(file, Loader=yaml.SafeLoader)
         params["train"]["clf_params"]["Invalid_Arg"] = "Invalid_Value"
-        input_folder = "data/processed"
-        model_folder = "models"
-        train(input_folder, model_folder, params)
+        train(params)

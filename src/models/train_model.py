@@ -5,7 +5,7 @@ from pathlib import Path
 from collections import namedtuple
 from sklearn.base import ClassifierMixin
 from sklearn.utils import all_estimators
-from rich import print, box
+from rich import print
 import joblib
 import yaml
 
@@ -20,10 +20,10 @@ Classifiers = namedtuple("Classifiers", __all_classifiers.keys())(
 )
 
 
-def train():
-
-    with open("params.yaml", "r", encoding="utf-8") as file:
-        params = yaml.load(file, Loader=yaml.SafeLoader)
+def train(params=None):
+    if params is None:
+        with open("params.yaml", "r", encoding="utf-8") as file:
+            params = yaml.load(file, Loader=yaml.SafeLoader)
 
     target = params["dataset"]["target"]
     clf = params["train"]["clf"]
