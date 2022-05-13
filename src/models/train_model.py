@@ -2,13 +2,21 @@
 """This module is responsible by the model creation and model training."""
 import argparse
 from pathlib import Path
-from sklearn.ensemble import (
-    RandomForestClassifier,
-    AdaBoostClassifier,
-    GradientBoostingClassifier,
-)
+from collections import namedtuple
+from sklearn.base import ClassifierMixin
+from sklearn.utils import all_estimators
 import joblib
 import yaml
+
+
+__all_classifiers = {
+    name: obj
+    for name, obj in all_estimators()
+    if issubclass(obj, ClassifierMixin)
+}
+Classifiers = namedtuple("Classifiers", __all_classifiers.keys())(
+    *__all_classifiers.values()
+)
 
 
 def train(input_folder, model_folder, params=None):
@@ -20,20 +28,14 @@ def train(input_folder, model_folder, params=None):
     clf = params["train"]["clf"]
     clf_params = params["train"]["clf_params"]
 
-    # Dictionary of classifiers
-    classifiers = {
-        "RandomForestClassifier": RandomForestClassifier,
-        "AdaBoostClassifier": AdaBoostClassifier,
-        "GradientBoostingClassifier": GradientBoostingClassifier,
-    }
-
     # If the classifier is not in the dictionary, exit with error
-    if clf not in classifiers.keys():
+    if clf not in __all_classifiers.keys():
         raise ValueError(f"Classifier {clf} not found.")
 
+    classifier = getattr(Classifiers, clf)
     ## Verify if all parameters passed by the yaml are valid
     ## classifier parameters
-    attributes = dir(classifiers[clf]())
+    attributes = dir(classifier())
     invalid_arg = [arg for arg in clf_params if arg not in attributes]
 
     # If there are invalid parameters, print an error message and exit
@@ -56,7 +58,7 @@ def train(input_folder, model_folder, params=None):
     )
 
     # Instantiate the classifier
-    model = classifiers[clf](**clf_params)
+    model = classifier(**clf_params)
 
     # Train the model
     model.fit(X_train, y_train.values.ravel())
