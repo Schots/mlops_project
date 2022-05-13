@@ -1,10 +1,10 @@
 import pytest
 import yaml
-from src.models.train_model import train
-
 from sklearn.base import ClassifierMixin
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.ensemble import RandomForestRegressor
+
+from src.models.train_model import train
 
 
 def test_ClassifierMixin():

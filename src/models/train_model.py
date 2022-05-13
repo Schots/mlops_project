@@ -19,10 +19,10 @@ Classifiers = namedtuple("Classifiers", __all_classifiers.keys())(
 )
 
 
-def train(input_folder, model_folder, params=None):
-    if params is None:
-        with open("params.yaml", "r", encoding="utf-8") as file:
-            params = yaml.load(file, Loader=yaml.SafeLoader)
+def train():
+
+    with open("params.yaml", "r", encoding="utf-8") as file:
+        params = yaml.load(file, Loader=yaml.SafeLoader)
 
     target = params["dataset"]["target"]
     clf = params["train"]["clf"]
@@ -43,10 +43,10 @@ def train(input_folder, model_folder, params=None):
         raise ValueError(f"Error: Invalid parameters {invalid_arg}")
 
     # Path to the featurized train.joblib dataset
-    train_in_path = Path(f"{input_folder}/train.joblib").resolve()
+    train_in_path = Path("data/processed/train.joblib").resolve()
 
     # Path where the trained model will be stored
-    model_out_path = Path(f"{model_folder}/model.joblib").resolve()
+    model_out_path = Path("models/model.joblib").resolve()
 
     # Load the featurized data
     train_data = joblib.load(train_in_path)
@@ -71,17 +71,5 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="Train a model using the featurized data."
     )
-    parser.add_argument(
-        "-i",
-        "--input_folder",
-        type=str,
-        help="Path to the input folder containing the featurized data.",
-    )
-    parser.add_argument(
-        "-m",
-        "--model_folder",
-        type=str,
-        help="Path to the folder where the models will be stored.",
-    )
     args = parser.parse_args()
-    train(**vars(args))
+    train()
