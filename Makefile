@@ -78,7 +78,11 @@ features:
 
 ## (dvc) Execute the 'train' stage
 train:
-	@$(PYTHON_INTERPRETER) src/models/train_model.py -i data/processed -m models
+	@$(PYTHON_INTERPRETER) src/models/train_model.py
+
+## list all the classifers available
+help-classifiers:
+	@$(PYTHON_INTERPRETER) src/models/train_model.py --help_classifiers
 
 ## (dvc) Execute the 'evaluate' stage
 evaluation:

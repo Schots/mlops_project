@@ -6,4 +6,5 @@ seaborn
 scipy
 statsmodels
 shap
+rich
 xgboost
