@@ -94,9 +94,7 @@ threadpoolctl==3.1.0
     # via scikit-learn
 tqdm==4.63.1
     # via shap
-typing-extensions==4.2.0
-    # via rich
-xgboost==1.5.2
+xgboost==1.6.1
     # via -r requirements.in
 
 # The following packages are considered to be unsafe in a requirements file:
