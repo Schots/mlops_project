@@ -18,7 +18,7 @@ kiwisolver==1.4.0
     # via matplotlib
 llvmlite==0.38.0
     # via numba
-matplotlib==3.5.1
+matplotlib==3.5.2
     # via
     #   -r requirements.in
     #   seaborn
@@ -94,8 +94,6 @@ threadpoolctl==3.1.0
     # via scikit-learn
 tqdm==4.63.1
     # via shap
-typing-extensions==4.2.0
-    # via rich
 xgboost==1.5.2
     # via -r requirements.in
 
