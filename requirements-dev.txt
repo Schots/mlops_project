@@ -14,10 +14,15 @@ aiosignal==1.2.0
     # via aiohttp
 alabaster==0.7.12
     # via sphinx
+anyio==3.6.2
+    # via jupyter-server
 appdirs==1.4.4
     # via dvc
 argon2-cffi==21.3.0
-    # via notebook
+    # via
+    #   jupyter-server
+    #   nbclassic
+    #   notebook
 argon2-cffi-bindings==21.2.0
     # via argon2-cffi
 astroid==2.11.1
@@ -141,20 +146,16 @@ identify==2.4.12
     # via pre-commit
 idna==3.3
     # via
+    #   anyio
     #   requests
     #   yarl
 imagesize==1.3.0
     # via sphinx
-importlib-metadata==4.11.3
-    # via sphinx
-importlib-resources==5.4.0
-    # via
-    #   dvc
-    #   jsonschema
 iniconfig==1.1.1
     # via pytest
 ipykernel==6.9.2
     # via
+    #   nbclassic
     #   nbmake
     #   notebook
 ipython==8.1.1
@@ -162,7 +163,9 @@ ipython==8.1.1
     #   ipykernel
     #   nbqa
 ipython-genutils==0.2.0
-    # via notebook
+    # via
+    #   nbclassic
+    #   notebook
 isort==5.10.1
     # via
     #   -r requirements-dev.in
@@ -171,6 +174,8 @@ jedi==0.18.1
     # via ipython
 jinja2==3.1.1
     # via
+    #   jupyter-server
+    #   nbclassic
     #   nbconvert
     #   notebook
     #   sphinx
@@ -179,14 +184,22 @@ jsonschema==4.4.0
 jupyter-client==7.1.2
     # via
     #   ipykernel
+    #   jupyter-server
+    #   nbclassic
     #   nbclient
     #   notebook
 jupyter-core==4.9.2
     # via
     #   jupyter-client
+    #   jupyter-server
+    #   nbclassic
     #   nbconvert
     #   nbformat
     #   notebook
+jupyter-server==1.21.0
+    # via
+    #   nbclassic
+    #   notebook-shim
 jupyterlab-pygments==0.1.2
     # via nbconvert
 kaggle==1.5.12
@@ -213,14 +226,21 @@ mypy-extensions==0.4.3
     # via black
 nanotime==0.5.2
     # via dvc
+nbclassic==0.4.7
+    # via notebook
 nbclient==0.5.13
     # via
     #   nbconvert
     #   nbmake
 nbconvert==6.4.4
-    # via notebook
+    # via
+    #   jupyter-server
+    #   nbclassic
+    #   notebook
 nbformat==5.2.0
     # via
+    #   jupyter-server
+    #   nbclassic
     #   nbclient
     #   nbconvert
     #   nbmake
@@ -233,19 +253,23 @@ nest-asyncio==1.5.4
     # via
     #   ipykernel
     #   jupyter-client
+    #   nbclassic
     #   nbclient
     #   notebook
 networkx==2.7.1
     # via dvc
 nodeenv==1.6.0
     # via pre-commit
-notebook==6.4.10
+notebook==6.5.2
     # via -r requirements-dev.in
+notebook-shim==0.2.0
+    # via nbclassic
 packaging==21.3
     # via
     #   -c requirements.txt
     #   bleach
     #   dvc
+    #   jupyter-server
     #   pytest
     #   sphinx
     #   tox
@@ -284,7 +308,10 @@ pre-commit==2.17.0
 pre-commit-hooks==4.1.0
     # via -r requirements-dev.in
 prometheus-client==0.13.1
-    # via notebook
+    # via
+    #   jupyter-server
+    #   nbclassic
+    #   notebook
 prompt-toolkit==3.0.28
     # via ipython
 psutil==5.9.0
@@ -367,6 +394,8 @@ pyyaml==6.0
 pyzmq==22.3.0
     # via
     #   jupyter-client
+    #   jupyter-server
+    #   nbclassic
     #   notebook
 requests==2.27.1
     # via
@@ -388,7 +417,10 @@ ruamel-yaml-clib==0.2.6
 scmrepo==0.0.7
     # via dvc
 send2trash==1.8.0
-    # via notebook
+    # via
+    #   jupyter-server
+    #   nbclassic
+    #   notebook
 shortuuid==1.0.8
     # via dvc
 shtab==1.5.3
@@ -406,6 +438,8 @@ six==1.16.0
     #   virtualenv
 smmap==5.0.0
     # via gitdb
+sniffio==1.3.0
+    # via anyio
 snowballstemmer==2.2.0
     # via sphinx
 soupsieve==2.3.1
@@ -431,7 +465,10 @@ stack-data==0.2.0
 tabulate==0.8.9
     # via dvc
 terminado==0.13.3
-    # via notebook
+    # via
+    #   jupyter-server
+    #   nbclassic
+    #   notebook
 testpath==0.6.0
     # via nbconvert
 text-unidecode==1.3
@@ -456,6 +493,8 @@ tornado==6.1
     # via
     #   ipykernel
     #   jupyter-client
+    #   jupyter-server
+    #   nbclassic
     #   notebook
     #   terminado
 tox==3.24.5
@@ -471,7 +510,9 @@ traitlets==5.1.1
     #   ipython
     #   jupyter-client
     #   jupyter-core
+    #   jupyter-server
     #   matplotlib-inline
+    #   nbclassic
     #   nbclient
     #   nbconvert
     #   nbformat
@@ -479,12 +520,8 @@ traitlets==5.1.1
 typing-extensions==4.2.0
     # via
     #   -c requirements.txt
-    #   astroid
-    #   black
     #   dvc
     #   pydantic
-    #   pylint
-    #   rich
 untokenize==0.1.1
     # via docformatter
 urllib3==1.26.9
@@ -504,6 +541,8 @@ wcwidth==0.2.5
     #   prompt-toolkit
 webencodings==0.5.1
     # via bleach
+websocket-client==1.4.1
+    # via jupyter-server
 wheel==0.37.1
     # via pip-tools
 wrapt==1.14.0
@@ -514,10 +553,6 @@ yarl==1.7.2
     # via aiohttp
 zc-lockfile==2.0
     # via dvc
-zipp==3.7.0
-    # via
-    #   importlib-metadata
-    #   importlib-resources
 
 # The following packages are considered to be unsafe in a requirements file:
 # pip
